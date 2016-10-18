@@ -93,13 +93,13 @@ ctor(baseUrl: string)
       <w>330</w>
       <h>170</h>
     </coordinates>
-    <panel_attributes>ItemPresenter
+    <panel_attributes>ItemsPresenter
 --
 ctor(view ItemView)
 --
 - view: ItemView
 - itemService: ItemService
-</panel_attributes>
++ OnCreateView(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -139,7 +139,7 @@ ctor(view ItemView)
     <id>UMLInterface</id>
     <coordinates>
       <x>240</x>
-      <y>560</y>
+      <y>530</y>
       <w>260</w>
       <h>90</h>
     </coordinates>
@@ -154,10 +154,10 @@ ctor(view ItemView)
       <x>360</x>
       <y>490</y>
       <w>220</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0;200.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0;200.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -185,5 +185,64 @@ ctor(items List&lt;item&gt;)
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>170</x>
+      <y>730</y>
+      <w>400</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>CommonView
+--
++ setOnCreateViewListener(listener: ViewListener): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>590</y>
+      <w>30</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>640</x>
+      <y>730</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ViewListener
+--
+OnCreateView(): void;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>740</y>
+      <w>360</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>340.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>650</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
