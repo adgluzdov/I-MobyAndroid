@@ -15,7 +15,7 @@ public class ServiceFactory {
     }
 
     public static ItemService getItemServiceTest() {
-        new ItemServiceTest();
+        return new ItemServiceTest();
     }
 
 }
