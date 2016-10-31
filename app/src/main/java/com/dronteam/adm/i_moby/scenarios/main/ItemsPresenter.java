@@ -1,7 +1,11 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.data.ItemService;
+import com.dronteam.adm.i_moby.data.ItemServiceTest;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.model.Item;
 
@@ -14,23 +18,25 @@ import java.util.List;
 public class ItemsPresenter implements ViewListener {
 
     private final ItemView view;
-    private final ItemService itemsService;
-
+    private final ItemService itemService;
+    private Context ctx;
     public ItemsPresenter(ItemView view) {
+        this.ctx = (Context)view;
         this.view = view;
-        //itemsService = ServiceFactory.getApi(ItemService.class);
-        itemsService = ServiceFactory.getItemServiceTest();
-        view.setViewListener(this);
+        //itemService = ServiceFactory.getApi(ItemService.class);
+        //itemService = ServiceFactory.getItemServiceTest();
+        itemService = new ItemServiceTest();
+        view.setOnCreateViewListener(this);
     }
 
 
     @Override
     public void OnCreateView() {
-        List<Item> items = itemsService.Get();
+        List<Item> items = itemService.Get();
         view.setList(getAdapter(items));
     }
 
     private ItemAdapter getAdapter(List<Item> items) {
-        return null;
+        return new ItemAdapter(ctx,items);
     }
 }
