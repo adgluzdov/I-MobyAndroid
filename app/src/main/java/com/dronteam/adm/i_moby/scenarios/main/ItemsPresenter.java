@@ -27,10 +27,10 @@ public class ItemsPresenter implements ViewListener {
     @Override
     public void OnCreateView() {
         List<Item> items = itemsService.Get();
-        view.setList(getAdapater(items));
+        view.setList(getAdapter(items));
     }
 
-    private ItemAdapater getAdapater(List<Item> items) {
+    private ItemAdapter getAdapter(List<Item> items) {
         return null;
     }
 }
