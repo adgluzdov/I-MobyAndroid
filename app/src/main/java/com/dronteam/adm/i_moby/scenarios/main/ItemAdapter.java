@@ -11,6 +11,7 @@ import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by smb on 18/10/2016.
@@ -18,22 +19,22 @@ import java.util.ArrayList;
 public class ItemAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
-    ArrayList<Item> itemArrayList;
+    List<Item> itemList;
 
-    ItemAdapter(Context ctx, ArrayList<Item> itemArrayList) {
+    ItemAdapter(Context ctx, List<Item> itemList) {
         this.ctx = ctx;
-        this.itemArrayList = itemArrayList;
+        this.itemList = itemList;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return itemArrayList.size();
+        return itemList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return itemArrayList.get(position);
+        return itemList.get(position);
     }
 
     @Override
