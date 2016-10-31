@@ -7,5 +7,5 @@ import com.dronteam.adm.i_moby.common.CommonView;
  */
 
 public interface ItemView extends CommonView {
-    void setList(ItemAdapater adapater);
+    void setList(ItemAdapter adapater);
 }
