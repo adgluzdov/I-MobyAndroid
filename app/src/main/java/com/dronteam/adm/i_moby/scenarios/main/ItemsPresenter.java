@@ -11,6 +11,8 @@ import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.List;
 
+import retrofit2.Callback;
+
 /**
  * Created by smb on 18/10/2016.
  */
