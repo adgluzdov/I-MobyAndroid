@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.data;
 
-import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.common.Repo;
+
 import java.util.List;
 
 /**
@@ -8,5 +9,5 @@ import java.util.List;
  */
 
 public interface ItemService {
-    List<Item> Get();
+    Repo Get();
 }

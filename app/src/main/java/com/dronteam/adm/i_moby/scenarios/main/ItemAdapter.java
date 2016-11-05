@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.model.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +38,7 @@ public class ItemAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return itemFactory(position).getId();
     }
 
     @Override
@@ -48,7 +47,10 @@ public class ItemAdapter extends BaseAdapter {
         if (view == null)
             view = lInflater.inflate(R.layout.item, parent, false);
         Item item = (Item) getItem(position);
-        ((TextView) view.findViewById(R.id.name)).setText(item.getName());
+        ((TextView) view.findViewById(R.id.name)).setText(item.getTitle());
         return view;
+    }
+    public Item itemFactory(int position) {
+        return (Item) getItem(position);
     }
 }

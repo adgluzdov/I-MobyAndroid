@@ -1,17 +1,13 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ItemServiceTest;
-import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.List;
-
-import retrofit2.Callback;
 
 /**
  * Created by smb on 18/10/2016.
@@ -34,7 +30,7 @@ public class ItemsPresenter implements ViewListener {
 
     @Override
     public void OnCreateView() {
-        List<Item> items = itemService.Get();
+        List<Item> items = itemService.Get().getResponse().getItems();
         view.setList(getAdapter(items));
     }
 
