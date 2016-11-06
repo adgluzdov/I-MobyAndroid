@@ -46,7 +46,7 @@ public class ItemAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null)
             view = lInflater.inflate(R.layout.item, parent, false);
-        Item item = (Item) getItem(position);
+        Item item = itemFactory(position);
         ((TextView) view.findViewById(R.id.name)).setText(item.getTitle());
         return view;
     }
