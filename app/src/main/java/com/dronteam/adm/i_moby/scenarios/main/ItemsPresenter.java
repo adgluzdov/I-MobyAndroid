@@ -5,17 +5,14 @@ import android.util.Log;
 
 import com.dronteam.adm.i_moby.common.Repo;
 import com.dronteam.adm.i_moby.common.ViewListener;
-import com.dronteam.adm.i_moby.data.ItemServiceApi;
+import com.dronteam.adm.i_moby.data.TestFactory;
+import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.data.ItemServiceApiTest;
-import com.dronteam.adm.i_moby.data.ItemServiceFactory;
+import com.dronteam.adm.i_moby.data.RetrofitFactory;
 import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -30,12 +27,12 @@ public class ItemsPresenter implements ViewListener {
     private final ItemView view;
     private final ItemService itemService;
     private Context ctx;
-    private ItemServiceApi itemServiceApi;
+    private ServiceFactory itemServiceApi;
     public ItemsPresenter(ItemView view) {
         this.ctx = (Context)view;
         this.view = view;
-        itemServiceApi = new ItemServiceFactory();
-        //itemServiceApi = new ItemServiceApiTest();
+        itemServiceApi = new RetrofitFactory();
+        //itemServiceApi = new TestFactory();
         itemService = itemServiceApi.getApi(ItemService.class);
         view.setOnCreateViewListener(this);
     }
