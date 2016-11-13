@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dronteam.adm.i_moby.R;
@@ -19,7 +20,6 @@ public class ItemAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     List<Item> itemList;
-
     ItemAdapter(Context ctx, List<Item> itemList) {
         this.ctx = ctx;
         this.itemList = itemList;

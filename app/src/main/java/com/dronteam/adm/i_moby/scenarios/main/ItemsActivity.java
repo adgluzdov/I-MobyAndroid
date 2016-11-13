@@ -3,13 +3,14 @@ package com.dronteam.adm.i_moby.scenarios.main;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ViewListener;
 
-public class ItemActivity extends Activity implements ItemView {
+public class ItemsActivity extends Activity implements ItemsView {
     ViewListener viewListener;
     ListView listViewMain;
 
@@ -19,7 +20,7 @@ public class ItemActivity extends Activity implements ItemView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
         listViewMain = (ListView) findViewById(R.id.ListViewMain);
-        viewListener.OnCreateView();
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
     }
 
     @Override
