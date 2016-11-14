@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.model.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,10 +21,19 @@ public class ItemAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     List<Item> itemList;
-    ItemAdapter(Context ctx, List<Item> itemList) {
+    List<ItemPresenter> itemPresenterList;
+    ItemAdapter(Context ctx, final List<Item> itemList) {
         this.ctx = ctx;
         this.itemList = itemList;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // Создаём презентёры для каждого Item
+        itemPresenterList = new ArrayList<ItemPresenter>(){{
+            for(int i=0;i<itemList.size();i++){
+                add(new ItemPresenter());
+            }
+        }};
+
+
     }
 
     @Override
