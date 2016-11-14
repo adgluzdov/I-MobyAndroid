@@ -5,12 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.model.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +20,7 @@ public class ItemAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     List<Item> itemList;
+
     ItemAdapter(Context ctx, List<Item> itemList) {
         this.ctx = ctx;
         this.itemList = itemList;
@@ -38,7 +39,7 @@ public class ItemAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return itemFactory(position).getId();
+        return position;
     }
 
     @Override
@@ -46,11 +47,8 @@ public class ItemAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null)
             view = lInflater.inflate(R.layout.item, parent, false);
-        Item item = itemFactory(position);
-        ((TextView) view.findViewById(R.id.name)).setText(item.getTitle());
+        Item item = (Item) getItem(position);
+        ((TextView) view.findViewById(R.id.name)).setText(item.getName());
         return view;
-    }
-    public Item itemFactory(int position) {
-        return (Item) getItem(position);
     }
 }
