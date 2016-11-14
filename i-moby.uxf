@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>250</y>
-      <w>150</w>
-      <h>90</h>
+      <x>192</x>
+      <y>200</y>
+      <w>128</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>Item
+    <panel_attributes>Repo
 --
-+ Name: String
-+ Price: Money
-+ Description: String
++ response:Response
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>140</x>
-      <y>250</y>
-      <w>280</w>
-      <h>30</h>
+      <x>312</x>
+      <y>200</y>
+      <w>224</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;260.0;10.0</additional_attributes>
@@ -31,24 +30,24 @@
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>300</x>
-      <y>240</y>
-      <w>220</w>
-      <h>100</h>
+      <x>456</x>
+      <y>192</y>
+      <w>144</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>ItemService
 --
-Get(): Observable&lt;List&lt;Item&gt; &gt;
+Get(): Observable&lt;Repo&gt;
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1290</x>
+      <x>1232</x>
       <y>0</y>
-      <w>250</w>
-      <h>90</h>
+      <w>200</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>CommonRestService
 --
@@ -60,27 +59,27 @@ ctor(baseUrl: string)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>936</x>
       <y>0</y>
-      <w>340</w>
-      <h>120</h>
+      <w>272</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>RetrofitFactory
+    <panel_attributes>IMobyFactory
 --
 - const BASE_URL: String
 - commonRestService: CommonRestService
 --
 +getApi(service: Class&lt;T&gt;): T
-</panel_attributes>
++GetImageApi():ImageService</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1250</x>
+      <x>1200</x>
       <y>0</y>
-      <w>60</w>
-      <h>30</h>
+      <w>48</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
@@ -88,10 +87,10 @@ ctor(baseUrl: string)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>480</y>
-      <w>330</w>
-      <h>170</h>
+      <x>584</x>
+      <y>384</y>
+      <w>264</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>ItemsPresenter
 --
@@ -105,10 +104,10 @@ ctor(view ItemView)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>250</y>
-      <w>210</w>
-      <h>250</h>
+      <x>528</x>
+      <y>200</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;190.0;10.0;190.0;230.0</additional_attributes>
@@ -116,10 +115,10 @@ ctor(view ItemView)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>140</x>
-      <y>250</y>
-      <w>360</w>
-      <h>260</h>
+      <x>312</x>
+      <y>200</y>
+      <w>288</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0;80.0;240.0;340.0;240.0</additional_attributes>
@@ -127,10 +126,10 @@ ctor(view ItemView)
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>170</x>
-      <y>520</y>
-      <w>240</w>
-      <h>90</h>
+      <x>336</x>
+      <y>416</y>
+      <w>192</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>ItemsView
 --
@@ -140,10 +139,10 @@ ctor(view ItemView)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>480</y>
-      <w>220</w>
-      <h>70</h>
+      <x>424</x>
+      <y>384</y>
+      <w>176</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0;200.0;10.0</additional_attributes>
@@ -151,10 +150,10 @@ ctor(view ItemView)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
-      <y>610</y>
-      <w>190</w>
-      <h>130</h>
+      <x>936</x>
+      <y>488</y>
+      <w>152</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>ItemAdapter
 --
@@ -168,10 +167,10 @@ ctor(items List&lt;item&gt;)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>610</y>
-      <w>140</w>
-      <h>30</h>
+      <x>840</x>
+      <y>488</y>
+      <w>112</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
@@ -179,10 +178,10 @@ ctor(items List&lt;item&gt;)
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>110</x>
-      <y>720</y>
-      <w>360</w>
-      <h>100</h>
+      <x>288</x>
+      <y>576</y>
+      <w>288</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>CommonView
 --
@@ -193,10 +192,10 @@ ctor(items List&lt;item&gt;)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>580</y>
-      <w>30</w>
-      <h>170</h>
+      <x>424</x>
+      <y>464</y>
+      <w>24</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
@@ -204,10 +203,10 @@ ctor(items List&lt;item&gt;)
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>560</x>
-      <y>720</y>
-      <w>160</w>
-      <h>90</h>
+      <x>648</x>
+      <y>576</y>
+      <w>128</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>ViewListener
 --
@@ -217,10 +216,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>730</y>
-      <w>360</w>
-      <h>30</h>
+      <x>432</x>
+      <y>584</y>
+      <w>288</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>340.0;10.0;10.0;10.0</additional_attributes>
@@ -228,10 +227,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>640</y>
-      <w>30</w>
-      <h>110</h>
+      <x>704</x>
+      <y>512</y>
+      <w>24</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
@@ -239,24 +238,24 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>800</x>
-      <y>230</y>
-      <w>250</w>
-      <h>100</h>
+      <x>840</x>
+      <y>184</y>
+      <w>200</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>ServiceFactory
 --
 + GetApi(service: Class&lt;T&gt;): &lt;T&gt; T
-</panel_attributes>
++GetImageApi():ImageService</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>240</y>
-      <w>160</w>
-      <h>260</h>
+      <x>816</x>
+      <y>192</y>
+      <w>128</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>140.0;10.0;10.0;10.0;10.0;240.0</additional_attributes>
@@ -264,10 +263,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>110</y>
-      <w>160</w>
-      <h>150</h>
+      <x>936</x>
+      <y>88</y>
+      <w>128</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;130.0;140.0;10.0</additional_attributes>
@@ -275,12 +274,12 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>620</x>
+      <x>696</x>
       <y>0</y>
-      <w>260</w>
-      <h>60</h>
+      <w>208</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>TestFactory
+    <panel_attributes>IMobyTestFactory
 --
 +getApi(service: Class&lt;T&gt;): T
 </panel_attributes>
@@ -289,10 +288,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>50</y>
-      <w>200</w>
-      <h>210</h>
+      <x>792</x>
+      <y>40</y>
+      <w>160</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>180.0;190.0;10.0;10.0</additional_attributes>
@@ -300,10 +299,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>340</x>
+      <x>472</x>
       <y>0</y>
-      <w>250</w>
-      <h>60</h>
+      <w>200</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>ItemServiceTest
 --
@@ -313,10 +312,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
+      <x>664</x>
       <y>0</y>
-      <w>60</w>
-      <h>30</h>
+      <w>48</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
@@ -324,10 +323,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>50</y>
-      <w>30</w>
-      <h>220</h>
+      <x>520</x>
+      <y>40</y>
+      <w>24</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
@@ -335,35 +334,10 @@ OnCreateView(): void;</panel_attributes>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>1510</x>
-      <y>470</y>
-      <w>180</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>ImageServiceFactory
---
-+ GetApi(): ImageService
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1420</x>
-      <y>480</y>
-      <w>190</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>170.0;10.0;10.0;10.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>1770</x>
-      <y>470</y>
-      <w>220</w>
-      <h>100</h>
+      <x>1144</x>
+      <y>272</y>
+      <w>176</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>ImageService
 --
@@ -372,60 +346,12 @@ LoadImage(url):Observable&lt;?&gt;
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1600</x>
-      <y>480</y>
-      <w>290</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;270.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1590</x>
-      <y>260</y>
-      <w>160</w>
-      <h>240</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;220.0;140.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1730</x>
-      <y>260</y>
-      <w>280</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>PicassoFactory
---
-+ GetApi(): ImageService
---
-LoadSetImage(url):Observable&lt;?&gt;</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1870</x>
-      <y>330</y>
-      <w>30</w>
-      <h>170</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1230</x>
-      <y>610</y>
-      <w>220</w>
-      <h>90</h>
+      <x>1184</x>
+      <y>488</y>
+      <w>176</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>ItemPresenter
 --
@@ -433,16 +359,18 @@ ctor(view ItemView)
 --
 - imageService: ImageService
 - view: ItemView
+- onItemClick(Item item): void
++ fill(): void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>610</y>
-      <w>150</w>
-      <h>30</h>
+      <x>1080</x>
+      <y>488</y>
+      <w>120</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
@@ -450,37 +378,151 @@ ctor(view ItemView)
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>1250</x>
-      <y>760</y>
-      <w>200</w>
-      <h>100</h>
+      <x>1152</x>
+      <y>608</y>
+      <w>256</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>ItemView
 --
 setImage(imageView, context)
+setOnClickListener(OnClickListener listener): void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1340</x>
-      <y>690</y>
-      <w>30</w>
-      <h>100</h>
+      <x>1272</x>
+      <y>584</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>720</y>
-      <w>260</w>
+      <x>136</x>
+      <y>208</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>200</y>
+      <w>144</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Response
+--
++ List&lt;Item&gt;
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>56</x>
+      <y>232</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>304</y>
+      <w>144</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Item
+--
++ name:String
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1464</x>
+      <y>616</y>
+      <w>272</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>ItemFragment
+--
+OnClick(): void
+setOnClickListener(OnClickListener listener): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>616</y>
+      <w>200</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>152</y>
+      <w>224</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>PicasoImageService
+--
+LoadImage():Observable&lt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>88</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>192</y>
+      <w>304</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>360.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1224</x>
+      <y>216</y>
+      <w>24</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>240.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
