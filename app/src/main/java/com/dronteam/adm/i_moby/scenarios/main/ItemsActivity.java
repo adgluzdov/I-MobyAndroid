@@ -20,7 +20,7 @@ public class ItemsActivity extends Activity implements ItemsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
         listViewMain = (ListView) findViewById(R.id.ListViewMain);
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+	    viewListener.OnCreateView();
     }
 
     @Override
