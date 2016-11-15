@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +22,15 @@ public class ItemAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     List<Item> itemList;
-    List<ItemPresenter> itemPresenterList;
-    ItemAdapter(Context ctx, final List<Item> itemList) {
+    List<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>();
+    ItemAdapter(final Context ctx, final List<Item> itemList) {
         this.ctx = ctx;
         this.itemList = itemList;
-        lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        // Создаём презентёры для каждого Item
         itemPresenterList = new ArrayList<ItemPresenter>(){{
             for(int i=0;i<itemList.size();i++){
-                add(new ItemPresenter());
+                add(new ItemPresenter(ctx,itemList.get(i)));
             }
         }};
-
 
     }
 
@@ -53,12 +51,8 @@ public class ItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null)
-            view = lInflater.inflate(R.layout.item, parent, false);
-        Item item = itemFactory(position);
-        ((TextView) view.findViewById(R.id.name)).setText(item.getTitle());
-        return view;
+        itemPresenterList.get(position).fill();
+        return (View)itemPresenterList.get(position).view;
     }
     public Item itemFactory(int position) {
         return (Item) getItem(position);

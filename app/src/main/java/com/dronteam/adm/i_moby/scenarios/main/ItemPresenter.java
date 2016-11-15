@@ -1,18 +1,43 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import com.dronteam.adm.i_moby.model.Item;
+
 /**
  * Created by adm on 14.11.2016.
  */
 public class ItemPresenter {
+    ItemView view;
+    Item item;
+    private Context context;
 
-    ItemsView itemsView;
-
-    public ItemPresenter() {
-
+    public ItemPresenter(Context context, Item item) {
+        this.context = context;
+        this.view = new ItemFragment(context);
+        this.item = item;
+        this.view.setEditListener(edit());
     }
 
-    public ItemsView getItemsView() {
-        return itemsView;
+    private View.OnClickListener edit() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(context, "click!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        };
+    }
+
+    public ItemView getView() {
+        return view;
+    }
+
+    public void fill(){
+        view.setText(item.getTitle());
     }
 
 }

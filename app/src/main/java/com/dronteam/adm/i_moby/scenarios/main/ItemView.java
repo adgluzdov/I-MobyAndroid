@@ -1,5 +1,6 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
+import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -7,5 +8,6 @@ import android.widget.ImageView;
  */
 public interface ItemView {
     public void setImage(ImageView imageView);
-    //public void setOnClickListener(OnClickListener listener)
+    public void setText(String title);
+    void setEditListener(View.OnClickListener listener);
 }
