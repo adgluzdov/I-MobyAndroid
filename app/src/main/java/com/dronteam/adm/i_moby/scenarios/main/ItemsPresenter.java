@@ -3,7 +3,6 @@ package com.dronteam.adm.i_moby.scenarios.main;
 import android.content.Context;
 import android.util.Log;
 
-import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.Repo;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
@@ -23,7 +22,7 @@ import rx.schedulers.Schedulers;
 
 public class ItemsPresenter implements ViewListener {
 
-    private static final String TAG = "I-MobyLogs";
+    private static final String TAG = "My";
     private final ItemsView view;
     private final ItemService itemService;
     private Context ctx;

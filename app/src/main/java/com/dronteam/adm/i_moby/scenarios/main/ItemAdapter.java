@@ -20,15 +20,15 @@ import java.util.List;
  */
 public class ItemAdapter extends BaseAdapter {
     Context ctx;
-    LayoutInflater lInflater;
     List<Item> itemList;
     List<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>();
-    ItemAdapter(final Context ctx, final List<Item> itemList) {
-        this.ctx = ctx;
+
+    ItemAdapter(final Context context, final List<Item> itemList) {
+        this.ctx = context;
         this.itemList = itemList;
         itemPresenterList = new ArrayList<ItemPresenter>(){{
             for(int i=0;i<itemList.size();i++){
-                add(new ItemPresenter(ctx,itemList.get(i)));
+                add(new ItemPresenter(context,itemList.get(i)));
             }
         }};
 

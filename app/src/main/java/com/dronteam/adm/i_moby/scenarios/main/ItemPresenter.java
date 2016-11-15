@@ -26,8 +26,7 @@ public class ItemPresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(context, "click!", Toast.LENGTH_SHORT);
-                toast.show();
+
             }
         };
     }
@@ -37,7 +36,7 @@ public class ItemPresenter {
     }
 
     public void fill(){
-        view.setText(item.getTitle());
+        view.setText(item.getTitle(), item.description, item.price.text);
     }
 
 }

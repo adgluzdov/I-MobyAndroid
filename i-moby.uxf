@@ -459,8 +459,8 @@ setOnClickListener(OnClickListener listener): void
     <coordinates>
       <x>1464</x>
       <y>616</y>
-      <w>272</w>
-      <h>72</h>
+      <w>264</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>ItemFragment
 --
@@ -506,13 +506,13 @@ LoadImage():Observable&lt;&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
+      <x>944</x>
       <y>192</y>
-      <w>304</w>
+      <w>296</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>360.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>350.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
