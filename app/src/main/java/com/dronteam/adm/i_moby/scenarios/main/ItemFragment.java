@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,8 @@ public class ItemFragment extends LinearLayout implements ItemView{
     }
 
     @Override
-    public void setImage() {
-
+    public void setImage(Bitmap image) {
+        ((ImageView)findViewById(R.id.imageView)).setImageBitmap(image);
     }
 
     @Override
