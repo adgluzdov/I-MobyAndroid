@@ -4,13 +4,13 @@ package com.dronteam.adm.i_moby.model;
 public class Item {
 
     public Integer id;
-    public Integer ownerId;
+    public Integer owner_id;
     public String title;
     public String description;
     public Price price;
     public Category category;
     public Integer date;
-    public String thumbPhoto;
+    public String thumb_photo;
     public Integer availability;
 
     public Item(Integer id) {
@@ -21,8 +21,8 @@ public class Item {
         return id;
     }
 
-    public Integer getOwnerId() {
-        return ownerId;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
     public String getTitle() {
@@ -45,8 +45,8 @@ public class Item {
         return date;
     }
 
-    public String getThumbPhoto() {
-        return thumbPhoto;
+    public String getThumb_photo() {
+        return thumb_photo;
     }
 
     public Integer getAvailability() {

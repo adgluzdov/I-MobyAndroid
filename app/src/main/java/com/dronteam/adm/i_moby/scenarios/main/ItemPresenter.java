@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
+import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.model.Item;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -18,10 +18,12 @@ public class ItemPresenter {
     ItemView view;
     Item item;
     private Context context;
+    private Bitmap loadedImage = null;
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            view.setImage(bitmap);
+            loadedImage = bitmap;
+            view.setImage(loadedImage);
         }
 
         @Override
@@ -38,7 +40,7 @@ public class ItemPresenter {
         this.view = new ItemFragment(context);
         this.item = item;
         this.view.setEditListener(edit());
-        Picasso.with(context).load("http://square.github.io/picasso/static/sample.png").into(target);
+        Picasso.with(context).load(item.getThumb_photo()).into(target);
     }
 
     private View.OnClickListener edit() {
@@ -50,13 +52,12 @@ public class ItemPresenter {
         };
     }
 
-    public ItemView getView() {
-        return view;
-    }
-
-
     public void fill(){
         view.setText(item.getTitle(), item.description, item.price.text);
+        if(loadedImage != null)
+            view.setImage(loadedImage);
+        else
+            view.setImage(R.mipmap.ic_launcher);
     }
 
 }
