@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.scenarios.main;
+package com.dronteam.adm.i_moby.scenarios.item;
 
 import com.dronteam.adm.i_moby.common.CommonView;
 

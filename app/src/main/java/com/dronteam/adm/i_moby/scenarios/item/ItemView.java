@@ -1,10 +1,7 @@
-package com.dronteam.adm.i_moby.scenarios.main;
+package com.dronteam.adm.i_moby.scenarios.item;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.view.View;
-import android.widget.ImageView;
 
 /**
  * Created by adm on 14.11.2016.

@@ -1,10 +1,13 @@
-package com.dronteam.adm.i_moby.scenarios.main;
+package com.dronteam.adm.i_moby.scenarios.item;
 
 import android.content.Context;
 import android.util.Log;
 
+import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.Repo;
 import com.dronteam.adm.i_moby.common.ViewListener;
+import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.RetrofitFactory;
@@ -20,15 +23,18 @@ import rx.schedulers.Schedulers;
  * Created by smb on 18/10/2016.
  */
 
-public class ItemsPresenter implements ViewListener {
+public class ItemsPresenter implements ViewListener, Presenter {
 
     private static final String TAG = "My";
     private final ItemsView view;
     private final ItemService itemService;
-    private Context ctx;
+    private ViewManager viewManager;
+  //  private Context ctx;
     private ServiceFactory serviceFactory;
-    public ItemsPresenter(ItemsView view) {
-        this.ctx = (Context)view;
+
+    public ItemsPresenter(ViewManager viewManager, ItemsView view) {
+        this.viewManager = viewManager;
+//        this.ctx = (Context)view;
         this.view = view;
         serviceFactory = new RetrofitFactory();
         //serviceFactory = new TestFactory();
@@ -65,6 +71,11 @@ public class ItemsPresenter implements ViewListener {
     }
 
     private ItemAdapter getAdapter(List<Item> items) {
-        return new ItemAdapter(ctx,items);
+        return new ItemAdapter(viewManager,items);
+    }
+
+    @Override
+    public CommonView getView() {
+        return view;
     }
 }

@@ -1,9 +1,7 @@
-package com.dronteam.adm.i_moby.scenarios.main;
+package com.dronteam.adm.i_moby.scenarios.item;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dronteam.adm.i_moby.R;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by adm on 14.11.2016.

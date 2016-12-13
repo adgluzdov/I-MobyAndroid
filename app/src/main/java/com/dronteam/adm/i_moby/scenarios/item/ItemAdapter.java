@@ -1,15 +1,11 @@
-package com.dronteam.adm.i_moby.scenarios.main;
+package com.dronteam.adm.i_moby.scenarios.item;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.ArrayList;
@@ -19,16 +15,16 @@ import java.util.List;
  * Created by smb on 18/10/2016.
  */
 public class ItemAdapter extends BaseAdapter {
-    Context ctx;
+    private ViewManager viewManager;
     List<Item> itemList;
     List<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>();
 
-    ItemAdapter(final Context context, final List<Item> itemList) {
-        this.ctx = context;
+    ItemAdapter(ViewManager viewManager, final List<Item> itemList) {
+        this.viewManager = viewManager;
         this.itemList = itemList;
         itemPresenterList = new ArrayList<ItemPresenter>(){{
             for(int i=0;i<itemList.size();i++){
-                add(new ItemPresenter(context,itemList.get(i)));
+                add(new ItemPresenter(ItemAdapter.this.viewManager,itemList.get(i)));
             }
         }};
 

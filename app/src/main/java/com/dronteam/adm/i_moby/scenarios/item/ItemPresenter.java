@@ -1,12 +1,12 @@
-package com.dronteam.adm.i_moby.scenarios.main;
+package com.dronteam.adm.i_moby.scenarios.item;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.Item;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -17,7 +17,6 @@ import com.squareup.picasso.Target;
 public class ItemPresenter {
     ItemView view;
     Item item;
-    private Context context;
     private Bitmap loadedImage = null;
     final Target target = new Target(){
         @Override
@@ -35,12 +34,11 @@ public class ItemPresenter {
         }
     };
 
-    public ItemPresenter(Context context, Item item) {
-        this.context = context;
-        this.view = new ItemFragment(context);
+    public ItemPresenter(ViewManager viewManager, Item item) {
+        this.view = new ItemFragment(viewManager.getContext());
         this.item = item;
         this.view.setEditListener(edit());
-        Picasso.with(context).load(item.getThumb_photo()).into(target);
+        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
     }
 
     private View.OnClickListener edit() {
