@@ -38,6 +38,5 @@ public class MainActivity extends Activity implements ViewManager {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         show(UIFactory.ShowCase(this));
-        VKSdk.initialize(this);
     }
 }

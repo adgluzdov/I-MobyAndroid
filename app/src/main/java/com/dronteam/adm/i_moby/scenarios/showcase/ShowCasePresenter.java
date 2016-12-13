@@ -6,6 +6,7 @@ import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.vk.sdk.VKSdk;
 
 /**
  * Created by smb on 13/12/2016.
