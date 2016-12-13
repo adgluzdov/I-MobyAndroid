@@ -7,7 +7,7 @@ import com.dronteam.adm.i_moby.common.CommonView;
  * Created by smb on 13/12/2016.
  */
 
-public interface ShowCaseView extends CommonView {
+public interface ShowcaseView extends CommonView {
 
     void setOnButtonClick(CallBack callBack);
 
