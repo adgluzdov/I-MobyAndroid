@@ -7,4 +7,5 @@ package com.dronteam.adm.i_moby.scenarios.SpecialOffer;
 public class SpecialOfferPresenter {
 
 
+    
 }
