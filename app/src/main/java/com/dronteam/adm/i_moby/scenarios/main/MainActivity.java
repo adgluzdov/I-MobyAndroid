@@ -10,6 +10,7 @@ import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.vk.sdk.VKSdk;
 
 /**
  * Created by smb on 13/12/2016.
@@ -37,5 +38,6 @@ public class MainActivity extends Activity implements ViewManager {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         show(UIFactory.ShowCase(this));
+        VKSdk.initialize(this);
     }
 }
