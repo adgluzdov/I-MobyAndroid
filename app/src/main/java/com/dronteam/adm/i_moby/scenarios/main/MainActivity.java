@@ -3,14 +3,16 @@ package com.dronteam.adm.i_moby.scenarios.main;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.vk.sdk.VKSdk;
+import com.dronteam.adm.i_moby.data.RetrofitFactory;
+import com.dronteam.adm.i_moby.data.ServiceFactory;
+import com.dronteam.adm.i_moby.data.VK.VKAuth;
 
 /**
  * Created by smb on 13/12/2016.
@@ -18,6 +20,16 @@ import com.vk.sdk.VKSdk;
 
 public class MainActivity extends Activity implements ViewManager {
 
+    private VKAuth auth;
+    private ServiceFactory serviceFacory;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        auth = new VKAuth(this);
+        show(UIFactory.ShowCase(this));
+    }
 
     @Override
     public void show(Presenter presenter) {
@@ -29,14 +41,19 @@ public class MainActivity extends Activity implements ViewManager {
     }
 
     @Override
+    public ServiceFactory getServiceFactory() {
+        if (serviceFacory == null) {serviceFacory = new RetrofitFactory(auth);}
+        return serviceFacory;
+    }
+
+    @Override
     public Context getContext() {
         return this;
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        show(UIFactory.ShowCase(this));
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        auth.ActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -36,7 +36,7 @@ public class ItemsPresenter implements ViewListener, Presenter {
         this.viewManager = viewManager;
 //        this.ctx = (Context)view;
         this.view = view;
-        serviceFactory = new RetrofitFactory();
+        serviceFactory = viewManager.getServiceFactory();
         //serviceFactory = new TestFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         view.setOnCreateViewListener(this);
