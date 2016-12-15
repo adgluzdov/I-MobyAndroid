@@ -1,5 +1,8 @@
 package com.dronteam.adm.i_moby.scenarios.SpecialOffer;
 
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+
 import com.dronteam.adm.i_moby.model.Item;
 
 /**
@@ -12,6 +15,8 @@ public class SpecialOffer {
     double discount;
     double bonuse;
     String additionalInfo;
+
+    ImageView imageView;
 
     public SpecialOffer(Item item) {
         this.item = item;
