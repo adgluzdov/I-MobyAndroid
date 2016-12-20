@@ -16,12 +16,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".scenarios.main.ShowCaseActivity">
-            <intent-filter>
-
-
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

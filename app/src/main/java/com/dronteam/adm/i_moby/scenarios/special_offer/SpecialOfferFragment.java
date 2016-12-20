@@ -1,15 +1,13 @@
-package com.dronteam.adm.i_moby.scenarios.SpecialOffer;
+package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dronteam.adm.i_moby.R;
-import com.dronteam.adm.i_moby.scenarios.item.ItemView;
 
 /**
  * Created by User on 19.12.2016.

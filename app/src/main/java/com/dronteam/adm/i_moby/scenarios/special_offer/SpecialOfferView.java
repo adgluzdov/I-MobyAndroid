@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.scenarios.SpecialOffer;
+package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 import android.view.View;
@@ -13,6 +13,7 @@ public interface SpecialOfferView {
     void setAdditionalInfo(String additionalInfo);
 
     void setImage(Bitmap image);
+    void setImage(int resId);
 
     void setEditListener(View.OnClickListener listener);
 }

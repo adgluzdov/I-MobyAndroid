@@ -1,17 +1,11 @@
-package com.dronteam.adm.i_moby.scenarios.SpecialOffer;
+package com.dronteam.adm.i_moby.scenarios.special_offer;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.scenarios.main.ShowCaseActivity;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by User on 13.12.2016.
@@ -22,16 +16,36 @@ public class SpecialOfferPresenter {
     SpecialOfferView view;
     ViewManager viewManager = null;
 
+    Bitmap loadedImage = null;
+
     public SpecialOfferPresenter(ViewManager viewManager, SpecialOffer offer) {
         this.offer = offer;
         this.viewManager = viewManager;
         view = new SpecialOfferFragment(viewManager.getContext());
+        /*
         Picasso.with(viewManager.getContext())
                 .load(offer.item.getThumb_photo())
                 //.placeholder(R.drawable.user_placeholder)
                 //.error(R.drawable.user_placeholder_error)
-                .into(offer.imageView);
+                .into(loadedImage);
         view.setEditListener(edit());
+        */
+    }
+
+
+    public void setDiscount(double discount){
+        view.setDiscount(discount);
+    }
+    public void setBonus(double bonus) {
+        view.setBonus(bonus);
+    }
+    public void setAdditionalInfo(String additionalInfo){
+        view.setAdditionalInfo(additionalInfo);
+    }
+
+
+    public SpecialOfferView getView() {
+        return view;
     }
 
     private View.OnClickListener edit() {
@@ -41,14 +55,13 @@ public class SpecialOfferPresenter {
                 switch (v.getId())
                 {
                     case R.id.showcase_content:
-                        Intent intent = new Intent(viewManager.getContext(), ShowCaseActivity.class);
-                        startActivity(intent);
-                        break;
+                        viewManager.show(UIFactory.DetailInfo(viewManager));
+                    break;
                 }
             }
         };
     }
-
+/*
     public void loadImage(ViewManager viewManager, String thumb_photo) {
         Picasso.with(viewManager.getContext())
                 .load(thumb_photo)
@@ -56,5 +69,15 @@ public class SpecialOfferPresenter {
                 //.error(R.drawable.user_placeholder_error)
                 .into(offer.imageView);
     }
-
+*/
+    public void fill(){
+        //view.setText(item.getTitle(), item.description, item.price.text);
+        view.setAdditionalInfo(offer.getAdditionalInfo());
+        view.setDiscount(offer.getDiscount());
+        view.setBonus(offer.getBonus());
+        if(loadedImage != null)
+            view.setImage(loadedImage);
+        else
+            view.setImage(R.mipmap.ic_launcher);
+    }
 }
