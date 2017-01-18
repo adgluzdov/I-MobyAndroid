@@ -44,6 +44,11 @@ public class SpecialOfferFragment extends LinearLayout implements SpecialOfferVi
     }
 
     @Override
+    public void setImage(int resId) {
+        ((ImageView)findViewById(R.id.SP_image1)).setImageResource(resId);
+    }
+
+    @Override
     public void setEditListener(OnClickListener listener) {
         setOnClickListener(listener);
     }

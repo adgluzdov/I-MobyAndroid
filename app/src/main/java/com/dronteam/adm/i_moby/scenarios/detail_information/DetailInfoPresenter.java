@@ -7,6 +7,7 @@ import com.dronteam.adm.i_moby.common.ViewManager;
  * Created by User on 20.12.2016.
  */
 public class DetailInfoPresenter {
-    public DetailInfoPresenter(ViewManager viewManager, DetailInfo detailInfo) {
-    }
+    //public DetailInfoPresenter(ViewManager viewManager, DetailInfo detailInfo) {
+    //}
+    public DetailInfoPresenter(){}
 }

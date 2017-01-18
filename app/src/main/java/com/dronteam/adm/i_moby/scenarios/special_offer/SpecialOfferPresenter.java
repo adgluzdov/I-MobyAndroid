@@ -52,12 +52,14 @@ public class SpecialOfferPresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 switch (v.getId())
                 {
                     case R.id.showcase_content:
                         viewManager.show(UIFactory.DetailInfo(viewManager));
                     break;
                 }
+                */
             }
         };
     }

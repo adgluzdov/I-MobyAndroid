@@ -18,13 +18,13 @@ public class SpecialOffersAdapter extends BaseAdapter {
     List<SpecialOffer> specialOfferList;
     List<SpecialOfferPresenter> specialOfferPresenterList = new ArrayList<SpecialOfferPresenter>();
 
-    SpecialOffersAdapter(ViewManager viewManager, final List<SpecialOffer> specialOfferList) {
+    public SpecialOffersAdapter(ViewManager viewManager, final List<SpecialOffer> specialOfferList) {
         this.viewManager = viewManager;
         this.specialOfferList = specialOfferList;
         specialOfferPresenterList = new ArrayList<SpecialOfferPresenter>(){{
             for(int i=0;i<specialOfferList.size();i++){
                 add(
-                        new SpecialOfferPresenter(com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter.this.viewManager,
+                        new SpecialOfferPresenter(SpecialOffersAdapter.this.viewManager,
                                 specialOfferList.get(i))
                 );
             }
@@ -51,7 +51,7 @@ public class SpecialOffersAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         specialOfferPresenterList.get(position).fill();
-        return (View)specialOfferPresenterList.get(position).getView(); //не понял эту строку
+        return (View)specialOfferPresenterList.get(position).getView();
     }
 
     public SpecialOffer specialOfferFactory(int position) {

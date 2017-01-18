@@ -26,9 +26,10 @@ public class UIFactory {
         if (itemsView == null) itemsView = new ItemsFragment();
         return  new ItemsPresenter(viewManager, itemsView);
     }
-
+/*
     public static Presenter DetailInfo(ViewManager viewManager) {
         if (viewManager == null) detailInfoView = new detailInfoFragment();
         return new DetailInfoPresenter(viewManager, detailInfoView);
     }
+    */
 }

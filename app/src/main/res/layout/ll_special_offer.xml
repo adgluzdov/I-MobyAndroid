@@ -4,25 +4,28 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
+        android:text="discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SP_discount" />
 
     <TextView
-        android:text="TextView"
+        android:text="bonus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SP_bonus" />
+        android:id="@+id/SP_bonus"
+        android:autoText="false" />
 
     <TextView
+        android:text="description"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/SP_description" />
 
     <TextView
+        android:text="addInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/SP_additionalInfo" />
 
     <ImageView
