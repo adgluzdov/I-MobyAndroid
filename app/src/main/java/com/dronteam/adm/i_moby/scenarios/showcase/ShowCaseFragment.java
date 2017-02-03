@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.showcase;
 
 import android.view.View;
+import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
@@ -17,14 +18,6 @@ public class ShowcaseFragment extends MainFragment implements ShowcaseView {
         return R.layout.showcase;
     }
 
-    /*
-    @Override
-    public void setList(SpecialOffersAdapter adapter) {
-
-    }
-    */
-
-
     @Override
     public void setOnButtonClick(final CallBack callBack) {
         getButton(R.id.button).setOnClickListener(new View.OnClickListener() {
@@ -36,9 +29,7 @@ public class ShowcaseFragment extends MainFragment implements ShowcaseView {
     }
 
     @Override
-    public void setList(SpecialOffersAdapter adapter)  {
-        getListView(R.id.ListViewMain).setAdapter(adapter);
+    public void setList(BaseAdapter adapter)  {
+        getListView(R.id.listViewShowcase).setAdapter(adapter);
     }
-
-
 }

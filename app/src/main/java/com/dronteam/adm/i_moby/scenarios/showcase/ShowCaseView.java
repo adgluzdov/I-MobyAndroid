@@ -1,5 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.showcase;
 
+import android.widget.BaseAdapter;
+
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
@@ -11,6 +13,6 @@ import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 public interface ShowcaseView extends CommonView {
 
     void setOnButtonClick(CallBack callBack);
-    void setList(SpecialOffersAdapter adapter);
+    void setList(BaseAdapter adapter);
 
 }

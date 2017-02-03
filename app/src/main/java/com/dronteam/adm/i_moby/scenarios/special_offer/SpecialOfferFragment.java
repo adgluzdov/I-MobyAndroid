@@ -13,12 +13,10 @@ import com.dronteam.adm.i_moby.R;
  * Created by User on 19.12.2016.
  */
 public class SpecialOfferFragment extends LinearLayout implements SpecialOfferView {
-    //Context context;
-
 
     public SpecialOfferFragment(Context context) {
         super(context);
-        //this.context = context;
+
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.ll_special_offer, this);
     }

@@ -10,7 +10,6 @@ public class Response {
 
     public Integer count;
     public List<Item> items = new ArrayList<Item>();
-    public List<SpecialOffer> specialOffers = new ArrayList<SpecialOffer>();
 
     public Response(List<Item> items) {
         this.setItems(items);
@@ -22,10 +21,6 @@ public class Response {
 
     public List<Item> getItems() {
         return items;
-    }
-
-    public List<SpecialOffer> getSpecialOffers() {
-        return specialOffers;
     }
 
     public void setItems(List<Item> items) {

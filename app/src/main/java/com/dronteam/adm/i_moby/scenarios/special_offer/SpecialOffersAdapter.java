@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,32 +15,29 @@ import java.util.List;
  */
 
 public class SpecialOffersAdapter extends BaseAdapter {
-    private ViewManager viewManager;
-    List<SpecialOffer> specialOfferList;
     List<SpecialOfferPresenter> specialOfferPresenterList = new ArrayList<SpecialOfferPresenter>();
 
-    public SpecialOffersAdapter(ViewManager viewManager, final List<SpecialOffer> specialOfferList) {
-        this.viewManager = viewManager;
-        this.specialOfferList = specialOfferList;
+    public SpecialOffersAdapter(final ViewManager viewManager, final List<Item> itemList) {
+
         specialOfferPresenterList = new ArrayList<SpecialOfferPresenter>(){{
-            for(int i=0;i<specialOfferList.size();i++){
+            for(int i=0;i<itemList.size();i++){
                 add(
-                        new SpecialOfferPresenter(SpecialOffersAdapter.this.viewManager,
-                                specialOfferList.get(i))
+                        new SpecialOfferPresenter(//viewManager,
+                                new SpecialOffer(itemList.get(i)),
+                                new SpecialOfferFragment(viewManager.getContext()))
                 );
             }
         }};
-
     }
 
     @Override
     public int getCount() {
-        return specialOfferList.size();
+        return specialOfferPresenterList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return specialOfferList.get(position);
+        return specialOfferPresenterList.get(position);
     }
 
 
@@ -57,6 +55,5 @@ public class SpecialOffersAdapter extends BaseAdapter {
     public SpecialOffer specialOfferFactory(int position) {
         return (SpecialOffer) getItem(position);
     }
-
 }
 
