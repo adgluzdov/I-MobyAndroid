@@ -18,11 +18,15 @@ import rx.Observable;
 public class ItemServiceTest implements ItemService {
     @Override
     public Observable<Repo> Get() {
-        List<Item> itemList = new ArrayList<Item>() {{
-            add(new Item(1));
-            add(new Item(2));
-            add(new Item(3));
-        }};
-        return null;
+        Repo repo = new Repo(new Response(
+                new ArrayList<Item>() {
+                    {
+                        add(new Item(1));
+                        add(new Item(2));
+                        add(new Item(3));
+                    }
+                }
+        ));
+        return Observable.just(repo);
     }
 }
