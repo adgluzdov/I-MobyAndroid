@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.common;
 import java.io.IOException;
 import java.net.Authenticator;
 
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,9 +37,11 @@ public class CommonRestService {
                             @Override
                             public Response intercept(Chain chain) throws IOException {
                                 Request.Builder ongoing = chain.request().newBuilder();
-                                ongoing.addHeader("Accept", "application/json;versions=1");
+                                //ongoing.addHeader("Accept", "application/json;versions=1");
                                 if (auth.IsLoggedIn()) {
-                                    ongoing.addHeader("Authorization", auth.getToken());
+                                    HttpUrl url = chain.request().url().newBuilder().addQueryParameter("access_token", auth.getToken()).build();
+                                    ongoing.url(url);
+                                    //ongoing.addHeader("Authorization", auth.getToken());
                                 }
                                 return chain.proceed(ongoing.build());
                             }
