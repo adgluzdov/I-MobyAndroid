@@ -11,11 +11,11 @@ import com.vk.sdk.VKSdk;
 /**
  * Created by smb on 13/12/2016.
  */
-public class ShowCasePresenter implements Presenter, ViewListener {
+public class ShowcasePresenter implements Presenter, ViewListener {
     private ViewManager viewManager;
-    private ShowCaseView view;
+    private ShowcaseView view;
 
-    public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
+    public ShowcasePresenter(ViewManager viewManager, ShowcaseView view) {
         this.viewManager = viewManager;
         this.view = view;
         view.setOnCreateViewListener(this);

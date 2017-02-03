@@ -9,7 +9,7 @@ import com.dronteam.adm.i_moby.common.MainFragment;
 /**
  * Created by smb on 13/12/2016.
  */
-public class ShowCaseFragment extends MainFragment implements ShowCaseView{
+public class ShowcaseFragment extends MainFragment implements ShowcaseView {
 
     @Override
     protected int getLayout() {
