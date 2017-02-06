@@ -1,6 +1,8 @@
 
 package com.dronteam.adm.i_moby.model;
 
+import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffer;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -54,7 +54,7 @@ public class ItemsPresenter implements ViewListener, Presenter {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.d(TAG, "call: error");
+                Log.d(TAG, "call: error in ItemsPresenter");
             }
         };
     }

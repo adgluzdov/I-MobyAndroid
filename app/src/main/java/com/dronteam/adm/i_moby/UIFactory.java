@@ -2,7 +2,7 @@ package com.dronteam.adm.i_moby;
 
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.scenarios.SpecialOffer.SpecialOfferPresenter;
+import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoPresenter;
 import com.dronteam.adm.i_moby.scenarios.item.ItemsFragment;
 import com.dronteam.adm.i_moby.scenarios.item.ItemsPresenter;
 import com.dronteam.adm.i_moby.scenarios.item.ItemsView;
@@ -27,9 +27,9 @@ public class UIFactory {
         return  new ItemsPresenter(viewManager, itemsView);
     }
 /*
-    public static Presenter SpecialOfferPresenter(ViewManager viewManager){
-        if (viewManager == null) itemsView = new ItemsFragment();
-        return new SpecialOfferPresenter(viewManager, itemsView);
+    public static Presenter DetailInfo(ViewManager viewManager) {
+        if (viewManager == null) detailInfoView = new detailInfoFragment();
+        return new DetailInfoPresenter(viewManager, detailInfoView);
     }
     */
 }
