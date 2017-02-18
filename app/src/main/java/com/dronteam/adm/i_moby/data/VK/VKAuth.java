@@ -2,6 +2,8 @@ package com.dronteam.adm.i_moby.data.VK;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
+
 import com.dronteam.adm.i_moby.common.Authentication;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
@@ -19,7 +21,7 @@ public class VKAuth implements Authentication {
     private VKAccessToken token;
 
     public VKAuth(Activity activity) {
-        VKSdk.login(activity, "");
+        VKSdk.login(activity, "market");
     }
 
     @Override

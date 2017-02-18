@@ -38,8 +38,9 @@ public class CommonRestService {
                                 Request.Builder ongoing = chain.request().newBuilder();
                                 ongoing.addHeader("Accept", "application/json;versions=1");
                                 if (auth.IsLoggedIn()) {
-                                    ongoing.addHeader("Authorization", auth.getToken());
+                                    ongoing.url(chain.request().url().toString()+"&access_token="+auth.getToken());
                                 }
+
                                 return chain.proceed(ongoing.build());
                             }
                         })
