@@ -19,25 +19,33 @@ import static com.vk.sdk.VKSdk.LoginState.LoggedOut;
  * Created by smb on 13/12/2016.
  */
 
-//Todo: Этот класс надо серьезно доработать. Обработать ошибки авторизации и реализовать обновление токена в слчуае ошибки его валидации.
+//Todo: Этот класс надо серьезно доработать. Обработать ошибки авторизации.
+//Todo: Непонятно что делать ошибкой повторной авторизации. По-сути это ошибка ВК.
 
 public class VKAuth implements Authentication {
 
     private VKAccessToken token;
 
-    public VKAuth(final Activity activity) {
-        // Достаём токен из SDK
+    public VKAuth(Activity activity) {
+        // Достаём токен из VKSDK
         token = VKAccessToken.currentToken();
-        // Если НЕ залогинено - Авторизуемся
-        if(!IsLoggedIn()) Authorization(activity);
-        // Если залогинено - Аутентифицируемся
-        else Authentication(activity,new VKCallback<VKSdk.LoginState>() {
+        // Если НЕ залогинено - Аутентифицируемся
+        if(!IsLoggedIn()) Authentication(activity);
+        // Если залогинено - Обновляем токен
+        else RefreshToken(activity);
+    }
+
+    private void Authentication(Activity activity) {
+        VKSdk.login(activity, "market", "offline");
+    }
+
+    public void RefreshToken(final Activity activity) {
+        VKSdk.wakeUpSession(activity,new VKCallback<VKSdk.LoginState>() {
             @Override
             public void onResult(VKSdk.LoginState res) {
-                // Если токен НЕ Валиден - Авторизируемся по новой
+                // Если токен НЕ Валиден - Аутентифицируемся по новой
                 if(res == LoggedOut) {
-                    LogOut();
-                    Authorization(activity);
+                    Authentication(activity);
                 }
             }
 
@@ -46,18 +54,6 @@ public class VKAuth implements Authentication {
 
             }
         });
-    }
-
-    private void Authorization(Activity activity) {
-        VKSdk.login(activity, "market", "offline");
-    }
-
-    private void Authentication(Activity activity,VKCallback<VKSdk.LoginState> callback) {
-        VKSdk.wakeUpSession(activity,callback);
-    }
-
-    private void LogOut() {
-        VKSdk.logout();
     }
 
     @Override
