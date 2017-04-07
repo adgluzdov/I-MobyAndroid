@@ -19,10 +19,10 @@ public class CommonRestService {
     private final Retrofit retrofit;
     private Authentication auth;
 
-    public CommonRestService(Authentication auth, String baseUrl) {
+    public CommonRestService(Authentication auth) {
         this.auth = auth;
         retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(auth.getBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(httpClient())

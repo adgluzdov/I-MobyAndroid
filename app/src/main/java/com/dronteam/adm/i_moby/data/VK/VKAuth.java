@@ -25,6 +25,7 @@ import static com.vk.sdk.VKSdk.LoginState.LoggedOut;
 public class VKAuth implements Authentication {
 
     private VKAccessToken token;
+    private final String BASE_URL = "https://api.vk.com/method/";
 
     public VKAuth(Activity activity) {
         // Достаём токен из VKSDK
@@ -64,6 +65,11 @@ public class VKAuth implements Authentication {
     @Override
     public boolean IsLoggedIn() {
         return token != null;
+    }
+
+    @Override
+    public String getBaseUrl() {
+        return BASE_URL;
     }
 
     public void ActivityResult(int requestCode, int resultCode, Intent data) {
