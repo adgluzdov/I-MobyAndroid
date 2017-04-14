@@ -19,9 +19,6 @@ import static com.vk.sdk.VKSdk.LoginState.LoggedOut;
  * Created by smb on 13/12/2016.
  */
 
-//Todo: Этот класс надо серьезно доработать. Обработать ошибки авторизации.
-//Todo: Непонятно что делать ошибкой повторной авторизации. По-сути это ошибка ВК.
-
 public class VKAuth implements Authentication {
 
     private VKAccessToken token;
