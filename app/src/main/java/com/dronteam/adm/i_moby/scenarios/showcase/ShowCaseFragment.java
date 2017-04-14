@@ -6,12 +6,11 @@ import android.widget.BaseAdapter;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.MainFragment;
-import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 
 /**
  * Created by smb on 13/12/2016.
  */
-public class ShowcaseFragment extends MainFragment implements ShowcaseView {
+public class ShowCaseFragment extends MainFragment implements ShowCaseView {
 
     @Override
     protected int getLayout() {
