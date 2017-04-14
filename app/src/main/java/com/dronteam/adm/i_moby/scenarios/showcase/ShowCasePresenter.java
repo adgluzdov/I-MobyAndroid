@@ -8,8 +8,6 @@ import com.dronteam.adm.i_moby.common.Repo;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.data.RetrofitFactory;
-import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.model.Item;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 
@@ -27,13 +25,13 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private ServiceFactory serviceFactory;
+    //private ServiceFactory serviceFactory;
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
         this.view = view;
-        serviceFactory = new RetrofitFactory();
-        itemService = serviceFactory.getApi(ItemService.class);
+        //serviceFactory = new RetrofitFactory();
+        itemService = viewManager.getServiceFactory().getApi(ItemService.class);
 
         view.setOnCreateViewListener(this);
     }

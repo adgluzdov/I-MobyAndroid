@@ -29,15 +29,12 @@ public class ItemsPresenter implements ViewListener, Presenter {
     private final ItemsView view;
     private final ItemService itemService;
     private ViewManager viewManager;
-  //  private Context ctx;
     private ServiceFactory serviceFactory;
 
     public ItemsPresenter(ViewManager viewManager, ItemsView view) {
         this.viewManager = viewManager;
-//        this.ctx = (Context)view;
         this.view = view;
-        serviceFactory = new RetrofitFactory();
-        //serviceFactory = new TestFactory();
+        serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         view.setOnCreateViewListener(this);
     }
