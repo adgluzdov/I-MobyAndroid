@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
+import com.dronteam.adm.i_moby.common.AuthListener;
+import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.RetrofitFactory;
@@ -18,17 +20,16 @@ import com.dronteam.adm.i_moby.data.VK.VKAuth;
  * Created by smb on 13/12/2016.
  */
 
-public class MainActivity extends Activity implements ViewManager {
+public class MainActivity extends Activity implements ViewManager, AuthListener {
 
-    private VKAuth auth;
+    private VKAuth auth = new VKAuth();
     private ServiceFactory serviceFacory;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        auth = new VKAuth(this);
-        show(UIFactory.ShowCase(this));
+        auth.auth(this,this);
     }
 
     @Override
@@ -55,5 +56,10 @@ public class MainActivity extends Activity implements ViewManager {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         auth.ActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onAuth() {
+        show(UIFactory.ShowCase(this));
     }
 }
