@@ -1,7 +1,6 @@
 package com.dronteam.adm.i_moby;
 
 import android.app.Application;
-
 import com.vk.sdk.VKSdk;
 
 /**
@@ -14,6 +13,5 @@ public class IMobyApp extends Application {
     public void onCreate() {
         super.onCreate();
         VKSdk.initialize(this);
-
     }
 }

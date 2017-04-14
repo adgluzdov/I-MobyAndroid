@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.common;
 
 import okhttp3.Authenticator;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -13,9 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CommonRestService {
     private final Retrofit retrofit;
 
-    public CommonRestService(Authentication auth, String baseUrl) {
+    public CommonRestService(Authentication auth) {
         retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(auth.getBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(httpClient(auth))
@@ -30,12 +31,12 @@ public class CommonRestService {
     private OkHttpClient httpClient(Authentication auth) {
         OkHttpClient client = new OkHttpClient
                 .Builder()
-                .authenticator(getAuthenticator(auth))
+                .addInterceptor(getAuthenticator(auth))
                 .build();
         return client;
     }
 
-    public Authenticator getAuthenticator(Authentication auth) {
+    public Interceptor getAuthenticator(Authentication auth) {
         return new CommonAuthenticator(auth);
     }
 }
