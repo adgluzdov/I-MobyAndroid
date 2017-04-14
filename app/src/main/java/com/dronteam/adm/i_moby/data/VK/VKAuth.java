@@ -25,60 +25,18 @@ import static com.vk.sdk.VKSdk.LoginState.LoggedOut;
 public class VKAuth implements Authentication {
 
     private VKAccessToken token;
-    private final String BASE_URL = "https://api.vk.com/method/";
 
     public VKAuth(Activity activity) {
         if (!VKSdk.isLoggedIn()) {
             VKSdk.login(activity, "market", "offline");
-        }
-        else
-        {
+        } else {
             token = VKAccessToken.currentToken();
         }
-/*
-        // Достаём токен из VKSDK
-        token = VKAccessToken.currentToken();
-        // Если НЕ залогинено - Аутентифицируемся
-        if(!IsLoggedIn()) Authentication(activity);
-        // Если залогинено - Обновляем токен
-        else RefreshToken(activity);
-*/
-    }
-
-    private void Authentication(Activity activity) {
-        VKSdk.login(activity, "market", "offline");
-    }
-
-    public void RefreshToken(final Activity activity) {
-        VKSdk.wakeUpSession(activity,new VKCallback<VKSdk.LoginState>() {
-            @Override
-            public void onResult(VKSdk.LoginState res) {
-                // Если токен НЕ Валиден - Аутентифицируемся по новой
-                if(res == LoggedOut) {
-                    Authentication(activity);
-                }
-            }
-
-            @Override
-            public void onError(VKError error) {
-
-            }
-        });
     }
 
     @Override
     public String getToken() {
         return token.accessToken;
-    }
-
-    @Override
-    public boolean IsLoggedIn() {
-        return token != null;
-    }
-
-    @Override
-    public String getBaseUrl() {
-        return BASE_URL;
     }
 
     public void ActivityResult(int requestCode, int resultCode, Intent data) {

@@ -14,9 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CommonRestService {
     private final Retrofit retrofit;
 
-    public CommonRestService(Authentication auth) {
+    public CommonRestService(Authentication auth,String baseUrl) {
         retrofit = new Retrofit.Builder()
-                .baseUrl(auth.getBaseUrl())
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(httpClient(auth))
