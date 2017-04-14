@@ -19,7 +19,7 @@ public class VKAuth implements Authentication {
     private VKAccessToken token;
 
     public VKAuth(Activity activity) {
-        VKSdk.login(activity, "");
+        VKSdk.login(activity, "market", "offline");
     }
 
     @Override
