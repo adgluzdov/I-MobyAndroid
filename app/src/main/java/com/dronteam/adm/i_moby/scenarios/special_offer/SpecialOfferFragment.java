@@ -22,13 +22,13 @@ public class SpecialOfferFragment extends LinearLayout implements SpecialOfferVi
     }
 
     @Override
-    public void setDiscount(double discount) {
-        ((TextView)findViewById(R.id.SP_discount)).setText(Double.toString(discount));
+    public void setDiscount(String discount) {
+        ((TextView)findViewById(R.id.SP_discount)).setText(discount);
     }
 
     @Override
-    public void setBonus(double bonus) {
-        ((TextView)findViewById(R.id.SP_bonus)).setText(Double.toString(bonus));
+    public void setBonus(String bonus) {
+        ((TextView)findViewById(R.id.SP_bonus)).setText(bonus);
     }
 
     @Override

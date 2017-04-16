@@ -17,15 +17,14 @@ import java.util.List;
 public class SpecialOffersAdapter extends BaseAdapter {
     List<SpecialOfferPresenter> specialOfferPresenterList = new ArrayList<SpecialOfferPresenter>();
 
-    public SpecialOffersAdapter(final ViewManager viewManager, final List<Item> itemList) {
+    public SpecialOffersAdapter(final ViewManager viewManager, final List<SpecialOffer> specialOfferList) {
 
         specialOfferPresenterList = new ArrayList<SpecialOfferPresenter>(){{
-            for(int i=0;i<itemList.size();i++){
-                add(
-                        new SpecialOfferPresenter(//viewManager,
-                                new SpecialOffer(itemList.get(i)),
-                                new SpecialOfferFragment(viewManager.getContext()))
-                );
+            for (SpecialOffer object: specialOfferList) {
+                add(new SpecialOfferPresenter(
+                        viewManager,
+                        object,
+                        new SpecialOfferFragment(viewManager.getContext())));
             }
         }};
     }

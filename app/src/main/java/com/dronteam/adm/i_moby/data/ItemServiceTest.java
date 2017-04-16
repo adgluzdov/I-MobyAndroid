@@ -29,4 +29,18 @@ public class ItemServiceTest implements ItemService {
         ));
         return Observable.just(repo);
     }
+
+    @Override
+    public Observable<Repo> Search() {
+        Repo repo = new Repo(new Response(
+            new ArrayList<Item>() {
+                {
+                    add(new Item(1));
+                    add(new Item(2));
+                    add(new Item(3));
+                }
+            }
+        ));
+        return Observable.just(repo);
+    }
 }

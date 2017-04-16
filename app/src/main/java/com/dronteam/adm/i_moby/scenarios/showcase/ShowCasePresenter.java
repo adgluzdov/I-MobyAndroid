@@ -9,8 +9,10 @@ import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -43,7 +45,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
-        itemService.Get()
+        itemService.Search()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onSpecialOffersLoaded(), onError());
@@ -52,9 +54,15 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     private Action1<? super Repo> onSpecialOffersLoaded() {
         return new Action1<Repo>() {
             @Override
-            public void call(Repo repo) {
+            public void call(final Repo repo) {
                 Log.d(TAG, "call: success - onSpecialOffersLoaded()");
-                SpecialOffersAdapter specialOffersAdapter = getAdapter(repo.getResponse().getItems());
+                SpecialOffersAdapter specialOffersAdapter = getAdapter(new ArrayList<SpecialOffer>(){
+                    {
+                        for (Item object: repo.getResponse().getItems()) {
+                            add(new SpecialOffer(object));
+                        }
+                    }
+                });
                 view.setList(specialOffersAdapter);
             }
         };
@@ -69,7 +77,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         };
     }
 
-    private SpecialOffersAdapter getAdapter(List<Item> items) {
+    private SpecialOffersAdapter getAdapter(ArrayList<SpecialOffer> items) {
 
 
         return new SpecialOffersAdapter(viewManager,items);

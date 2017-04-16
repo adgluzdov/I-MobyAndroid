@@ -8,8 +8,8 @@ import android.view.View;
  */
 
 public interface SpecialOfferView {
-    void setDiscount(double discount);
-    void setBonus(double bonus);
+    void setDiscount(String discount);
+    void setBonus(String bonus);
     void setAdditionalInfo(String additionalInfo);
 
     void setImage(Bitmap image);

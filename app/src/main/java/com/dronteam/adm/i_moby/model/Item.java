@@ -56,4 +56,36 @@ public class Item {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setDate(Integer date) {
+        this.date = date;
+    }
+
+    public void setThumb_photo(String thumb_photo) {
+        this.thumb_photo = thumb_photo;
+    }
+
+    public void setAvailability(Integer availability) {
+        this.availability = availability;
+    }
 }

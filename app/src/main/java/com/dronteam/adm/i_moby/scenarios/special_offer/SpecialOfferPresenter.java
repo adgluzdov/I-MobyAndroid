@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 
@@ -8,6 +9,7 @@ import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 /**
  * Created by User on 13.12.2016.
@@ -17,10 +19,27 @@ public class SpecialOfferPresenter {
     private static final String TAG = "My";
     SpecialOffer offer;
     SpecialOfferView view;
+    private Bitmap loadedImage = null;
+    final Target target = new Target(){
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            loadedImage = bitmap;
+            view.setImage(loadedImage);
+        }
 
-    public SpecialOfferPresenter(/*ViewManager viewManager, */SpecialOffer offer, SpecialOfferView view) {
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
+    };
+
+    public SpecialOfferPresenter(ViewManager viewManager, SpecialOffer offer, SpecialOfferView view) {
         this.offer = offer;
         this.view = view;
+        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
     }
 
     public SpecialOfferView getView() {
@@ -47,11 +66,9 @@ public class SpecialOfferPresenter {
         view.setAdditionalInfo(offer.getAdditionalInfo());
         view.setDiscount(offer.getDiscount());
         view.setBonus(offer.getBonus());
-        if(offer.getImage() != null)
-            view.setImage(offer.getImage());
-        else {
+        if(loadedImage != null)
+            view.setImage(loadedImage);
+        else
             view.setImage(R.mipmap.ic_launcher);
-            Log.d(TAG, "Can't load image. SpecialOfferPresenter");
-        }
     }
 }

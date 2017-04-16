@@ -2,45 +2,53 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 
+import com.dronteam.adm.i_moby.model.Category;
 import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.model.Price;
 
 /**
  * Created by User on 13.12.2016.
  */
+// Todo: Необходимо доработать parseStr(). Продумать ключевые слова для поиска discount, bonus, additionalInfo.
 
 public class SpecialOffer {
-    Item item;
 
-    private double discount;
-    private double bonus;
+    private String discount;
+    private String bonus;
     private String additionalInfo;
-    private Bitmap image;
+    private Item item;
+
 
     public SpecialOffer(Item item) {
         this.item = item;
+        String description = item.getDescription();
+        this.setDiscount(parseStr(description,"Скидка: ","%"));
+        this.setBonus(parseStr(description,"Бонус: ","!"));
+        this.setAdditionalInfo(parseStr(description,"Дополнительная информация: ","!"));
     }
 
-    public Item getItem() {
-        return item;
+    private String parseStr(String str,String start,String end){
+        String string = "";
+        int startindex = str.indexOf(start)+start.length();
+        int endindex = str.indexOf(end,startindex-1);
+        if(endindex>0)
+            string = str.substring(startindex, endindex);
+        return string;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public double getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 
-    public double getBonus() {
+    public String getBonus() {
         return bonus;
     }
 
-    public void setBonus(double bonus) {
+    public void setBonus(String bonus) {
         this.bonus = bonus;
     }
 
@@ -53,12 +61,8 @@ public class SpecialOffer {
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
     }
-
-    public Bitmap getImage() {
-        return image;
+    public Item getItem() {
+        return item;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
-    }
 }
