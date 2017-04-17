@@ -1,10 +1,6 @@
 package com.dronteam.adm.i_moby.scenarios.special_offer;
 
-import android.graphics.Bitmap;
-
-import com.dronteam.adm.i_moby.model.Category;
-import com.dronteam.adm.i_moby.model.Item;
-import com.dronteam.adm.i_moby.model.Price;
+import com.dronteam.adm.i_moby.model.item.Item;
 
 /**
  * Created by User on 13.12.2016.

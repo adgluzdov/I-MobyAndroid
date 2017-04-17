@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;

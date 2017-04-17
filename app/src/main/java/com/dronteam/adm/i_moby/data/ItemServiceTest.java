@@ -1,15 +1,11 @@
 package com.dronteam.adm.i_moby.data;
 
-import com.dronteam.adm.i_moby.common.Repo;
-import com.dronteam.adm.i_moby.model.Item;
-import com.dronteam.adm.i_moby.model.Response;
+import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
+import com.dronteam.adm.i_moby.model.item.Item;
+import com.dronteam.adm.i_moby.data.VK.json_response.get.Response;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
 import rx.Observable;
 
 /**
@@ -17,8 +13,8 @@ import rx.Observable;
  */
 public class ItemServiceTest implements ItemService {
     @Override
-    public Observable<Repo> Get() {
-        Repo repo = new Repo(new Response(
+    public Observable<GetResponse> Get() {
+        GetResponse repo = new GetResponse(new Response(
                 new ArrayList<Item>() {
                     {
                         add(new Item(1));
@@ -31,8 +27,8 @@ public class ItemServiceTest implements ItemService {
     }
 
     @Override
-    public Observable<Repo> Search() {
-        Repo repo = new Repo(new Response(
+    public Observable<GetResponse> Search() {
+        GetResponse repo = new GetResponse(new Response(
             new ArrayList<Item>() {
                 {
                     add(new Item(1));

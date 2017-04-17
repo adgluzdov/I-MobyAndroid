@@ -4,16 +4,15 @@ import android.util.Log;
 
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.Presenter;
-import com.dronteam.adm.i_moby.common.Repo;
+import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.model.item.Item;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -51,10 +50,10 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 .subscribe(onSpecialOffersLoaded(), onError());
     }
 
-    private Action1<? super Repo> onSpecialOffersLoaded() {
-        return new Action1<Repo>() {
+    private Action1<? super GetResponse> onSpecialOffersLoaded() {
+        return new Action1<GetResponse>() {
             @Override
-            public void call(final Repo repo) {
+            public void call(final GetResponse repo) {
                 Log.d(TAG, "call: success - onSpecialOffersLoaded()");
                 SpecialOffersAdapter specialOffersAdapter = getAdapter(new ArrayList<SpecialOffer>(){
                     {

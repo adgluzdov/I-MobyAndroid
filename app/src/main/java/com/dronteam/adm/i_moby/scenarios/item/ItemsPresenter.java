@@ -1,17 +1,15 @@
 package com.dronteam.adm.i_moby.scenarios.item;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.Presenter;
-import com.dronteam.adm.i_moby.common.Repo;
+import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.data.RetrofitFactory;
-import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.model.item.Item;
 
 import java.util.List;
 
@@ -56,10 +54,10 @@ public class ItemsPresenter implements ViewListener, Presenter {
         };
     }
 
-    private Action1<? super Repo> onItemLoaded() {
-        return new Action1<Repo>() {
+    private Action1<? super GetResponse> onItemLoaded() {
+        return new Action1<GetResponse>() {
             @Override
-            public void call(Repo repo) {
+            public void call(GetResponse repo) {
                 Log.d(TAG, "call: success");
                 ItemAdapter itemAdapter = getAdapter(repo.getResponse().getItems());
                 view.setList(itemAdapter);

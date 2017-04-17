@@ -1,12 +1,11 @@
 package com.dronteam.adm.i_moby.scenarios.item;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.model.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;

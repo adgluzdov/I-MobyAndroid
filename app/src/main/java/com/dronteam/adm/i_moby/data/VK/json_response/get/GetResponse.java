@@ -1,14 +1,12 @@
-package com.dronteam.adm.i_moby.common;
-
-import com.dronteam.adm.i_moby.model.Response;
+package com.dronteam.adm.i_moby.data.VK.json_response.get;
 
 /**
  * Created by adm on 05.11.2016.
  */
-public class Repo {
+public class GetResponse {
     public Response response;
 
-    public Repo(Response response) {
+    public GetResponse(Response response) {
         this.setResponse(response);
     }
 

@@ -1,13 +1,12 @@
 package com.dronteam.adm.i_moby.scenarios.item;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.model.Item;
+import com.dronteam.adm.i_moby.model.item.Item;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 

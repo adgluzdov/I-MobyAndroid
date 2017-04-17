@@ -1,5 +1,5 @@
 
-package com.dronteam.adm.i_moby.model;
+package com.dronteam.adm.i_moby.model.item;
 
 public class Item {
 
