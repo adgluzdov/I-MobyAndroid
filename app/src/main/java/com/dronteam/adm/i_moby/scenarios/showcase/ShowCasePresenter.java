@@ -8,6 +8,7 @@ import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
+import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.model.item.Item;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
@@ -33,7 +34,6 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         this.view = view;
         //serviceFactory = new RetrofitFactory();
         itemService = viewManager.getServiceFactory().getApi(ItemService.class);
-
         view.setOnCreateViewListener(this);
     }
 
@@ -48,6 +48,20 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onSpecialOffersLoaded(), onError());
+        itemService.GetAlbums()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(onAlbumsLoaded(), onError());
+    }
+
+    private Action1<? super GetAlbumsResponse> onAlbumsLoaded() {
+        return new Action1<GetAlbumsResponse>() {
+            @Override
+            public void call(final GetAlbumsResponse getAlbumsResponse) {
+                Log.d(TAG, "call: success - onSpecialOffersLoaded()");
+
+            }
+        };
     }
 
     private Action1<? super GetResponse> onSpecialOffersLoaded() {
