@@ -58,7 +58,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         return new Action1<GetAlbumsResponse>() {
             @Override
             public void call(final GetAlbumsResponse getAlbumsResponse) {
-                Log.d(TAG, "call: success - onSpecialOffersLoaded()");
+                Log.d(TAG, "call: success - onAlbumsLoaded()");
 
             }
         };
