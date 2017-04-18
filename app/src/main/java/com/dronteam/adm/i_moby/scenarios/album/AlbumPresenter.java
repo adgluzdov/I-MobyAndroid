@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.album;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.ViewManager;
@@ -40,6 +41,8 @@ public class AlbumPresenter {
     }
 
     public void fill() {
+        view.setCount(String.valueOf(item.getCount()));
+        view.setTitle(item.getTitle());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
@@ -49,4 +52,5 @@ public class AlbumPresenter {
     public AlbumView getView() {
         return view;
     }
+
 }
