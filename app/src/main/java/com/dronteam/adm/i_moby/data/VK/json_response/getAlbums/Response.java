@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.data.VK.json_response.getAlbums;
 
 import com.dronteam.adm.i_moby.model.album.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,6 +10,7 @@ import java.util.List;
  */
 public class Response {
     public Integer count;
+    public List<Item> items = new ArrayList<Item>();
 
     public Integer getCount() {
         return count;
@@ -32,6 +34,6 @@ public class Response {
         this.items = items;
     }
 
-    public List<Item> items = null;
+
 
 }

@@ -10,10 +10,12 @@ import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.model.item.Item;
+import com.dronteam.adm.i_moby.scenarios.album.AlbumsAdapter;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -44,10 +46,10 @@ public class ShowCasePresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
-        itemService.Search()
+        /*itemService.Search()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe(onSpecialOffersLoaded(), onError());
+                .subscribe(onSpecialOffersLoaded(), onError());*/
         itemService.GetAlbums()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -59,7 +61,8 @@ public class ShowCasePresenter implements Presenter, ViewListener {
             @Override
             public void call(final GetAlbumsResponse getAlbumsResponse) {
                 Log.d(TAG, "call: success - onAlbumsLoaded()");
-
+                AlbumsAdapter albumsAdapter = getAlbumsAdapter(getAlbumsResponse.getResponse().getItems());
+                view.setList(albumsAdapter);
             }
         };
     }
@@ -69,7 +72,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
             @Override
             public void call(final GetResponse repo) {
                 Log.d(TAG, "call: success - onSpecialOffersLoaded()");
-                SpecialOffersAdapter specialOffersAdapter = getAdapter(new ArrayList<SpecialOffer>(){
+                SpecialOffersAdapter specialOffersAdapter = getSpecialOffersAdapter(new ArrayList<SpecialOffer>(){
                     {
                         for (Item object: repo.getResponse().getItems()) {
                             add(new SpecialOffer(object));
@@ -90,9 +93,11 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         };
     }
 
-    private SpecialOffersAdapter getAdapter(ArrayList<SpecialOffer> items) {
-
-
+    private SpecialOffersAdapter getSpecialOffersAdapter(List<SpecialOffer> items) {
         return new SpecialOffersAdapter(viewManager,items);
+    }
+
+    private AlbumsAdapter getAlbumsAdapter(List<com.dronteam.adm.i_moby.model.album.Item> items) {
+        return new AlbumsAdapter(viewManager,items);
     }
 }

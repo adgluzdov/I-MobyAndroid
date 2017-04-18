@@ -8,6 +8,6 @@ import android.view.View;
  */
 
 public interface AlbumView {
-    void setImage(Bitmap loadedImage);
+    void setImage(Bitmap image);
     void setImage(int resId);
 }

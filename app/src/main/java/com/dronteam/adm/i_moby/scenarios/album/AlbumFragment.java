@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.album;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.dronteam.adm.i_moby.R;
@@ -20,12 +21,12 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
     }
 
     @Override
-    public void setImage(Bitmap loadedImage) {
-
+    public void setImage(Bitmap image) {
+        ((ImageView)findViewById(R.id.SP_image1)).setImageBitmap(image);
     }
 
     @Override
     public void setImage(int resId) {
-
+        ((ImageView)findViewById(R.id.SP_image1)).setImageResource(resId);
     }
 }

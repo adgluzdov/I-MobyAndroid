@@ -5,10 +5,11 @@ package com.dronteam.adm.i_moby.model.album;
  */
 public class Item {
     public Integer id;
-    public Integer ownerId;
+    public Integer owner_id;
     public String title;
     public Integer count;
-    public Integer updatedTime;
+    public Integer updated_time;
+    public Photo photo;
 
     public Integer getId() {
         return id;
@@ -18,12 +19,12 @@ public class Item {
         this.id = id;
     }
 
-    public Integer getOwnerId() {
-        return ownerId;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
 
     public String getTitle() {
@@ -42,12 +43,12 @@ public class Item {
         this.count = count;
     }
 
-    public Integer getUpdatedTime() {
-        return updatedTime;
+    public Integer getUpdated_time() {
+        return updated_time;
     }
 
-    public void setUpdatedTime(Integer updatedTime) {
-        this.updatedTime = updatedTime;
+    public void setUpdated_time(Integer updated_time) {
+        this.updated_time = updated_time;
     }
 
     public Photo getPhoto() {
@@ -58,15 +59,14 @@ public class Item {
         this.photo = photo;
     }
 
-    public Item(Integer id, Integer ownerId, String title, Integer count, Integer updatedTime, Photo photo) {
+    public Item(Integer id, Integer owner_id, String title, Integer count, Integer updated_time, Photo photo) {
 
         this.id = id;
-        this.ownerId = ownerId;
+        this.owner_id = owner_id;
         this.title = title;
         this.count = count;
-        this.updatedTime = updatedTime;
+        this.updated_time = updated_time;
         this.photo = photo;
     }
 
-    public Photo photo;
 }

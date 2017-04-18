@@ -35,8 +35,8 @@ public class AlbumPresenter {
 
     public AlbumPresenter(ViewManager viewManager, Item item, AlbumFragment albumFragment) {
         this.item = item;
-        this.view = view;
-        Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto807()).into(target);
+        this.view = albumFragment;
+        Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
     }
 
     public void fill() {
