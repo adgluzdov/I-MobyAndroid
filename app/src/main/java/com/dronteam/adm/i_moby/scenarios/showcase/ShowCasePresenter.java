@@ -42,10 +42,9 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
         this.view = view;
-        //serviceFactory = new RetrofitFactory();
+        this.adapter = new CommonAdapter();
         itemService = viewManager.getServiceFactory().getApi(ItemService.class);
         view.setOnCreateViewListener(this);
-        adapter = new CommonAdapter();
     }
 
     @Override
@@ -55,6 +54,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
+        view.setList(adapter);
         itemService.Search()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -79,7 +79,6 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                     }
                 }};
                 adapter.addItemPresenters(itemPresenterList);
-                view.setList(adapter);
             }
         };
     }
@@ -95,8 +94,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                         add(new SpecialOfferPresenter(viewManager,new SpecialOffer(item),new SpecialOfferFragment(viewManager.getContext())));
                     }
                 }};
-                adapter.addItemPresenters(itemPresenterList);
-                view.setList(adapter);
+                adapter.addItemPresenters(0,itemPresenterList);
             }
         };
     }

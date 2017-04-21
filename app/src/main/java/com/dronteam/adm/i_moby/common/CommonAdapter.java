@@ -26,17 +26,20 @@ public class CommonAdapter extends BaseAdapter{
 
     }
 
-    public void addItemPresenter(ItemPresenter itemPresenter){
-        itemPresenterList.add(itemPresenter);
+    public void addItemPresenter(int position, ItemPresenter itemPresenter){
+        itemPresenterList.add(position,itemPresenter);
         this.notifyDataSetChanged();
     }
 
-    public void addItemPresenters(final List<ItemPresenter> itemPresenters){
+    public void addItemPresenters(int position, final List<ItemPresenter> itemPresenters){
         for (ItemPresenter obj :
                 itemPresenters) {
-            this.itemPresenterList.add(obj);
+            this.itemPresenterList.add(position,obj);
         }
         this.notifyDataSetChanged();
+    }
+    public void addItemPresenters(final List<ItemPresenter> itemPresenters){
+        this.addItemPresenters(itemPresenterList.size(),itemPresenters);
     }
 
     @Override
