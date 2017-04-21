@@ -1,20 +1,21 @@
-package com.dronteam.adm.i_moby.scenarios.item;
+package com.dronteam.adm.i_moby.scenarios.product;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.model.item.Item;
+import com.dronteam.adm.i_moby.model.product.Item;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 /**
  * Created by adm on 14.11.2016.
  */
-public class ItemPresenter {
-    ItemView view;
+public class ProductPresenter implements ItemPresenter {
+    ProductView view;
     Item item;
     private Bitmap loadedImage = null;
     final Target target = new Target(){
@@ -33,8 +34,8 @@ public class ItemPresenter {
         }
     };
 
-    public ItemPresenter(ViewManager viewManager, Item item) {
-        this.view = new ItemFragment(viewManager.getContext());
+    public ProductPresenter(ViewManager viewManager, Item item, ProductView view) {
+        this.view = view;
         this.item = item;
         this.view.setEditListener(edit());
         Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
@@ -49,12 +50,28 @@ public class ItemPresenter {
         };
     }
 
+    @Override
     public void fill(){
         view.setText(item.getTitle(), item.description, item.price.text);
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
             view.setImage(R.mipmap.ic_launcher);
+    }
+
+    @Override
+    public Object getView() {
+        return view;
+    }
+
+    @Override
+    public Object getItem() {
+        return item;
+    }
+
+    @Override
+    public int getItemId() {
+        return item.getId();
     }
 
 }

@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.AuthListener;
-import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.RetrofitFactory;

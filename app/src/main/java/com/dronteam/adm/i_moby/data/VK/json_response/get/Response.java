@@ -1,7 +1,7 @@
 
 package com.dronteam.adm.i_moby.data.VK.json_response.get;
 
-import com.dronteam.adm.i_moby.model.item.Item;
+import com.dronteam.adm.i_moby.model.product.Item;
 
 import java.util.ArrayList;
 import java.util.List;

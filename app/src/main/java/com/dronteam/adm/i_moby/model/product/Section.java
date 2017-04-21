@@ -1,11 +1,10 @@
 
-package com.dronteam.adm.i_moby.model.item;
+package com.dronteam.adm.i_moby.model.product;
 
-public class Category {
+public class Section {
 
     public Integer id;
     public String name;
-    public Section section;
 
     public Integer getId() {
         return id;
@@ -13,9 +12,5 @@ public class Category {
 
     public String getName() {
         return name;
-    }
-
-    public Section getSection() {
-        return section;
     }
 }

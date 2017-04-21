@@ -2,13 +2,12 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
-import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 

@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.scenarios.item;
+package com.dronteam.adm.i_moby.scenarios.product;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,11 +13,11 @@ import com.dronteam.adm.i_moby.R;
 /**
  * Created by adm on 14.11.2016.
  */
-public class ItemFragment extends LinearLayout implements ItemView{
+public class ProductFragment extends LinearLayout implements ProductView {
 
     Context context;
 
-    public ItemFragment(Context context) {
+    public ProductFragment(Context context) {
         super(context);
         this.context = context;
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

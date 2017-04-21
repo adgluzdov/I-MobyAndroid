@@ -1,6 +1,6 @@
-package com.dronteam.adm.i_moby.scenarios.special_offer;
+package com.dronteam.adm.i_moby.model.special_offer;
 
-import com.dronteam.adm.i_moby.model.item.Item;
+import com.dronteam.adm.i_moby.model.product.Item;
 
 /**
  * Created by User on 13.12.2016.

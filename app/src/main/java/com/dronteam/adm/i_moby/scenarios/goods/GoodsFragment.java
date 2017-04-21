@@ -1,13 +1,15 @@
-package com.dronteam.adm.i_moby.scenarios.item;
+package com.dronteam.adm.i_moby.scenarios.goods;
 
+
+import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
 
-public class ItemsFragment extends MainFragment implements ItemsView {
+public class GoodsFragment extends MainFragment implements GoodsView {
 
     @Override
-    public void setList(ItemAdapter adapter) {
+    public void setList(BaseAdapter adapter) {
         getListView(R.id.ListViewMain).setAdapter(adapter);
     }
 

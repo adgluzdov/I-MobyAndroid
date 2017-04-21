@@ -1,17 +1,21 @@
-package com.dronteam.adm.i_moby.scenarios.item;
+package com.dronteam.adm.i_moby.scenarios.goods;
 
 import android.util.Log;
 
+import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.model.item.Item;
+import com.dronteam.adm.i_moby.model.product.Item;
+import com.dronteam.adm.i_moby.scenarios.product.ProductFragment;
+import com.dronteam.adm.i_moby.scenarios.product.ProductPresenter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -21,24 +25,27 @@ import rx.schedulers.Schedulers;
  * Created by smb on 18/10/2016.
  */
 
-public class ItemsPresenter implements ViewListener, Presenter {
+public class GoodsPresenter implements ViewListener, Presenter {
 
     private static final String TAG = "My";
-    private final ItemsView view;
+    private final GoodsView view;
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
+    private CommonAdapter adapter;
 
-    public ItemsPresenter(ViewManager viewManager, ItemsView view) {
+    public GoodsPresenter(ViewManager viewManager, GoodsView view) {
         this.viewManager = viewManager;
         this.view = view;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         view.setOnCreateViewListener(this);
+        this.adapter = new CommonAdapter();
     }
 
     @Override
     public void OnCreateView() {
+        view.setList(adapter);
         itemService.Get()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -49,7 +56,7 @@ public class ItemsPresenter implements ViewListener, Presenter {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.d(TAG, "call: error in ItemsPresenter");
+                Log.d(TAG, "call: error in GoodsPresenter");
             }
         };
     }
@@ -57,16 +64,17 @@ public class ItemsPresenter implements ViewListener, Presenter {
     private Action1<? super GetResponse> onItemLoaded() {
         return new Action1<GetResponse>() {
             @Override
-            public void call(GetResponse repo) {
+            public void call(final GetResponse repo) {
                 Log.d(TAG, "call: success");
-                ItemAdapter itemAdapter = getAdapter(repo.getResponse().getItems());
-                view.setList(itemAdapter);
+                ArrayList<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>(){{
+                    for (final Item item:
+                        repo.getResponse().getItems()) {
+                        add(new ProductPresenter(viewManager,item,new ProductFragment(viewManager.getContext())));
+                    }
+                }};
+                adapter.addItemPresenters(itemPresenterList);
             }
         };
-    }
-
-    private ItemAdapter getAdapter(List<Item> items) {
-        return new ItemAdapter(viewManager,items);
     }
 
     @Override

@@ -1,5 +1,5 @@
 
-package com.dronteam.adm.i_moby.model.item;
+package com.dronteam.adm.i_moby.model.product;
 
 public class Price {
 

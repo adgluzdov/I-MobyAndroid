@@ -11,17 +11,13 @@ import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
-import com.dronteam.adm.i_moby.model.item.Item;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumPresenter;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumsAdapter;
-import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffer;
+import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
-import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOffersAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -89,7 +85,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
             public void call(final GetResponse repo) {
                 Log.d(TAG, "call: success - onSpecialOffersLoaded()");
                 ArrayList<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>(){{
-                    for (final com.dronteam.adm.i_moby.model.item.Item item :
+                    for (final com.dronteam.adm.i_moby.model.product.Item item :
                             repo.getResponse().getItems()) {
                         add(new SpecialOfferPresenter(viewManager,new SpecialOffer(item),new SpecialOfferFragment(viewManager.getContext())));
                     }
@@ -106,13 +102,5 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 Log.d(TAG, "call: error in ShowCasePresenter");
             }
         };
-    }
-
-    private SpecialOffersAdapter getSpecialOffersAdapter(List<SpecialOffer> items) {
-        return new SpecialOffersAdapter(viewManager,items);
-    }
-
-    private AlbumsAdapter getAlbumsAdapter(List<com.dronteam.adm.i_moby.model.album.Item> items) {
-        return new AlbumsAdapter(viewManager,items);
     }
 }
