@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
 
@@ -45,6 +46,10 @@ public abstract class MainFragment extends Fragment implements CommonView{
 
     protected ListView getListView(int id) {
         return (ListView) view.findViewById(id);
+    }
+
+    protected SearchView getSearchView(int id) {
+        return (SearchView) view.findViewById(id);
     }
 
 }

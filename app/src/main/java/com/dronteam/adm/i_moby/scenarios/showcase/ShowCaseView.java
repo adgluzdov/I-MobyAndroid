@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.showcase;
 
 import android.widget.BaseAdapter;
+import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -14,4 +15,5 @@ public interface ShowCaseView extends CommonView {
     void setOnButtonClick(CallBack callBack);
     void setList(BaseAdapter adapter);
 
+    SearchView getSearchView();
 }

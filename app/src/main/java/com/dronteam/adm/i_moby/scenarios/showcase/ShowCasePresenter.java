@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.showcase;
 
 import android.util.Log;
+import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -50,6 +51,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
+        SearchView searchView = view.getSearchView();
         view.setList(adapter);
         itemService.Search()
                 .observeOn(AndroidSchedulers.mainThread())
