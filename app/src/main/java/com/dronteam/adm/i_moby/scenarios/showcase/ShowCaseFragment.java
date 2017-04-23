@@ -2,6 +2,8 @@ package com.dronteam.adm.i_moby.scenarios.showcase;
 
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
@@ -31,10 +33,5 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public void setList(BaseAdapter adapter)  {
         getListView(R.id.listViewShowcase).setAdapter(adapter);
-    }
-
-    @Override
-    public SearchView getSearchView() {
-        return getSearchView(R.id.searchView);
     }
 }

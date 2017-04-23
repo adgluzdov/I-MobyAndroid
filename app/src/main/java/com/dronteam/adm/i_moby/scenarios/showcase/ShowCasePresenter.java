@@ -1,8 +1,9 @@
 package com.dronteam.adm.i_moby.scenarios.showcase;
 
 import android.util.Log;
-import android.widget.SearchView;
 
+import com.dronteam.adm.i_moby.UIFactory;
+import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
@@ -15,6 +16,9 @@ import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse
 import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumPresenter;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
+import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsFragment;
+import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsPresenter;
+import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsView;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
 
@@ -34,6 +38,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     private ShowCaseView view;
     private final ItemService itemService;
     private CommonAdapter adapter;
+    private SearchGoodsPresenter searchPresenter;
     //private ServiceFactory serviceFactory;
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
@@ -51,9 +56,14 @@ public class ShowCasePresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
-        SearchView searchView = view.getSearchView();
+        view.setOnButtonClick(new CallBack() {
+            @Override
+            public void call() {
+                //Переход на SearchGoods
+            }
+        });
         view.setList(adapter);
-        itemService.Search()
+        itemService.SearchSpecialOffers()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onSpecialOffersLoaded(), onError());

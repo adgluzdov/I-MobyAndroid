@@ -4,6 +4,8 @@ import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -14,8 +16,13 @@ public interface ItemService {
 
     @GET("market.get?owner_id=-121677108&v=5.59")
     Observable<GetResponse> Get();
+
+    @GET("market.search?owner_id=-121677108&v=5.59")
+    Observable<GetResponse> Search(@Query("q") String q);
+
     @GET("market.search?owner_id=-121677108&q=%23IMoby&v=5.59")
-    Observable<GetResponse> Search();
+    Observable<GetResponse> SearchSpecialOffers();
+
     @GET("market.getAlbums?owner_id=-121677108&v=5.59")
     Observable<GetAlbumsResponse> GetAlbums();
 

@@ -51,5 +51,8 @@ public abstract class MainFragment extends Fragment implements CommonView{
     protected SearchView getSearchView(int id) {
         return (SearchView) view.findViewById(id);
     }
+    protected View getView(int id) {
+        return view.findViewById(id);
+    }
 
 }

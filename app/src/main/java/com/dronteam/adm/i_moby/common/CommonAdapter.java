@@ -26,6 +26,11 @@ public class CommonAdapter extends BaseAdapter{
 
     }
 
+    public void clear(){
+        itemPresenterList.clear();
+        this.notifyDataSetChanged();
+    }
+
     public void addItemPresenter(int position, ItemPresenter itemPresenter){
         itemPresenterList.add(position,itemPresenter);
         this.notifyDataSetChanged();
