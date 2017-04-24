@@ -45,16 +45,16 @@ public class SearchGoodsPresenter implements Presenter, ViewListener {
         view.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
             public boolean onQueryTextSubmit(String query) {
-                itemService.Search(query)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.newThread())
-                        .subscribe(onProductLoaded(), onError());
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-
+                itemService.Search(query)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.newThread())
+                        .subscribe(onProductLoaded(), onError());
                 return false;
             }
         });
