@@ -45,6 +45,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
 
     @Override
     public void OnCreateView() {
+        adapter.clear();
         view.setList(adapter);
         itemService.Get()
                 .observeOn(AndroidSchedulers.mainThread())

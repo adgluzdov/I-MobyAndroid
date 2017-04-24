@@ -59,6 +59,6 @@ public class MainActivity extends Activity implements ViewManager, AuthListener 
 
     @Override
     public void onAuth() {
-        show(UIFactory.SearchGoodsPresenter(this));
+        show(UIFactory.ShowCase(this));
     }
 }

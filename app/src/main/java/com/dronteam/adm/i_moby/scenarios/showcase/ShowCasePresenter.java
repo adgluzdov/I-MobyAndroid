@@ -31,14 +31,13 @@ import rx.schedulers.Schedulers;
 /**
  * Created by smb on 13/12/2016.
  */
-//Todo: Класс стартует до onCreate View, что не дает работать view в конструкторе. Сделать,чтобы класс стартовал после создания View. Перенести SetAdapter в конструктор.
+
 public class ShowCasePresenter implements Presenter, ViewListener {
     private static final String TAG = "My";
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
     private CommonAdapter adapter;
-    private SearchGoodsPresenter searchPresenter;
     //private ServiceFactory serviceFactory;
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
@@ -59,9 +58,10 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         view.setOnButtonClick(new CallBack() {
             @Override
             public void call() {
-                //Переход на SearchGoods
+                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager));
             }
         });
+        adapter.clear();
         view.setList(adapter);
         itemService.SearchSpecialOffers()
                 .observeOn(AndroidSchedulers.mainThread())

@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.search;
 
 import android.widget.SearchView;
 
+import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
@@ -41,11 +42,11 @@ public class SearchGoodsPresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
+        adapter.clear();
         view.setAdapter(adapter);
         view.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return false;
             }
 
