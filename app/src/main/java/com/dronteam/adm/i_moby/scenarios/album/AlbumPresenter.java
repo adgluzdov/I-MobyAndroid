@@ -2,8 +2,10 @@ package com.dronteam.adm.i_moby.scenarios.album;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.album.Item;
@@ -14,10 +16,11 @@ import com.squareup.picasso.Target;
  * Created by adm on 18.04.2017.
  */
 
-public class AlbumPresenter implements ItemPresenter {
+public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
     private AlbumView view;
     private Item item;
     private Bitmap loadedImage = null;
+    private ViewManager viewManager;
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -37,6 +40,8 @@ public class AlbumPresenter implements ItemPresenter {
     public AlbumPresenter(ViewManager viewManager, Item item, AlbumFragment albumFragment) {
         this.item = item;
         this.view = albumFragment;
+        this.viewManager = viewManager;
+        this.view.setEditListener(this);
         Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
     }
 
@@ -65,4 +70,8 @@ public class AlbumPresenter implements ItemPresenter {
         return item.getId();
     }
 
+    @Override
+    public void onClick(View view) {
+        viewManager.show(UIFactory.GoodsPresenter(viewManager,String.valueOf(item.getId())));
+    }
 }

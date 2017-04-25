@@ -33,10 +33,12 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
     private CommonAdapter adapter;
+    private String albumId;
 
-    public GoodsPresenter(ViewManager viewManager, GoodsView view) {
+    public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId) {
         this.viewManager = viewManager;
         this.view = view;
+        this.albumId = albumId;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         view.setOnCreateViewListener(this);
@@ -47,7 +49,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     public void OnCreateView() {
         adapter.clear();
         view.setList(adapter);
-        itemService.Get()
+        itemService.Get(albumId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onItemLoaded(), onError());

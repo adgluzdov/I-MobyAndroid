@@ -17,6 +17,9 @@ public interface ItemService {
     @GET("market.get?owner_id=-121677108&v=5.59")
     Observable<GetResponse> Get();
 
+    @GET("market.get?owner_id=-121677108&v=5.59")
+    Observable<GetResponse> Get(@Query("album_id") String album_id);
+
     @GET("market.search?owner_id=-121677108&v=5.59")
     Observable<GetResponse> Search(@Query("q") String q);
 

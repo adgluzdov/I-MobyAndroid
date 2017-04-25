@@ -25,9 +25,13 @@ public class UIFactory {
         return  new ShowCasePresenter(viewManager, showCaseView);
     }
 
+    public static Presenter GoodsPresenter(ViewManager viewManager,String albumId) {
+        if (goodsView == null) goodsView = new GoodsFragment();
+        return  new GoodsPresenter(viewManager, goodsView, albumId);
+    }
     public static Presenter GoodsPresenter(ViewManager viewManager) {
         if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView);
+        return  new GoodsPresenter(viewManager, goodsView, "0");
     }
 
     public static Presenter SearchGoodsPresenter(ViewManager viewManager) {
