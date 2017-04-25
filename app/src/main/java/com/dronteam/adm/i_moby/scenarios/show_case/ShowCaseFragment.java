@@ -1,10 +1,7 @@
-package com.dronteam.adm.i_moby.scenarios.showcase;
+package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import android.view.View;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
@@ -17,12 +14,12 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
 
     @Override
     protected int getLayout() {
-        return R.layout.showcase;
+        return R.layout.show_case;
     }
 
     @Override
     public void setOnButtonClick(final CallBack callBack) {
-        getButton(R.id.button).setOnClickListener(new View.OnClickListener() {
+        getButton(R.id.button_open_search_goods).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callBack.call();
@@ -32,6 +29,6 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
 
     @Override
     public void setList(BaseAdapter adapter)  {
-        getListView(R.id.listViewShowcase).setAdapter(adapter);
+        getListView(R.id.list_view).setAdapter(adapter);
     }
 }

@@ -1,9 +1,6 @@
-package com.dronteam.adm.i_moby.scenarios.showcase;
+package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonView;

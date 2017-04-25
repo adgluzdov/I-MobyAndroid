@@ -1,8 +1,7 @@
-package com.dronteam.adm.i_moby.scenarios.search;
+package com.dronteam.adm.i_moby.scenarios.search_goods;
 
 import android.widget.SearchView;
 
-import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;

@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.scenarios.showcase;
+package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import android.util.Log;
 
@@ -16,9 +16,6 @@ import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse
 import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumPresenter;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
-import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsFragment;
-import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsPresenter;
-import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsView;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
 

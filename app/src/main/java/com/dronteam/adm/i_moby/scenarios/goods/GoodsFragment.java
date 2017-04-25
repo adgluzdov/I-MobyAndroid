@@ -10,7 +10,7 @@ public class GoodsFragment extends MainFragment implements GoodsView {
 
     @Override
     public void setList(BaseAdapter adapter) {
-        getListView(R.id.ListViewMain).setAdapter(adapter);
+        getListView(R.id.list_view).setAdapter(adapter);
     }
 
     @Override

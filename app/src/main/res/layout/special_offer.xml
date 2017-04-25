@@ -7,33 +7,29 @@
         android:text="discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SP_discount" />
+        android:id="@+id/text_view_discount" />
 
     <TextView
         android:text="bonus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SP_bonus"
+        android:id="@+id/text_view_bonus"
         android:autoText="false" />
 
     <TextView
         android:text="description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SP_description" />
+        android:id="@+id/text_view_description" />
 
     <TextView
         android:text="addInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SP_additionalInfo" />
+        android:id="@+id/text_view_additionalInfo" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/SP_image1" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/SP_image2" />
+        android:id="@+id/image_view" />
 </LinearLayout>

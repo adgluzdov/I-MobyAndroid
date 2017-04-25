@@ -21,22 +21,22 @@ public class ProductFragment extends LinearLayout implements ProductView {
         super(context);
         this.context = context;
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.item, this);
+        inflater.inflate(R.layout.product, this);
     }
 
     @Override
     public void setImage(Bitmap image) {
-        ((ImageView)findViewById(R.id.imageView)).setImageBitmap(image);
+        ((ImageView)findViewById(R.id.image_view)).setImageBitmap(image);
     }
 
     @Override
     public void setImage(int resId) {
-        ((ImageView)findViewById(R.id.imageView)).setImageResource(resId);
+        ((ImageView)findViewById(R.id.image_view)).setImageResource(resId);
     }
 
     @Override
     public void setText(String title,String description,String price) {
-        ((TextView)findViewById(R.id.title)).setText(title);
+        ((TextView)findViewById(R.id.text_view_title)).setText(title);
     }
 
     @Override

@@ -5,12 +5,12 @@ import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsFragment;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsPresenter;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsView;
-import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsFragment;
-import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsPresenter;
-import com.dronteam.adm.i_moby.scenarios.search.SearchGoodsView;
-import com.dronteam.adm.i_moby.scenarios.showcase.ShowCaseFragment;
-import com.dronteam.adm.i_moby.scenarios.showcase.ShowCasePresenter;
-import com.dronteam.adm.i_moby.scenarios.showcase.ShowCaseView;
+import com.dronteam.adm.i_moby.scenarios.search_goods.SearchGoodsFragment;
+import com.dronteam.adm.i_moby.scenarios.search_goods.SearchGoodsPresenter;
+import com.dronteam.adm.i_moby.scenarios.search_goods.SearchGoodsView;
+import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
+import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
+import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
 
 /**
  * Created by smb on 13/12/2016.

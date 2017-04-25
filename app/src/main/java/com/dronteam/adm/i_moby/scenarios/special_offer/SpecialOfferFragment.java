@@ -18,32 +18,32 @@ public class SpecialOfferFragment extends LinearLayout implements SpecialOfferVi
         super(context);
 
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.ll_special_offer, this);
+        inflater.inflate(R.layout.special_offer, this);
     }
 
     @Override
     public void setDiscount(String discount) {
-        ((TextView)findViewById(R.id.SP_discount)).setText(discount);
+        ((TextView)findViewById(R.id.text_view_discount)).setText(discount);
     }
 
     @Override
     public void setBonus(String bonus) {
-        ((TextView)findViewById(R.id.SP_bonus)).setText(bonus);
+        ((TextView)findViewById(R.id.text_view_bonus)).setText(bonus);
     }
 
     @Override
     public void setAdditionalInfo(String additionalInfo) {
-        ((TextView)findViewById(R.id.SP_additionalInfo)).setText(additionalInfo);
+        ((TextView)findViewById(R.id.text_view_additionalInfo)).setText(additionalInfo);
     }
 
     @Override
     public void setImage(Bitmap image) {
-        ((ImageView)findViewById(R.id.SP_image1)).setImageBitmap(image);
+        ((ImageView)findViewById(R.id.image_view)).setImageBitmap(image);
     }
 
     @Override
     public void setImage(int resId) {
-        ((ImageView)findViewById(R.id.SP_image1)).setImageResource(resId);
+        ((ImageView)findViewById(R.id.image_view)).setImageResource(resId);
     }
 
     @Override

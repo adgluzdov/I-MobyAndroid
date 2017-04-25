@@ -1,13 +1,11 @@
-package com.dronteam.adm.i_moby.scenarios.search;
+package com.dronteam.adm.i_moby.scenarios.search_goods;
 
-import android.app.Fragment;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
-import com.dronteam.adm.i_moby.common.ViewListener;
 
 /**
  * Created by adm on 22.04.2017.
@@ -20,17 +18,17 @@ public class SearchGoodsFragment extends MainFragment implements SearchGoodsView
 
     @Override
     public void setQueryHint(String queryHint) {
-        ((SearchView)getView(R.id.searchView)).setQueryHint(queryHint);
+        ((SearchView)getView(R.id.search_view)).setQueryHint(queryHint);
     }
 
     @Override
     public void setOnQueryTextListener(SearchView.OnQueryTextListener listener) {
-        ((SearchView)getView(R.id.searchView)).setOnQueryTextListener(listener);
+        ((SearchView)getView(R.id.search_view)).setOnQueryTextListener(listener);
     }
 
     @Override
     public void setAdapter(BaseAdapter adapter) {
-        ((ListView)getView(R.id.listView)).setAdapter(adapter);
+        ((ListView)getView(R.id.list_view)).setAdapter(adapter);
     }
 
     @Override

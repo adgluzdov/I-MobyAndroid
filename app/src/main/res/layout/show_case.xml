@@ -6,12 +6,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"/>
+        android:id="@+id/button_open_search_goods"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listViewShowcase">
+        android:id="@+id/list_view">
     </ListView>
 
 </LinearLayout>

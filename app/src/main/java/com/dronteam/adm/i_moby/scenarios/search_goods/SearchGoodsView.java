@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.scenarios.search;
+package com.dronteam.adm.i_moby.scenarios.search_goods;
 
 import android.widget.BaseAdapter;
 import android.widget.SearchView;
