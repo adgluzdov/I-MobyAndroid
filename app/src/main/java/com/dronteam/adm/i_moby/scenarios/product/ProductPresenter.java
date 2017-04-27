@@ -5,7 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.product.Item;
 import com.squareup.picasso.Picasso;
@@ -17,6 +19,7 @@ import com.squareup.picasso.Target;
 public class ProductPresenter implements ItemPresenter {
     ProductView view;
     Item item;
+    ViewManager viewManager;
     private Bitmap loadedImage = null;
     final Target target = new Target(){
         @Override
@@ -37,6 +40,7 @@ public class ProductPresenter implements ItemPresenter {
     public ProductPresenter(ViewManager viewManager, Item item, ProductView view) {
         this.view = view;
         this.item = item;
+        this.viewManager = viewManager;
         this.view.setEditListener(edit());
         Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
     }
@@ -45,7 +49,7 @@ public class ProductPresenter implements ItemPresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                viewManager.show(UIFactory.DetailInfoPresenter(viewManager,item));
             }
         };
     }

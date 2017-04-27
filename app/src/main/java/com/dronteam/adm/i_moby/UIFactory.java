@@ -2,6 +2,10 @@ package com.dronteam.adm.i_moby;
 
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.dronteam.adm.i_moby.model.product.Item;
+import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoFragment;
+import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoPresenter;
+import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoView;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsFragment;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsPresenter;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsView;
@@ -19,6 +23,7 @@ public class UIFactory {
     private static ShowCaseView showCaseView;
     private static GoodsView goodsView;
     private static SearchGoodsView searchGoodsView;
+    private static DetailInfoView detailInfoView;
 
     public static Presenter ShowCase(ViewManager viewManager) {
         if (showCaseView == null) showCaseView = new ShowCaseFragment();
@@ -37,6 +42,11 @@ public class UIFactory {
     public static Presenter SearchGoodsPresenter(ViewManager viewManager) {
         if (searchGoodsView == null) searchGoodsView = new SearchGoodsFragment();
         return  new SearchGoodsPresenter(viewManager, searchGoodsView);
+    }
+
+    public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {
+        if (detailInfoView == null) detailInfoView = new DetailInfoFragment();
+        return  new DetailInfoPresenter(viewManager, product, detailInfoView);
     }
 /*
     public static Presenter DetailInfo(ViewManager viewManager) {
