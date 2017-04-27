@@ -37,9 +37,9 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
         }
     };
 
-    public AlbumPresenter(ViewManager viewManager, Item item, AlbumFragment albumFragment) {
+    public AlbumPresenter(ViewManager viewManager, Item item, AlbumView aLbumView) {
         this.item = item;
-        this.view = albumFragment;
+        this.view = aLbumView;
         this.viewManager = viewManager;
         this.view.setEditListener(this);
         Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
