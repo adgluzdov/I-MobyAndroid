@@ -12,7 +12,8 @@ public interface DetailInfoView extends CommonView {
     public void setTitle(String title);
     public void setDescription(String description);
     public void setPrice(String price);
-    public void setCategory(String category);
+    public void setCategorySection(String categorySection);
+    public void setCategoryName(String categoryName);
     public void setDate(String date);
     public void setBlankImage();
     public void setImage(Bitmap bitmap);

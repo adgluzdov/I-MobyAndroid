@@ -33,10 +33,14 @@ public class DetailInfoFragment extends MainFragment implements DetailInfoView {
     }
 
     @Override
-    public void setCategory(String category) {
-        ((TextView)getView(R.id.text_view_category)).setText(category);
+    public void setCategorySection(String categorySection) {
+        ((TextView)getView(R.id.text_view_category_section)).setText(categorySection);
     }
 
+    @Override
+    public void setCategoryName(String categoryName) {
+        ((TextView)getView(R.id.text_view_category_name)).setText(categoryName);
+    }
     @Override
     public void setDate(String date) {
         ((TextView)getView(R.id.text_view_date)).setText(date);
