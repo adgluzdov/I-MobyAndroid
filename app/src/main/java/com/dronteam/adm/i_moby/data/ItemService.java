@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.data;
 
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
+import com.dronteam.adm.i_moby.data.VK.json_response.messages.send.MessegesSendResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -28,5 +29,11 @@ public interface ItemService {
 
     @GET("market.getAlbums?owner_id=-121677108&v=5.59")
     Observable<GetAlbumsResponse> GetAlbums();
+
+    @GET("messages.send?user_id=-121677108&v=5.59")
+    Observable<MessegesSendResponse> MessegesSend(@Query("message") String message, @Query("attachment") String attachment);
+
+    @GET("messages.send?user_id=-121677108&v=5.59")
+    Observable<MessegesSendResponse> MessegesSend(@Query("message") String message,@Query("attachment") String attachment,@Query("random_id") String random_id);
 
 }

@@ -30,7 +30,7 @@ public class VKAuth implements Authentication {
     public void auth(Activity activity, AuthListener authListener) {
         this.authListener = authListener;
         if (!VKSdk.isLoggedIn()) {
-            VKSdk.login(activity, "market", "offline");
+            VKSdk.login(activity, "market", "offline","messages");
         } else {
             token = VKAccessToken.currentToken();
             authListener.onAuth();

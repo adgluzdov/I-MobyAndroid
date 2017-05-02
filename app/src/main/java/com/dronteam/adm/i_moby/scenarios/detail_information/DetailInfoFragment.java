@@ -1,6 +1,8 @@
 package com.dronteam.adm.i_moby.scenarios.detail_information;
 
 import android.graphics.Bitmap;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,5 +56,10 @@ public class DetailInfoFragment extends MainFragment implements DetailInfoView {
     @Override
     public void setImage(Bitmap bitmap) {
         ((ImageView)getView(R.id.image_view)).setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void setEditListener(View.OnClickListener listener) {
+        getView(R.id.button_send_order_product).setOnClickListener(listener);
     }
 }

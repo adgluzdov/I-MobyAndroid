@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.detail_information;
 
 import android.graphics.Bitmap;
+import android.view.View;
 
 import com.dronteam.adm.i_moby.common.CommonView;
 
@@ -17,4 +18,5 @@ public interface DetailInfoView extends CommonView {
     public void setDate(String date);
     public void setBlankImage();
     public void setImage(Bitmap bitmap);
+    public void setEditListener(View.OnClickListener listener);
 }
