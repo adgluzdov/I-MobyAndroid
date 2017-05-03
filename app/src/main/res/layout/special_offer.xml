@@ -13,20 +13,25 @@
         android:text="bonus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_view_bonus"
-        android:autoText="false" />
-
-    <TextView
-        android:text="description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view_description" />
+        android:id="@+id/text_view_bonus"/>
 
     <TextView
         android:text="addInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_view_additionalInfo" />
+
+    <TextView
+        android:text="title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_title" />
+
+    <TextView
+        android:text="price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_price" />
 
     <ImageView
         android:layout_width="match_parent"

@@ -10,13 +10,13 @@ import com.dronteam.adm.i_moby.common.CommonView;
  */
 
 public interface DetailInfoView extends CommonView {
-    public void setTitle(String title);
-    public void setDescription(String description);
-    public void setPrice(String price);
-    public void setCategorySection(String categorySection);
-    public void setCategoryName(String categoryName);
-    public void setDate(String date);
-    public void setBlankImage();
-    public void setImage(Bitmap bitmap);
-    public void setEditListener(View.OnClickListener listener);
+    void setTitle(String title);
+    void setDescription(String description);
+    void setPrice(String price);
+    void setCategorySection(String categorySection);
+    void setCategoryName(String categoryName);
+    void setDate(String date);
+    void setBlankImage();
+    void setImage(Bitmap bitmap);
+    void setEditListener(View.OnClickListener listener);
 }

@@ -10,10 +10,7 @@ import android.view.View;
 public interface AlbumView {
     void setImage(Bitmap image);
     void setImage(int resId);
-
     void setTitle(String title);
-
     void setCount(String count);
-
     void setEditListener(View.OnClickListener listener);
 }

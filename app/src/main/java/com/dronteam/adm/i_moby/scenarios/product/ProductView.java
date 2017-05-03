@@ -7,8 +7,9 @@ import android.view.View;
  * Created by adm on 14.11.2016.
  */
 public interface ProductView {
-    public void setImage(Bitmap image);
-    public void setImage(int resId);
-    public void setText(String title, String description, String price);
+    void setImage(Bitmap image);
+    void setImage(int resId);
+    void setTitle(String title);
+    void setPrice(String price);
     void setEditListener(View.OnClickListener listener);
 }

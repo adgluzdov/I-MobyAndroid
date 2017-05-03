@@ -14,6 +14,7 @@ public interface SpecialOfferView {
 
     void setImage(Bitmap image);
     void setImage(int resId);
-
+    void setTitle(String title);
+    void setPrice(String price);
     void setEditListener(View.OnClickListener listener);
 }

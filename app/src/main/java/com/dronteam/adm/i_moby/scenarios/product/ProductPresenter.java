@@ -56,7 +56,8 @@ public class ProductPresenter implements ItemPresenter {
 
     @Override
     public void fill(){
-        view.setText(item.getTitle(), item.description, item.price.text);
+        view.setTitle(item.getTitle());
+        view.setPrice(item.getPrice().getText());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else

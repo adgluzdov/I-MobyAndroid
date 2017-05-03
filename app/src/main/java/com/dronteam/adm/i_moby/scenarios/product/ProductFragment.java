@@ -35,8 +35,13 @@ public class ProductFragment extends LinearLayout implements ProductView {
     }
 
     @Override
-    public void setText(String title,String description,String price) {
+    public void setTitle(String title) {
         ((TextView)findViewById(R.id.text_view_title)).setText(title);
+    }
+
+    @Override
+    public void setPrice(String price) {
+        ((TextView)findViewById(R.id.text_view_price)).setText(price);
     }
 
     @Override

@@ -73,6 +73,8 @@ public class SpecialOfferPresenter implements ItemPresenter {
         view.setAdditionalInfo(offer.getAdditionalInfo());
         view.setDiscount(offer.getDiscount());
         view.setBonus(offer.getBonus());
+        view.setTitle(offer.getItem().getTitle());
+        view.setPrice(offer.getItem().getPrice().getText());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
