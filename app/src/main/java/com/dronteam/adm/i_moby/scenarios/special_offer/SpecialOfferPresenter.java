@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
@@ -20,6 +21,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
     SpecialOffer offer;
     SpecialOfferView view;
     private Bitmap loadedImage = null;
+    private ViewManager viewManager;
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -39,7 +41,9 @@ public class SpecialOfferPresenter implements ItemPresenter {
     public SpecialOfferPresenter(ViewManager viewManager, SpecialOffer offer, SpecialOfferView view) {
         this.offer = offer;
         this.view = view;
+        this.viewManager = viewManager;
         Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
+        view.setEditListener(edit());
     }
     @Override
     public SpecialOfferView getView() {
@@ -60,14 +64,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                switch (v.getId())
-                {
-                    case R.id.showcase_content:
-                        viewManager.show(UIFactory.DetailInfo(viewManager));
-                    break;
-                }
-                */
+                viewManager.show(UIFactory.DetailInfoPresenter(viewManager,offer.getItem()));
             }
         };
     }
