@@ -43,7 +43,6 @@ public class SearchGoodsPresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
-        adapter.clear();
         view.setAdapter(adapter);
         view.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override

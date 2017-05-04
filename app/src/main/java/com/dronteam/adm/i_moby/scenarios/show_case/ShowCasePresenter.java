@@ -36,7 +36,9 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     private final ItemService itemService;
     private CommonAdapter adapter;
     private static final int KOLREQUESTS = 2;
-    private int kolResponses;
+    private int kolResponses = 0;
+    private boolean onCreateView = false;
+    private boolean onLoad = false;
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
@@ -44,6 +46,14 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         this.adapter = new CommonAdapter();
         itemService = viewManager.getServiceFactory().getApi(ItemService.class);
         view.setOnCreateViewListener(this);
+        itemService.SearchSpecialOffers()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(onSpecialOffersLoaded(), onError());
+        itemService.GetAlbums()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(onAlbumsLoaded(), onError());
     }
 
     @Override
@@ -59,18 +69,10 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 viewManager.show(UIFactory.SearchGoodsPresenter(viewManager));
             }
         });
-        adapter.clear();
         view.setList(adapter);
-        itemService.SearchSpecialOffers()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(onSpecialOffersLoaded(), onError());
-        itemService.GetAlbums()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(onAlbumsLoaded(), onError());
-        kolResponses = 0;
-        view.startProgressBar();
+        onCreateView = true;
+        if(!onLoad)
+            view.startProgressBar();
     }
 
     private Action1<? super GetAlbumsResponse> onAlbumsLoaded() {
@@ -87,10 +89,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                     }
                 }};
                 adapter.addItemPresenters(itemPresenterList);
-                kolResponses++;
-                if(kolResponses == KOLREQUESTS)
-                    view.stopProgressBar();
-
+                onLoad();
             }
         };
     }
@@ -107,9 +106,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                     }
                 }};
                 adapter.addItemPresenters(0,itemPresenterList);
-                kolResponses++;
-                if(kolResponses == KOLREQUESTS)
-                    view.stopProgressBar();
+                onLoad();
             }
         };
     }
@@ -121,5 +118,13 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 Log.d(TAG, "call: error in ShowCasePresenter");
             }
         };
+    }
+
+    private void onLoad(){
+        kolResponses++;
+        if(onCreateView && kolResponses == KOLREQUESTS) {
+            view.stopProgressBar();
+            onLoad = true;
+        }
     }
 }

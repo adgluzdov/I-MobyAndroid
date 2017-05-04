@@ -34,6 +34,10 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private ServiceFactory serviceFactory;
     private CommonAdapter adapter;
     private String albumId;
+    private static final int KOLREQUESTS = 1;
+    private int kolResponses = 0;
+    private boolean onCreateView = false;
+    private boolean onLoad = false;
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId) {
         this.viewManager = viewManager;
@@ -43,16 +47,18 @@ public class GoodsPresenter implements ViewListener, Presenter {
         itemService = serviceFactory.getApi(ItemService.class);
         view.setOnCreateViewListener(this);
         this.adapter = new CommonAdapter();
-    }
-
-    @Override
-    public void OnCreateView() {
-        adapter.clear();
-        view.setList(adapter);
         itemService.Get(albumId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onItemLoaded(), onError());
+    }
+
+    @Override
+    public void OnCreateView() {
+        onCreateView = true;
+        if(!onLoad)
+            view.startProgressBar();
+        view.setList(adapter);
     }
 
     private Action1<Throwable> onError() {
@@ -76,6 +82,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
                     }
                 }};
                 adapter.addItemPresenters(itemPresenterList);
+                onLoad();
             }
         };
     }
@@ -83,5 +90,13 @@ public class GoodsPresenter implements ViewListener, Presenter {
     @Override
     public CommonView getView() {
         return view;
+    }
+
+    private void onLoad(){
+        kolResponses++;
+        if(onCreateView && kolResponses == KOLREQUESTS) {
+            view.stopProgressBar();
+            onLoad = true;
+        }
     }
 }
