@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.ProgressBar;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
@@ -30,5 +31,15 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public void setList(BaseAdapter adapter)  {
         getListView(R.id.list_view).setAdapter(adapter);
+    }
+
+    @Override
+    public void startProgressBar() {
+        ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.VISIBLE);
+    }
+
+    @Override
+    public void stopProgressBar() {
+        ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
 }

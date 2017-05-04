@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.search_goods;
 
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
@@ -34,5 +35,15 @@ public class SearchGoodsFragment extends MainFragment implements SearchGoodsView
     @Override
     protected int getLayout() {
         return R.layout.search_goods;
+    }
+
+    @Override
+    public void startProgressBar() {
+        ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.VISIBLE);
+    }
+
+    @Override
+    public void stopProgressBar() {
+        ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
 }

@@ -28,14 +28,15 @@ import rx.schedulers.Schedulers;
 /**
  * Created by smb on 13/12/2016.
  */
-
+//Todo: Сделать, чтобы прогрессбар работал дотех пор, пока всё не загрузится.
 public class ShowCasePresenter implements Presenter, ViewListener {
     private static final String TAG = "My";
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
     private CommonAdapter adapter;
-    //private ServiceFactory serviceFactory;
+    private static final int KOLREQUESTS = 2;
+    private int kolResponses;
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
@@ -68,6 +69,8 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onAlbumsLoaded(), onError());
+        kolResponses = 0;
+        view.startProgressBar();
     }
 
     private Action1<? super GetAlbumsResponse> onAlbumsLoaded() {
@@ -84,6 +87,10 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                     }
                 }};
                 adapter.addItemPresenters(itemPresenterList);
+                kolResponses++;
+                if(kolResponses == KOLREQUESTS)
+                    view.stopProgressBar();
+
             }
         };
     }
@@ -100,6 +107,9 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                     }
                 }};
                 adapter.addItemPresenters(0,itemPresenterList);
+                kolResponses++;
+                if(kolResponses == KOLREQUESTS)
+                    view.stopProgressBar();
             }
         };
     }
