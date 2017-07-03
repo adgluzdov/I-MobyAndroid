@@ -30,6 +30,7 @@ import rx.schedulers.Schedulers;
 public class GoodsPresenter implements ViewListener, Presenter {
 
     private static final int COUNT_ITEM_LOAD = 10;
+    private static final String QUERY_ALL = null;
     private static final String TAG = "My";
     private final GoodsView view;
     private final ItemService itemService;
@@ -38,7 +39,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private CommonAdapter adapter = null;
     private String albumId;
     private boolean goodsIsFull = false;
-    private String searchQuery= null;
+    private String searchQuery = QUERY_ALL;
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId) {
         this.viewManager = viewManager;
@@ -84,6 +85,14 @@ public class GoodsPresenter implements ViewListener, Presenter {
                 return false;
             }
 
+        });
+        view.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchQuery = QUERY_ALL;
+                refresh(QUERY_ALL);
+                return false;
+            }
         });
     }
 

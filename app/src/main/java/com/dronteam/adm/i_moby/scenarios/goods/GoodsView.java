@@ -18,6 +18,7 @@ public interface GoodsView extends CommonView,CommonProgressBar {
     int listViewGetHeaderViewsCount();
     int listViewGetFooterViewsCount();
 
+    void setOnCloseListener(SearchView.OnCloseListener listener);
     void setQueryHint(String queryHint);
     void setOnQueryTextListener(SearchView.OnQueryTextListener listener);
 }

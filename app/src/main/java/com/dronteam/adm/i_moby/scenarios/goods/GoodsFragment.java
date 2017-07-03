@@ -1,6 +1,8 @@
 package com.dronteam.adm.i_moby.scenarios.goods;
 
 
+import android.util.Log;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -9,6 +11,8 @@ import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
+
+import static android.content.ContentValues.TAG;
 
 public class GoodsFragment extends MainFragment implements GoodsView {
 
@@ -38,6 +42,11 @@ public class GoodsFragment extends MainFragment implements GoodsView {
     @Override
     public int listViewGetFooterViewsCount() {
         return getList().getFooterViewsCount();
+    }
+
+    @Override
+    public void setOnCloseListener(SearchView.OnCloseListener listener) {
+        ((SearchView)getView(R.id.search_view)).setOnCloseListener(listener);
     }
 
     @Override
