@@ -26,6 +26,10 @@ public class CommonAdapter extends BaseAdapter{
 
     }
 
+    public boolean isEmpty(){
+        return itemPresenterList.isEmpty();
+    }
+
     public void clear(){
         itemPresenterList.clear();
         this.notifyDataSetChanged();

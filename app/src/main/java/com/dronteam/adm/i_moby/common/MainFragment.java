@@ -20,6 +20,11 @@ public abstract class MainFragment extends Fragment implements CommonView{
     private ViewListener onCreateViewListener;
 
     @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(getLayout(), container, false);
         if (onCreateViewListener != null) {
