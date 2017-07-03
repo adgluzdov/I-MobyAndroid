@@ -42,4 +42,14 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     public void stopProgressBar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
+
+    @Override
+    public void startUnderProgressBar() {
+
+    }
+
+    @Override
+    public void stopUnderProgressBar() {
+
+    }
 }

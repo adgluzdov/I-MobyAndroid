@@ -26,10 +26,6 @@ public class CommonAdapter extends BaseAdapter{
 
     }
 
-    public boolean isEmpty(){
-        return itemPresenterList.isEmpty();
-    }
-
     public void clear(){
         itemPresenterList.clear();
         this.notifyDataSetChanged();
@@ -41,9 +37,9 @@ public class CommonAdapter extends BaseAdapter{
     }
 
     public void addItemPresenters(int position, final List<ItemPresenter> itemPresenters){
-        for (ItemPresenter obj :
-                itemPresenters) {
+        for (ItemPresenter obj :itemPresenters) {
             this.itemPresenterList.add(position,obj);
+            position++;
         }
         this.notifyDataSetChanged();
     }

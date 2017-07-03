@@ -28,8 +28,6 @@ public class SearchGoodsPresenter implements Presenter, ViewListener {
     ViewManager viewManager;
     ItemService itemService;
     CommonAdapter adapter;
-    private static final int KOLREQUESTS = 1;
-    private int kolResponses;
 
     public SearchGoodsPresenter(final ViewManager viewManager, SearchGoodsView view) {
         this.view = view;
@@ -56,7 +54,6 @@ public class SearchGoodsPresenter implements Presenter, ViewListener {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
                         .subscribe(onProductLoaded(), onError());
-                kolResponses = 0;
                 view.startProgressBar();
                 return false;
             }

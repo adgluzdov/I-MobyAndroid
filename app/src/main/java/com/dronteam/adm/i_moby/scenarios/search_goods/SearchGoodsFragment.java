@@ -46,4 +46,14 @@ public class SearchGoodsFragment extends MainFragment implements SearchGoodsView
     public void stopProgressBar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
+
+    @Override
+    public void startUnderProgressBar() {
+
+    }
+
+    @Override
+    public void stopUnderProgressBar() {
+
+    }
 }

@@ -16,7 +16,7 @@ import rx.Observable;
 public interface ItemService {
 
     @GET("market.get?owner_id=-42386366&v=5.59")
-    Observable<GetResponse> Get();
+    Observable<GetResponse> Get(@Query("album_id") String albumId,@Query("offset") int offset,@Query("count") int count);
 
     @GET("market.get?owner_id=-42386366&v=5.59")
     Observable<GetResponse> Get(@Query("album_id") String album_id);

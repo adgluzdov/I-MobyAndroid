@@ -7,4 +7,6 @@ package com.dronteam.adm.i_moby.common;
 public interface CommonProgressBar {
     void startProgressBar();
     void stopProgressBar();
+    void startUnderProgressBar();
+    void stopUnderProgressBar();
 }
