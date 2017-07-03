@@ -5,6 +5,7 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
@@ -37,6 +38,16 @@ public class GoodsFragment extends MainFragment implements GoodsView {
     @Override
     public int listViewGetFooterViewsCount() {
         return getList().getFooterViewsCount();
+    }
+
+    @Override
+    public void setQueryHint(String queryHint) {
+        ((SearchView)getView(R.id.search_view)).setQueryHint(queryHint);
+    }
+
+    @Override
+    public void setOnQueryTextListener(SearchView.OnQueryTextListener listener) {
+        ((SearchView)getView(R.id.search_view)).setOnQueryTextListener(listener);
     }
 
     @Override

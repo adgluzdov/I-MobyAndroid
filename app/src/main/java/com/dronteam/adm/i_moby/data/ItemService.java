@@ -22,7 +22,7 @@ public interface ItemService {
     Observable<GetResponse> Get(@Query("album_id") String album_id);
 
     @GET("market.search?owner_id=-42386366&v=5.59")
-    Observable<GetResponse> Search(@Query("q") String q);
+    Observable<GetResponse> Search(@Query("q") String q,@Query("album_id") String album_id,@Query("offset") int offset,@Query("count") int count);
 
     @GET("market.search?owner_id=-42386366&q=%23IMoby&v=5.59")
     Observable<GetResponse> SearchSpecialOffers();

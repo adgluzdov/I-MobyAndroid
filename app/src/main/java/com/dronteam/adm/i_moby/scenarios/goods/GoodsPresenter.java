@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.goods;
 
 import android.util.Log;
 import android.widget.AbsListView;
+import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -37,6 +38,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private CommonAdapter adapter = null;
     private String albumId;
     private boolean goodsIsFull = false;
+    private String searchQuery= null;
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId) {
         this.viewManager = viewManager;
@@ -69,23 +71,51 @@ public class GoodsPresenter implements ViewListener, Presenter {
 
             }
         });
+        view.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchQuery = query;
+                refresh(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                return false;
+            }
+
+        });
+    }
+
+    private void refresh(String query){
+        goodsIsFull = false;
+        adapter.clear();
+        startLoadGoods(query);
+    }
+
+    private void startLoadGoods(String query) {
+        view.startProgressBar();
+        loadGoods(query);
     }
 
     private void startLoadGoods() {
-        view.startProgressBar();
-        loadGoods();
+        startLoadGoods(null);
+    }
+
+    private void loadGoods() {
+        loadGoods(null);
+    }
+
+    private void loadGoods(String query) {
+        itemService.Search(query,albumId,adapter.getCount(),COUNT_ITEM_LOAD)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(onItemLoaded(), onError());
     }
 
     private void moreLoadGoods() {
         view.startUnderProgressBar();
-        loadGoods();
-    }
-
-    private void loadGoods(){
-        itemService.Get(albumId,adapter.getCount(),COUNT_ITEM_LOAD)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(onItemLoaded(), onError());
+        loadGoods(searchQuery);
     }
 
     private void onScrollDown(){

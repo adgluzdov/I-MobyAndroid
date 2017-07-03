@@ -9,9 +9,6 @@ import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoView;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsFragment;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsPresenter;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsView;
-import com.dronteam.adm.i_moby.scenarios.search_goods.SearchGoodsFragment;
-import com.dronteam.adm.i_moby.scenarios.search_goods.SearchGoodsPresenter;
-import com.dronteam.adm.i_moby.scenarios.search_goods.SearchGoodsView;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
@@ -20,9 +17,11 @@ import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
  * Created by smb on 13/12/2016.
  */
 public class UIFactory {
+
+    private static final String ALL_GOODS = "0";
     private static ShowCaseView showCaseView;
     private static GoodsView goodsView;
-    private static SearchGoodsView searchGoodsView;
+    private static GoodsView searchGoodsView;
     private static DetailInfoView detailInfoView;
 
     public static Presenter ShowCase(ViewManager viewManager) {
@@ -36,12 +35,12 @@ public class UIFactory {
     }
     public static Presenter GoodsPresenter(ViewManager viewManager) {
         if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView, "0");
+        return  new GoodsPresenter(viewManager, goodsView, ALL_GOODS);
     }
 
     public static Presenter SearchGoodsPresenter(ViewManager viewManager) {
-        if (searchGoodsView == null) searchGoodsView = new SearchGoodsFragment();
-        return  new SearchGoodsPresenter(viewManager, searchGoodsView);
+        if (searchGoodsView == null) searchGoodsView = new GoodsFragment();
+        return  new GoodsPresenter(viewManager, searchGoodsView, null);
     }
 
     public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {

@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.goods;
 
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.common.CommonProgressBar;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -13,10 +14,10 @@ import com.dronteam.adm.i_moby.common.CommonView;
 public interface GoodsView extends CommonView,CommonProgressBar {
     void setList(BaseAdapter adapter);
     void setOnScrollListener(AbsListView.OnScrollListener listener);
-
     int listViewGetLastVisiblePosition();
-
     int listViewGetHeaderViewsCount();
-
     int listViewGetFooterViewsCount();
+
+    void setQueryHint(String queryHint);
+    void setOnQueryTextListener(SearchView.OnQueryTextListener listener);
 }
