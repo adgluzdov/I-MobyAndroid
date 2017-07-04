@@ -1,11 +1,16 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,14 +18,20 @@ import android.widget.ProgressBar;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
+import com.dronteam.adm.i_moby.common.CommonToolbar;
 import com.dronteam.adm.i_moby.common.MainFragment;
+import com.dronteam.adm.i_moby.common.OptionsMenuListener;
 
 /**
  * Created by smb on 13/12/2016.
  */
 public class ShowCaseFragment extends MainFragment implements ShowCaseView {
 
+    private static final String TAG = "My";
     Toolbar toolbar = null;
+    SearchView searchView = null;
+    OptionsMenuListener optionsMenuListener = null;
+    Menu menu = null;
 
     @Override
     protected int getLayout() {
@@ -28,28 +39,49 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        setHasOptionsMenu(true);
+        this.setToolbar(view);
         return view;
     }
 
+    private void setToolbar(View view){
+        ((AppCompatActivity)getActivity()).setSupportActionBar(((Toolbar) view.findViewById(R.id.toolbar)));
+        setHasOptionsMenu(true);
+    }
+
     @Override
-    public void setOnButtonClick(final CallBack callBack) {
-        getButton(R.id.button_open_search_goods).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callBack.call();
-            }
-        });
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+        this.menu = menu;
+        this.setSearchMenuItem(this.getSearchView());
+        if(optionsMenuListener !=  null)
+            optionsMenuListener.onCreateOptionsMenu();
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    public void setSearchMenuItem(SearchView searchView) {
+        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
+    }
+
+
+
+
+    @Override
+    public void setOnQueryTextListener(SearchView.OnQueryTextListener listener) {
+        getSearchView().setOnQueryTextListener(listener);
+    }
+
+    @Override
+    public void setText(String text) {
+
+    }
+
+    @Override
+    public void setOnClose(SearchView.OnCloseListener listener) {
+
     }
 
     @Override
@@ -85,5 +117,20 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public void stopUnderProgressBar() {
 
+    }
+
+    @Override
+    public SearchView getSearchView() {
+        return (SearchView) menu.findItem(R.id.action_search).getActionView();
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return (Toolbar) getView(R.id.toolbar);
+    }
+
+    @Override
+    public void setOnCreateOptionsMenu(OptionsMenuListener listener) {
+        optionsMenuListener = listener;
     }
 }

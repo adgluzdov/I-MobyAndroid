@@ -25,6 +25,7 @@ public class UIFactory {
     private static GoodsView searchGoodsView;
     private static DetailInfoView detailInfoView;
     private static CatalogFragment catalogView;
+    private static final String QUERY_ALL = "";
 
     public static Presenter ShowCase(ViewManager viewManager) {
         if (showCaseView == null) showCaseView = new ShowCaseFragment();
@@ -33,12 +34,12 @@ public class UIFactory {
 
     public static Presenter GoodsPresenter(ViewManager viewManager,String albumId) {
         if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView, albumId);
+        return  new GoodsPresenter(viewManager, goodsView, albumId,QUERY_ALL);
     }
 
-    public static Presenter SearchGoodsPresenter(ViewManager viewManager,String albumId) {
+    public static Presenter SearchGoodsPresenter(ViewManager viewManager,String albumId,String query) {
         if (searchGoodsView == null) searchGoodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, searchGoodsView, albumId);
+        return  new GoodsPresenter(viewManager, searchGoodsView, albumId,query);
     }
 
     public static Presenter CatalogPresenter(ViewManager viewManager) {

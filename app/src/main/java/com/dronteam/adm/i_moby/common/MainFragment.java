@@ -39,6 +39,8 @@ public abstract class MainFragment extends Fragment implements CommonView{
         return view;
     }
 
+
+
     protected abstract int getLayout();
 
     @Override
