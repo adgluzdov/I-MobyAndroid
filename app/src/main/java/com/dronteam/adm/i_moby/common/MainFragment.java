@@ -2,7 +2,13 @@ package com.dronteam.adm.i_moby.common;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -56,6 +62,7 @@ public abstract class MainFragment extends Fragment implements CommonView{
     protected SearchView getSearchView(int id) {
         return (SearchView) view.findViewById(id);
     }
+
     protected View getView(int id) {
         return view.findViewById(id);
     }

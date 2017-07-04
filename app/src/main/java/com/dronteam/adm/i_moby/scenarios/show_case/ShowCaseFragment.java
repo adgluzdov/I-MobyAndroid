@@ -1,6 +1,13 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 
@@ -13,9 +20,26 @@ import com.dronteam.adm.i_moby.common.MainFragment;
  */
 public class ShowCaseFragment extends MainFragment implements ShowCaseView {
 
+    Toolbar toolbar = null;
+
     @Override
     protected int getLayout() {
         return R.layout.show_case;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater,container,savedInstanceState);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+        return view;
     }
 
     @Override

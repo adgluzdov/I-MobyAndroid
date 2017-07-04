@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.AuthListener;
@@ -19,7 +21,7 @@ import com.dronteam.adm.i_moby.data.VK.VKAuth;
  * Created by smb on 13/12/2016.
  */
 
-public class MainActivity extends Activity implements ViewManager, AuthListener {
+public class MainActivity extends AppCompatActivity implements ViewManager, AuthListener {
 
     private VKAuth auth = new VKAuth();
     private ServiceFactory serviceFacory;
