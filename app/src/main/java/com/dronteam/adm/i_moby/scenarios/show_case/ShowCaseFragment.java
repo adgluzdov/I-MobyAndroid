@@ -29,6 +29,16 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
+    public void setOnButtonCatalogClick(final CallBack callBack) {
+        getButton(R.id.button_open_catalog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBack.call();
+            }
+        });
+    }
+
+    @Override
     public void setList(BaseAdapter adapter)  {
         getListView(R.id.list_view).setAdapter(adapter);
     }

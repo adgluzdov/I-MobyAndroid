@@ -11,7 +11,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Поиск"
         android:id="@+id/button_open_search_goods"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Каталог товаров"
+        android:id="@+id/button_open_catalog"/>
+
 
     <ListView
         android:layout_width="match_parent"

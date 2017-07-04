@@ -3,6 +3,8 @@ package com.dronteam.adm.i_moby;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.product.Item;
+import com.dronteam.adm.i_moby.scenarios.catalog.CatalogFragment;
+import com.dronteam.adm.i_moby.scenarios.catalog.CatalogPresenter;
 import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoFragment;
 import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoPresenter;
 import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoView;
@@ -18,11 +20,11 @@ import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
  */
 public class UIFactory {
 
-    private static final String ALL_GOODS = "0";
     private static ShowCaseView showCaseView;
     private static GoodsView goodsView;
     private static GoodsView searchGoodsView;
     private static DetailInfoView detailInfoView;
+    private static CatalogFragment catalogView;
 
     public static Presenter ShowCase(ViewManager viewManager) {
         if (showCaseView == null) showCaseView = new ShowCaseFragment();
@@ -33,14 +35,15 @@ public class UIFactory {
         if (goodsView == null) goodsView = new GoodsFragment();
         return  new GoodsPresenter(viewManager, goodsView, albumId);
     }
-    public static Presenter GoodsPresenter(ViewManager viewManager) {
-        if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView, ALL_GOODS);
+
+    public static Presenter SearchGoodsPresenter(ViewManager viewManager,String albumId) {
+        if (searchGoodsView == null) searchGoodsView = new GoodsFragment();
+        return  new GoodsPresenter(viewManager, searchGoodsView, albumId);
     }
 
-    public static Presenter SearchGoodsPresenter(ViewManager viewManager) {
-        if (searchGoodsView == null) searchGoodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, searchGoodsView, null);
+    public static Presenter CatalogPresenter(ViewManager viewManager) {
+        if (goodsView == null) catalogView = new CatalogFragment();
+        return  new CatalogPresenter(viewManager, catalogView);
     }
 
     public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {

@@ -25,8 +25,11 @@ import java.util.List;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.functions.Func2;
 import rx.schedulers.Schedulers;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by smb on 13/12/2016.
@@ -36,7 +39,9 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private CommonAdapter adapter = new CommonAdapter();
+    private CommonAdapter adapter = null;
+
+    private static final String ALL_GOODS = "0";
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
@@ -52,44 +57,47 @@ public class ShowCasePresenter implements Presenter, ViewListener {
 
     @Override
     public void OnCreateView() {
-        if(adapter.isEmpty())
-            getList();
+        if(adapter == null){
+            adapter = new CommonAdapter();
+            startLoad();
+        }
         view.setList(adapter);
         view.setOnButtonClick(new CallBack() {
             @Override
             public void call() {
-                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager));
+                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager,ALL_GOODS));
             }
         });
+        view.setOnButtonCatalogClick(new CallBack() {
+            @Override
+            public void call() {
+                viewManager.show(UIFactory.CatalogPresenter(viewManager));
+            }
+        });
+
     }
 
-    private void getList(){
+    private void startLoad(){
         view.startProgressBar();
-        Observable<GetResponse> getResponseObservable = itemService.SearchSpecialOffers()
+        load();
+    }
+
+    private void load(){
+        itemService.SearchSpecialOffers()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread());
-        Observable<GetAlbumsResponse> getAlbumsResponseObservable = itemService.GetAlbums()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread());
-        Observable.combineLatest(
-                getResponseObservable,
-                getAlbumsResponseObservable,
-                combinerGetGetAlbums())
+                .subscribeOn(Schedulers.newThread())
+                .map(responseToListItemPresenter())
                 .subscribe(OnLoad(),onError());
     }
 
-    private Func2<? super GetResponse, ? super GetAlbumsResponse, List<ItemPresenter>> combinerGetGetAlbums() {
-        return new Func2<GetResponse, GetAlbumsResponse, List<ItemPresenter>>() {
+    private Func1<? super GetResponse, List<ItemPresenter>> responseToListItemPresenter() {
+        return new Func1<GetResponse, List<ItemPresenter>>() {
             @Override
-            public List<ItemPresenter> call(final GetResponse getResponse, final GetAlbumsResponse getAlbumsResponse) {
+            public List<ItemPresenter> call(final GetResponse getResponse) {
                 return new ArrayList<ItemPresenter>() {{
                     for (final com.dronteam.adm.i_moby.model.product.Item item :
                             getResponse.getResponse().getItems()) {
                         add(new SpecialOfferPresenter(viewManager, new SpecialOffer(item), new SpecialOfferFragment(viewManager.getContext())));
-                    }
-                    for (final com.dronteam.adm.i_moby.model.album.Item item :
-                            getAlbumsResponse.getResponse().getItems()) {
-                        add(new AlbumPresenter(viewManager, item, new AlbumFragment(viewManager.getContext())));
                     }
                 }};
             }
@@ -110,7 +118,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-
+                Log.d(TAG, "call: ");
             }
         };
     }
