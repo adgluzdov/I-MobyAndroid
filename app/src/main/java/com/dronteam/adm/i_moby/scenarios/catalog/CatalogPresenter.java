@@ -1,9 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
-import android.util.Log;
-import android.widget.AbsListView;
-import android.widget.SearchView;
-
+import com.dronteam.adm.i_moby.UIFactory;
+import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
@@ -12,7 +10,6 @@ import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
-import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.model.album.Item;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
@@ -37,6 +34,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
     private CommonAdapter adapter = null;
+    private static final String ID_MAIN_ALBUM = "0";
 
     public CatalogPresenter(ViewManager viewManager, CatalogView view) {
         this.viewManager = viewManager;
@@ -54,6 +52,12 @@ public class CatalogPresenter implements ViewListener, Presenter {
             startLoadCatalog();
         }
         view.setList(adapter);
+        view.setOnButtonMainAlbumClick(new CallBack() {
+            @Override
+            public void call() {
+                viewManager.show(UIFactory.GoodsPresenter(viewManager, ID_MAIN_ALBUM));
+            }
+        });
     }
 
     private void startLoadCatalog() {

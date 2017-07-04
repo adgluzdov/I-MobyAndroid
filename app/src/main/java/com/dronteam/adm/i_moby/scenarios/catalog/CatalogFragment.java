@@ -1,13 +1,16 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
 import android.app.Fragment;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.MainFragment;
 import com.dronteam.adm.i_moby.common.ViewListener;
 
@@ -22,6 +25,16 @@ public class CatalogFragment extends MainFragment implements CatalogView {
     @Override
     public void setList(BaseAdapter adapter) {
         getList().setAdapter(adapter);
+    }
+
+    @Override
+    public void setOnButtonMainAlbumClick(final CallBack callBack) {
+        ((Button)getView(R.id.button_open_main_album)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBack.call();
+            }
+        });
     }
 
     @Override

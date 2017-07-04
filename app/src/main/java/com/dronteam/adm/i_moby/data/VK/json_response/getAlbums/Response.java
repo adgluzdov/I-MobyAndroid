@@ -1,6 +1,8 @@
 package com.dronteam.adm.i_moby.data.VK.json_response.getAlbums;
 
+import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.model.album.Item;
+import com.dronteam.adm.i_moby.model.album.Photo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,5 @@ public class Response {
         this.count = count;
         this.items = items;
     }
-
-
-
+    
 }
