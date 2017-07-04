@@ -1,20 +1,29 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumPresenter;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
@@ -22,11 +31,9 @@ import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
-import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 import static android.content.ContentValues.TAG;
@@ -35,19 +42,20 @@ import static android.content.ContentValues.TAG;
  * Created by smb on 13/12/2016.
  */
 
-public class ShowCasePresenter implements Presenter, ViewListener {
+public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
     private CommonAdapter adapter = null;
-
     private static final String ALL_GOODS = "0";
+    private static final String QUERY_ALL = "";
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
         this.view = view;
         itemService = viewManager.getServiceFactory().getApi(ItemService.class);
         view.setOnCreateViewListener(this);
+        view.setOnCreateOptionsMenu(this);
     }
 
     @Override
@@ -62,19 +70,12 @@ public class ShowCasePresenter implements Presenter, ViewListener {
             startLoad();
         }
         view.setList(adapter);
-        view.setOnButtonClick(new CallBack() {
-            @Override
-            public void call() {
-                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager,ALL_GOODS));
-            }
-        });
         view.setOnButtonCatalogClick(new CallBack() {
             @Override
             public void call() {
                 viewManager.show(UIFactory.CatalogPresenter(viewManager));
             }
         });
-
     }
 
     private void startLoad(){
@@ -121,5 +122,21 @@ public class ShowCasePresenter implements Presenter, ViewListener {
                 Log.d(TAG, "call: ");
             }
         };
+    }
+
+    @Override
+    public void onCreateOptionsMenu() {
+        view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager,ALL_GOODS,query));
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 }

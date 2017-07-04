@@ -3,24 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/toolbar"/>
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Поиск"
-        android:id="@+id/button_open_search_goods"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Каталог товаров"
-        android:id="@+id/button_open_catalog"/>
-
-
+    <include layout="@layout/show_case_head"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

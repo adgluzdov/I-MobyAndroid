@@ -1,9 +1,9 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import android.widget.BaseAdapter;
-import android.widget.Button;
 
 import com.dronteam.adm.i_moby.common.CallBack;
+import com.dronteam.adm.i_moby.common.CommonToolBar;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.CommonProgressBar;
 
@@ -11,8 +11,7 @@ import com.dronteam.adm.i_moby.common.CommonProgressBar;
  * Created by smb on 13/12/2016.
  */
 
-public interface ShowCaseView extends CommonView,CommonProgressBar {
-    void setOnButtonClick(CallBack callBack);
+public interface ShowCaseView extends CommonView,CommonProgressBar,CommonToolBar {
     void setOnButtonCatalogClick(CallBack callBack);
     void setList(BaseAdapter adapter);
 }

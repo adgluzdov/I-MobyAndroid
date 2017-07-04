@@ -7,6 +7,7 @@ import android.widget.SearchView;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
@@ -27,7 +28,7 @@ import rx.schedulers.Schedulers;
  * Created by smb on 18/10/2016.
  */
 
-public class GoodsPresenter implements ViewListener, Presenter {
+public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListener {
 
     private static final int COUNT_ITEM_LOAD = 10;
     private static final String QUERY_ALL = null;
@@ -41,14 +42,16 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
 
-    public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId) {
+    public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String query) {
         this.viewManager = viewManager;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         this.view = view;
         this.albumId = albumId;
+        this.searchQuery = query;
 
         view.setOnCreateViewListener(this);
+        view.setOnCreateOptionsMenu(this);
     }
 
     @Override
@@ -72,51 +75,21 @@ public class GoodsPresenter implements ViewListener, Presenter {
 
             }
         });
-        view.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchQuery = query;
-                refresh(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                return false;
-            }
-
-        });
-        view.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                searchQuery = QUERY_ALL;
-                refresh(QUERY_ALL);
-                return false;
-            }
-        });
     }
 
-    private void refresh(String query){
+    private void refresh(){
         goodsIsFull = false;
         adapter.clear();
-        startLoadGoods(query);
-    }
-
-    private void startLoadGoods(String query) {
-        view.startProgressBar();
-        loadGoods(query);
+        startLoadGoods();
     }
 
     private void startLoadGoods() {
-        startLoadGoods(null);
+        view.startProgressBar();
+        loadGoods();
     }
 
     private void loadGoods() {
-        loadGoods(null);
-    }
-
-    private void loadGoods(String query) {
-        itemService.Search(query,albumId,adapter.getCount(),COUNT_ITEM_LOAD)
+        itemService.Search(searchQuery,albumId,adapter.getCount(),COUNT_ITEM_LOAD)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onItemLoaded(), onError());
@@ -124,7 +97,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
 
     private void moreLoadGoods() {
         view.startUnderProgressBar();
-        loadGoods(searchQuery);
+        loadGoods();
     }
 
     private void onScrollDown(){
@@ -132,7 +105,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
             moreLoadGoods();
     }
 
-    private Action1<Throwable> onError() {
+        private Action1<Throwable> onError() {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
@@ -166,4 +139,29 @@ public class GoodsPresenter implements ViewListener, Presenter {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu() {
+        view.setOnClose(new android.support.v7.widget.SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchQuery = QUERY_ALL;
+                refresh();
+                return false;
+            }
+        });
+        view.setText(searchQuery);
+        view.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchQuery = query;
+                refresh();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
 }
