@@ -24,6 +24,7 @@ import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
+import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
@@ -88,7 +89,21 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .map(responseToListItemPresenter())
+                .map(deleteUnnecessaryItem())
                 .subscribe(OnLoad(),onError());
+    }
+
+    private Func1<? super List<ItemPresenter>, List<ItemPresenter>> deleteUnnecessaryItem() {
+        return new Func1<List<ItemPresenter>, List<ItemPresenter>>() {
+            @Override
+            public List<ItemPresenter> call(List<ItemPresenter> itemPresenters) {
+                for (int j = itemPresenters.size()-1; j >= 0; j--) {
+                    if(((SpecialOffer) itemPresenters.get(j).getItem()).getItem().getDescription().indexOf("#IMoby") == -1)
+                        itemPresenters.remove(itemPresenters.get(j));
+                }
+                return itemPresenters;
+            }
+        };
     }
 
     private Func1<? super GetResponse, List<ItemPresenter>> responseToListItemPresenter() {
