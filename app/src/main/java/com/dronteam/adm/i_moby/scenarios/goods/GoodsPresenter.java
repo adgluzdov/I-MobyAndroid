@@ -37,10 +37,11 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private CommonAdapter adapter = null;
+    private CommonAdapter adapter = new CommonAdapter();
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
+    private boolean onLoad = false;
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String query) {
         this.viewManager = viewManager;
@@ -56,8 +57,7 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
 
     @Override
     public void OnCreateView() {
-        if(adapter == null){
-            adapter = new CommonAdapter();
+        if(!onLoad){
             startLoadGoods();
         }
         view.setList(adapter);
@@ -79,6 +79,7 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
 
     private void refresh(){
         goodsIsFull = false;
+        onLoad = false;
         adapter.clear();
         startLoadGoods();
     }
@@ -130,6 +131,7 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
                 adapter.addItemPresenters(itemPresenterList);
                 view.stopProgressBar();
                 view.stopUnderProgressBar();
+                onLoad = true;
             }
         };
     }

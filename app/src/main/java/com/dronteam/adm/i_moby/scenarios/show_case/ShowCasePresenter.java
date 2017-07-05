@@ -46,9 +46,10 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private CommonAdapter adapter = null;
+    private CommonAdapter adapter = new CommonAdapter();
     private static final String ALL_GOODS = "0";
     private static final String QUERY_ALL = "";
+    private boolean onLoad = false;
 
     public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
@@ -65,8 +66,7 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
 
     @Override
     public void OnCreateView() {
-        if(adapter == null){
-            adapter = new CommonAdapter();
+        if(!onLoad){
             startLoad();
         }
         view.setList(adapter);
@@ -110,6 +110,7 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
             @Override
             public void call(List<ItemPresenter> itemPresenterList) {
                 adapter.addItemPresenters(0, itemPresenterList);
+                onLoad = true;
                 view.stopProgressBar();
             }
         };

@@ -33,24 +33,23 @@ public class CatalogPresenter implements ViewListener, Presenter {
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private CommonAdapter adapter = null;
+    private CommonAdapter adapter = new CommonAdapter();
     private static final String ID_MAIN_ALBUM = "0";
+    private boolean onLoad = false;
 
     public CatalogPresenter(ViewManager viewManager, CatalogView view) {
         this.viewManager = viewManager;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         this.view = view;
-
+        adapter = new CommonAdapter();
         view.setOnCreateViewListener(this);
     }
 
     @Override
     public void OnCreateView() {
-        if(adapter == null){
-            adapter = new CommonAdapter();
+        if(!onLoad)
             startLoadCatalog();
-        }
         view.setList(adapter);
         view.setOnButtonMainAlbumClick(new CallBack() {
             @Override
@@ -77,6 +76,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
         return new Action1<List<ItemPresenter>>() {
             @Override
             public void call(List<ItemPresenter> itemPresenters) {
+                onLoad = true;
                 adapter.addItemPresenters(itemPresenters);
                 view.stopProgressBar();
             }
