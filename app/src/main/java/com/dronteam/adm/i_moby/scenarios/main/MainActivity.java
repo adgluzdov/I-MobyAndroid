@@ -1,6 +1,8 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +33,14 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         auth.auth(this,this);
+    }
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 1) {
+            this.finish();
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override
