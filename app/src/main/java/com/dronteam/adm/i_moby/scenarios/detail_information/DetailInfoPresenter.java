@@ -2,7 +2,6 @@ package com.dronteam.adm.i_moby.scenarios.detail_information;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -11,7 +10,6 @@ import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
-import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.data.VK.json_response.messages.send.MessegesSendResponse;
 import com.dronteam.adm.i_moby.model.product.Item;
 import com.squareup.picasso.Picasso;
@@ -35,6 +33,8 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     Item product;
     Bitmap loadedImage;
     int random_id;
+    private boolean isSend = false;
+
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -71,11 +71,14 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     private View.OnClickListener edit(){
         return new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                itemService.MessegesSend("Хочу эту штуку.", "market"+product.getOwner_id()+"_"+product.getId(),String.valueOf(random_id))
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.newThread())
-                        .subscribe(onMessegesSend(), onError());;
+            public void onClick(View v) {
+                if(!isSend)
+                    itemService.MessegesSend("Хочу эту штуку.", "market"+product.getOwner_id()+"_"+product.getId(),String.valueOf(random_id))
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.newThread())
+                            .subscribe(onMessegesSend(), onError());
+                else
+                    view.informingMessageAlreadySent(viewManager.getContext());
             }
         };
     }
@@ -84,6 +87,7 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
+                view.informingMessageIsNotSent(viewManager.getContext());
                 random_id = new Random().nextInt(10000);
             }
         };
@@ -93,7 +97,8 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
         return new Action1<MessegesSendResponse>() {
             @Override
             public void call(MessegesSendResponse messegesSendResponse) {
-
+                isSend = true;
+                view.informingMessageIsSent(viewManager.getContext());
             }
         };
     }

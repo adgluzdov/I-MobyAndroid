@@ -12,6 +12,7 @@ import com.dronteam.adm.i_moby.common.CommonProgressBar;
  */
 
 public interface ShowCaseView extends CommonView,CommonProgressBar,CommonToolBar {
-    void setOnButtonCatalogClick(CallBack callBack);
     void setList(BaseAdapter adapter);
+
+    void setOnButtonCatalogClick(CallBack callBack);
 }

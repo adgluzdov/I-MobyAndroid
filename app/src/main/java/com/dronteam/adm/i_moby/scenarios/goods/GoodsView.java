@@ -13,6 +13,7 @@ import com.dronteam.adm.i_moby.common.CommonView;
 
 public interface GoodsView extends CommonView,CommonProgressBar,CommonToolBar {
     void setList(BaseAdapter adapter);
+
     void setOnScrollListener(AbsListView.OnScrollListener listener);
     int listViewGetLastVisiblePosition();
     int listViewGetHeaderViewsCount();

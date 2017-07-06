@@ -1,10 +1,12 @@
 package com.dronteam.adm.i_moby.scenarios.detail_information;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
@@ -14,6 +16,8 @@ import com.dronteam.adm.i_moby.common.MainFragment;
  */
 
 public class DetailInfoFragment extends MainFragment implements DetailInfoView {
+    Toast toast = null;
+
     @Override
     protected int getLayout() {
         return R.layout.detail_info;
@@ -61,5 +65,36 @@ public class DetailInfoFragment extends MainFragment implements DetailInfoView {
     @Override
     public void setEditListener(View.OnClickListener listener) {
         getView(R.id.button_send_order_product).setOnClickListener(listener);
+    }
+
+    @Override
+    public void informingMessageIsSent(Context context) {
+        if(toast != null)
+            toast.cancel();
+        toast = Toast.makeText(context, "Сообщение отправлено",Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    public void informingMessageIsNotSent(Context context) {
+        if(toast != null)
+            toast.cancel();
+        toast = Toast.makeText(context, "Сообщение не отправлено",Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    public void informingMessageAlreadySent(Context context) {
+        if(toast != null)
+            toast.cancel();
+        toast = Toast.makeText(context, "Сообщение уже отправлено",Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    public void onPause() {
+        if(toast != null)
+            toast.cancel();
+        super.onPause();
     }
 }
