@@ -2,7 +2,6 @@ package com.dronteam.adm.i_moby.scenarios.goods;
 
 import android.util.Log;
 import android.widget.AbsListView;
-import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -33,8 +32,9 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
     private static final int COUNT_ITEM_LOAD = 10;
     private static final String QUERY_ALL = null;
     private static final String TAG = "My";
-    private final GoodsView view;
+    private final Goods view;
     private final ItemService itemService;
+    private String title;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
     private CommonAdapter adapter = new CommonAdapter();
@@ -43,10 +43,11 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
     private String searchQuery = QUERY_ALL;
     private boolean onLoad = false;
 
-    public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String query) {
+    public GoodsPresenter(ViewManager viewManager, Goods view, String albumId,String title, String query) {
         this.viewManager = viewManager;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
+        this.title = title;
         this.view = view;
         this.albumId = albumId;
         this.searchQuery = query;
@@ -57,6 +58,7 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
 
     @Override
     public void OnCreateView() {
+        view.setTitle(title);
         if(!onLoad){
             startLoadGoods();
         }
@@ -143,6 +145,8 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
 
     @Override
     public void onCreateOptionsMenu() {
+        if(searchQuery != "")
+            view.setActive();
         view.setOnClose(new android.support.v7.widget.SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
@@ -151,7 +155,7 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
                 return false;
             }
         });
-        view.setText(searchQuery);
+        view.setQuery(searchQuery);
         view.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

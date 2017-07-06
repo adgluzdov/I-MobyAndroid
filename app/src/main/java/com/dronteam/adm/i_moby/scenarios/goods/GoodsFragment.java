@@ -1,68 +1,97 @@
 package com.dronteam.adm.i_moby.scenarios.goods;
 
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
 import com.dronteam.adm.i_moby.common.OptionsMenuListener;
 
-import static android.content.ContentValues.TAG;
-
-public class GoodsFragment extends MainFragment implements GoodsView {
+public class GoodsFragment extends MainFragment implements Goods {
 
     OptionsMenuListener optionsMenuListener = null;
-    Menu menu = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
-        this.setToolbar(view);
+        this.setToolbar();
         return view;
     }
 
-    private void setToolbar(View view){
-        ((AppCompatActivity)getActivity()).setSupportActionBar(((Toolbar) view.findViewById(R.id.toolbar)));
+    private void setToolbar(){
+        Toolbar toolbar = (Toolbar) getView(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_menu, menu);
-        this.menu = menu;
-        this.setSearchMenuItem(this.getSearchView());
         if(optionsMenuListener !=  null)
             optionsMenuListener.onCreateOptionsMenu();
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    public void setSearchMenuItem(android.support.v7.widget.SearchView searchView) {
-        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
+    @Override
+    public void setQuery(String query) {
+        getSearchView().setQuery(query,false);
     }
 
+    @Override
+    public void setActive() {
+        getSearchView().setIconifiedByDefault(true);
+        getSearchView().setFocusable(true);
+        getSearchView().setIconified(false);
+        getSearchView().clearFocus();
+    }
+
+    @Override
+    public void setOnQueryTextListener(SearchView.OnQueryTextListener listener) {
+        getSearchView().setOnQueryTextListener(listener);
+    }
+
+
+    public SearchView getSearchView() {
+        return (SearchView)MenuItemCompat.getActionView(getToolbar().getMenu().findItem(R.id.action_search));
+    }
+
+    public Toolbar getToolbar() {
+        return (Toolbar) getView(R.id.toolbar);
+    }
+
+
+    @Override
+    public void setOnClose(SearchView.OnCloseListener listener) {
+        getSearchView().setOnCloseListener(listener);
+    }
+
+    @Override
+    public void setOnCreateOptionsMenu(OptionsMenuListener listener) {
+        optionsMenuListener = listener;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        getToolbar().setTitle(title);
+    }
 
     private ListView getList(){
         return getListView(R.id.list_view);
     }
+
     @Override
     public void setList(BaseAdapter adapter) {
         getList().setAdapter(adapter);
@@ -113,34 +142,4 @@ public class GoodsFragment extends MainFragment implements GoodsView {
         ((ProgressBar)getView(R.id.under_progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
 
-    public SearchView getSearchView() {
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        return searchView;
-    }
-
-    @Override
-    public void setOnQueryTextListener(android.support.v7.widget.SearchView.OnQueryTextListener listener) {
-        getSearchView().setOnQueryTextListener(listener);
-    }
-
-    @Override
-    public void setText(String text) {
-        getSearchView().setQuery(text,false);
-        getSearchView().clearFocus();
-    }
-
-    @Override
-    public void setOnClose(SearchView.OnCloseListener listener) {
-        getSearchView().setOnCloseListener(listener);
-    }
-
-    @Override
-    public Toolbar getToolbar() {
-        return (Toolbar) getView(R.id.toolbar);
-    }
-
-    @Override
-    public void setOnCreateOptionsMenu(OptionsMenuListener listener) {
-        optionsMenuListener = listener;
-    }
 }

@@ -7,8 +7,8 @@ import android.support.v7.widget.SearchView;
  */
 
 public interface SearchMenuItem {
-    SearchView getSearchView();
+    void setQuery(String query);
+    void setActive();
     void setOnQueryTextListener(SearchView.OnQueryTextListener listener);
-    void setText(String text);
     void setOnClose(SearchView.OnCloseListener listener);
 }

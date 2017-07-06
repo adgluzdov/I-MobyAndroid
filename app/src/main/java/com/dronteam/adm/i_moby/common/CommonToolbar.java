@@ -7,7 +7,7 @@ import android.view.View;
  * Created by adm on 05.07.2017.
  */
 
-public interface CommonToolBar extends SearchMenuItem {
-    Toolbar getToolbar();
+public interface CommonToolbar extends SearchMenuItem {
     void setOnCreateOptionsMenu(OptionsMenuListener listener);
+    void setTitle(String title);
 }

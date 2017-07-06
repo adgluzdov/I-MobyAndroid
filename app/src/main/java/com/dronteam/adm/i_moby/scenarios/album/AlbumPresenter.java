@@ -72,6 +72,6 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        viewManager.show(UIFactory.GoodsPresenter(viewManager,String.valueOf(item.getId())));
+        viewManager.show(UIFactory.GoodsPresenter(viewManager,String.valueOf(item.getId()),item.getTitle()));
     }
 }

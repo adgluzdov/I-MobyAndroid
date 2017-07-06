@@ -10,19 +10,19 @@ import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoPresenter;
 import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoView;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsFragment;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsPresenter;
-import com.dronteam.adm.i_moby.scenarios.goods.GoodsView;
+import com.dronteam.adm.i_moby.scenarios.goods.Goods;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
-import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
+import com.dronteam.adm.i_moby.scenarios.show_case.ShowCase;
 
 /**
  * Created by smb on 13/12/2016.
  */
 public class UIFactory {
 
-    private static ShowCaseView showCaseView;
-    private static GoodsView goodsView;
-    private static GoodsView searchGoodsView;
+    private static ShowCase showCaseView;
+    private static Goods goodsView;
+    private static Goods searchGoodsView;
     private static DetailInfoView detailInfoView;
     private static CatalogFragment catalogView;
     private static final String QUERY_ALL = "";
@@ -32,14 +32,14 @@ public class UIFactory {
         return  new ShowCasePresenter(viewManager, showCaseView);
     }
 
-    public static Presenter GoodsPresenter(ViewManager viewManager,String albumId) {
+    public static Presenter GoodsPresenter(ViewManager viewManager,String albumId,String albumName) {
         if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView, albumId,QUERY_ALL);
+        return  new GoodsPresenter(viewManager, goodsView, albumId,albumName,QUERY_ALL);
     }
 
     public static Presenter SearchGoodsPresenter(ViewManager viewManager,String albumId,String query) {
         if (searchGoodsView == null) searchGoodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, searchGoodsView, albumId,query);
+        return  new GoodsPresenter(viewManager, searchGoodsView, albumId,"Поиск",query);
     }
 
     public static Presenter CatalogPresenter(ViewManager viewManager) {

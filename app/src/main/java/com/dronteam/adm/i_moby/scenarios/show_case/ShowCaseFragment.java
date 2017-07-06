@@ -1,8 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -22,13 +21,9 @@ import com.dronteam.adm.i_moby.common.OptionsMenuListener;
 /**
  * Created by smb on 13/12/2016.
  */
-public class ShowCaseFragment extends MainFragment implements ShowCaseView {
+public class ShowCaseFragment extends MainFragment implements ShowCase {
 
-    private static final String TAG = "My";
-    Toolbar toolbar = null;
-    SearchView searchView = null;
     OptionsMenuListener optionsMenuListener = null;
-    Menu menu = null;
 
     @Override
     protected int getLayout() {
@@ -38,47 +33,65 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
-        this.setToolbar(view);
+        this.setToolbar();
         return view;
     }
 
-    private void setToolbar(View view){
-        ((AppCompatActivity)getActivity()).setSupportActionBar(((Toolbar) view.findViewById(R.id.toolbar)));
+    private void setToolbar(){
+        Toolbar toolbar = (Toolbar) getView(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_menu, menu);
-        this.menu = menu;
-        this.setSearchMenuItem(this.getSearchView());
         if(optionsMenuListener !=  null)
             optionsMenuListener.onCreateOptionsMenu();
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    public void setSearchMenuItem(SearchView searchView) {
-        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
-        searchView.setIconifiedByDefault(false);
+    @Override
+    public void setQuery(String query) {
+        getSearchView().setQuery(query,false);
     }
 
-
-
+    @Override
+    public void setActive() {
+        getSearchView().setIconifiedByDefault(true);
+        getSearchView().setFocusable(true);
+        getSearchView().setIconified(false);
+        getSearchView().clearFocus();
+    }
 
     @Override
     public void setOnQueryTextListener(SearchView.OnQueryTextListener listener) {
         getSearchView().setOnQueryTextListener(listener);
     }
 
-    @Override
-    public void setText(String text) {
 
+
+    public SearchView getSearchView() {
+        return (SearchView)MenuItemCompat.getActionView(getToolbar().getMenu().findItem(R.id.action_search));
+    }
+
+    public Toolbar getToolbar() {
+        return (Toolbar) getView(R.id.toolbar);
     }
 
     @Override
     public void setOnClose(SearchView.OnCloseListener listener) {
+        getSearchView().setOnCloseListener(listener);
+    }
 
+    @Override
+    public void setOnCreateOptionsMenu(OptionsMenuListener listener) {
+        optionsMenuListener = listener;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        getToolbar().setTitle(title);
     }
 
     @Override
@@ -114,20 +127,5 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public void stopUnderProgressBar() {
 
-    }
-
-    @Override
-    public SearchView getSearchView() {
-        return (SearchView) menu.findItem(R.id.action_search).getActionView();
-    }
-
-    @Override
-    public Toolbar getToolbar() {
-        return (Toolbar) getView(R.id.toolbar);
-    }
-
-    @Override
-    public void setOnCreateOptionsMenu(OptionsMenuListener listener) {
-        optionsMenuListener = listener;
     }
 }

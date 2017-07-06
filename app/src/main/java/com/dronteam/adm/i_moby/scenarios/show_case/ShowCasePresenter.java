@@ -1,18 +1,8 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
-import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
@@ -24,7 +14,6 @@ import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
-import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
@@ -45,14 +34,14 @@ import static android.content.ContentValues.TAG;
 
 public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuListener {
     private ViewManager viewManager;
-    private ShowCaseView view;
+    private ShowCase view;
     private final ItemService itemService;
     private CommonAdapter adapter = new CommonAdapter();
     private static final String ALL_GOODS = "0";
     private static final String QUERY_ALL = "";
     private boolean onLoad = false;
 
-    public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
+    public ShowCasePresenter(ViewManager viewManager, ShowCase view) {
         this.viewManager = viewManager;
         this.view = view;
         itemService = viewManager.getServiceFactory().getApi(ItemService.class);
@@ -67,6 +56,7 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
 
     @Override
     public void OnCreateView() {
+        view.setTitle("Главная");
         if(!onLoad){
             startLoad();
         }

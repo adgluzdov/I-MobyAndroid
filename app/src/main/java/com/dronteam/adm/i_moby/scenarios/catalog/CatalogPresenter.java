@@ -54,7 +54,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
         view.setOnButtonMainAlbumClick(new CallBack() {
             @Override
             public void call() {
-                viewManager.show(UIFactory.GoodsPresenter(viewManager, ID_MAIN_ALBUM));
+                viewManager.show(UIFactory.GoodsPresenter(viewManager, ID_MAIN_ALBUM, "Все товары"));
             }
         });
     }
