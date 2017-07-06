@@ -14,6 +14,8 @@ import com.dronteam.adm.i_moby.scenarios.goods.Goods;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCase;
+import com.dronteam.adm.i_moby.scenarios.test.TestFragment;
+import com.dronteam.adm.i_moby.scenarios.test.TestPresenter;
 
 /**
  * Created by smb on 13/12/2016.
@@ -51,6 +53,12 @@ public class UIFactory {
         if (detailInfoView == null) detailInfoView = new DetailInfoFragment();
         return  new DetailInfoPresenter(viewManager, product, detailInfoView);
     }
+
+    public static Presenter test() {
+        TestFragment testFragment = new TestFragment();
+        return new TestPresenter(testFragment);
+    }
+
 /*
     public static Presenter DetailInfo(ViewManager viewManager) {
         if (viewManager == null) detailInfoView = new detailInfoFragment();

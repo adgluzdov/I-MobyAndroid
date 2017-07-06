@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        auth.auth(this,this);
+        show(UIFactory.test());
+        //auth.auth(this,this);
     }
     @Override
     public void onBackPressed() {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
     public void show(Presenter presenter) {
         if (presenter == null) return;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_content, presenter.getView().getFragment(), "");
+        transaction.replace(R.id.main_content, (Fragment) presenter.getView().getFragment(), "");
         transaction.addToBackStack(presenter.getView().getFragment().toString());
         transaction.commitAllowingStateLoss();
     }
