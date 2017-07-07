@@ -6,7 +6,7 @@ import android.widget.AbsListView;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
-import com.dronteam.adm.i_moby.common.OptionsMenuListener;
+import com.dronteam.adm.i_moby.common.toolbar.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
@@ -27,12 +27,12 @@ import rx.schedulers.Schedulers;
  * Created by smb on 18/10/2016.
  */
 
-public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListener {
+public class GoodsPresenter implements ViewListener, Presenter {
 
     private static final int COUNT_ITEM_LOAD = 10;
     private static final String QUERY_ALL = null;
     private static final String TAG = "My";
-    private final Goods view;
+    private final GoodsView view;
     private final ItemService itemService;
     private String title;
     private ViewManager viewManager;
@@ -43,7 +43,7 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
     private String searchQuery = QUERY_ALL;
     private boolean onLoad = false;
 
-    public GoodsPresenter(ViewManager viewManager, Goods view, String albumId,String title, String query) {
+    public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String title, String query) {
         this.viewManager = viewManager;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
@@ -53,12 +53,10 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
         this.searchQuery = query;
 
         view.setOnCreateViewListener(this);
-        view.setOnCreateOptionsMenu(this);
     }
 
     @Override
     public void OnCreateView() {
-        view.setTitle(title);
         if(!onLoad){
             startLoadGoods();
         }
@@ -143,31 +141,4 @@ public class GoodsPresenter implements ViewListener, Presenter,OptionsMenuListen
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu() {
-        if(searchQuery != "")
-            view.setActive();
-        view.setOnClose(new android.support.v7.widget.SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                searchQuery = QUERY_ALL;
-                refresh();
-                return false;
-            }
-        });
-        view.setQuery(searchQuery);
-        view.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchQuery = query;
-                refresh();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-    }
 }

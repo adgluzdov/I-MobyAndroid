@@ -1,14 +1,11 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 
-import com.dronteam.adm.i_moby.UIFactory;
-import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
-import com.dronteam.adm.i_moby.common.OptionsMenuListener;
+import com.dronteam.adm.i_moby.common.toolbar.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
@@ -32,21 +29,18 @@ import static android.content.ContentValues.TAG;
  * Created by smb on 13/12/2016.
  */
 
-public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuListener {
+public class ShowCasePresenter implements Presenter, ViewListener {
     private ViewManager viewManager;
-    private ShowCase view;
+    private ShowCaseView view;
     private final ItemService itemService;
     private CommonAdapter adapter = new CommonAdapter();
-    private static final String ALL_GOODS = "0";
-    private static final String QUERY_ALL = "";
     private boolean onLoad = false;
 
-    public ShowCasePresenter(ViewManager viewManager, ShowCase view) {
+    public ShowCasePresenter(ViewManager viewManager, ShowCaseView view) {
         this.viewManager = viewManager;
         this.view = view;
-        itemService = viewManager.getServiceFactory().getApi(ItemService.class);
+        this.itemService = viewManager.getServiceFactory().getApi(ItemService.class);
         view.setOnCreateViewListener(this);
-        view.setOnCreateOptionsMenu(this);
     }
 
     @Override
@@ -56,17 +50,10 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
 
     @Override
     public void OnCreateView() {
-        view.setTitle("Главная");
         if(!onLoad){
             startLoad();
         }
         view.setList(adapter);
-        view.setOnButtonCatalogClick(new CallBack() {
-            @Override
-            public void call() {
-                viewManager.show(UIFactory.CatalogPresenter(viewManager));
-            }
-        });
     }
 
     private void startLoad(){
@@ -130,19 +117,4 @@ public class ShowCasePresenter implements Presenter, ViewListener, OptionsMenuLi
         };
     }
 
-    @Override
-    public void onCreateOptionsMenu() {
-        view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager,ALL_GOODS,query));
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-    }
 }

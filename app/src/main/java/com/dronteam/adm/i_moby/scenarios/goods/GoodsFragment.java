@@ -18,75 +18,11 @@ import android.widget.ProgressBar;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.MainFragment;
-import com.dronteam.adm.i_moby.common.OptionsMenuListener;
+import com.dronteam.adm.i_moby.common.toolbar.OptionsMenuListener;
 
-public class GoodsFragment extends MainFragment implements Goods {
+public class GoodsFragment extends MainFragment implements GoodsView {
 
     OptionsMenuListener optionsMenuListener = null;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater,container,savedInstanceState);
-        this.setToolbar();
-        return view;
-    }
-
-    private void setToolbar(){
-        Toolbar toolbar = (Toolbar) getView(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
-        if(optionsMenuListener !=  null)
-            optionsMenuListener.onCreateOptionsMenu();
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public void setQuery(String query) {
-        getSearchView().setQuery(query,false);
-    }
-
-    @Override
-    public void setActive() {
-        getSearchView().setIconifiedByDefault(true);
-        getSearchView().setFocusable(true);
-        getSearchView().setIconified(false);
-        getSearchView().clearFocus();
-    }
-
-    @Override
-    public void setOnQueryTextListener(SearchView.OnQueryTextListener listener) {
-        getSearchView().setOnQueryTextListener(listener);
-    }
-
-
-    public SearchView getSearchView() {
-        return (SearchView)MenuItemCompat.getActionView(getToolbar().getMenu().findItem(R.id.action_search));
-    }
-
-    public Toolbar getToolbar() {
-        return (Toolbar) getView(R.id.toolbar);
-    }
-
-
-    @Override
-    public void setOnClose(SearchView.OnCloseListener listener) {
-        getSearchView().setOnCloseListener(listener);
-    }
-
-    @Override
-    public void setOnCreateOptionsMenu(OptionsMenuListener listener) {
-        optionsMenuListener = listener;
-    }
-
-    @Override
-    public void setTitle(String title) {
-        getToolbar().setTitle(title);
-    }
 
     private ListView getList(){
         return getListView(R.id.list_view);

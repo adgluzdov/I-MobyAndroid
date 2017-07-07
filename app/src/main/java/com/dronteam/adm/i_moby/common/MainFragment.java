@@ -39,8 +39,6 @@ public abstract class MainFragment extends Fragment implements CommonView{
         return view;
     }
 
-
-
     protected abstract int getLayout();
 
     @Override
@@ -53,16 +51,8 @@ public abstract class MainFragment extends Fragment implements CommonView{
         return this;
     }
 
-    public Button getButton(int id) {
-        return (Button) view.findViewById(id);
-    }
-
     protected ListView getListView(int id) {
         return (ListView) view.findViewById(id);
-    }
-
-    protected SearchView getSearchView(int id) {
-        return (SearchView) view.findViewById(id);
     }
 
     protected View getView(int id) {

@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.common;
+package com.dronteam.adm.i_moby.common.toolbar;
 
 /**
  * Created by adm on 05.07.2017.

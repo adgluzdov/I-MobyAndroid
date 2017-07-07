@@ -10,19 +10,19 @@ import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoPresenter;
 import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoView;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsFragment;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsPresenter;
-import com.dronteam.adm.i_moby.scenarios.goods.Goods;
+import com.dronteam.adm.i_moby.scenarios.goods.GoodsView;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
-import com.dronteam.adm.i_moby.scenarios.show_case.ShowCase;
+import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
 
 /**
  * Created by smb on 13/12/2016.
  */
 public class UIFactory {
 
-    private static ShowCase showCaseView;
-    private static Goods goodsView;
-    private static Goods searchGoodsView;
+    private static ShowCaseView showCaseView;
+    private static GoodsView goodsView;
+    private static GoodsView searchGoodsView;
     private static DetailInfoView detailInfoView;
     private static CatalogFragment catalogView;
     private static final String QUERY_ALL = "";
