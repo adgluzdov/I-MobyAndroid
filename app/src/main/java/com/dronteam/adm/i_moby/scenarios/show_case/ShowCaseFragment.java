@@ -109,23 +109,4 @@ public class ShowCaseFragment extends MainFragment implements ShowCase {
         getListView(R.id.list_view).setAdapter(adapter);
     }
 
-    @Override
-    public void startProgressBar() {
-        ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.VISIBLE);
-    }
-
-    @Override
-    public void stopProgressBar() {
-        ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
-    }
-
-    @Override
-    public void startUnderProgressBar() {
-
-    }
-
-    @Override
-    public void stopUnderProgressBar() {
-
-    }
 }

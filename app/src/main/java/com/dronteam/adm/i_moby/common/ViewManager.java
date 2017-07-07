@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.common;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 
@@ -12,4 +13,5 @@ public interface ViewManager {
     void show(Presenter presenter);
     ServiceFactory getServiceFactory();
     Context getContext();
+    FragmentManager getSupportFragmentManager();
 }
