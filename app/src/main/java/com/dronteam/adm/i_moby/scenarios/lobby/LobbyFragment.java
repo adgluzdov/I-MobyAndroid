@@ -33,6 +33,6 @@ public class LobbyFragment extends FragmentWithToolbarWithSearchView implements 
 
     @Override
     protected int getLayout() {
-        return R.layout.lobby;
+        return R.layout.page_lobby;
     }
 }
