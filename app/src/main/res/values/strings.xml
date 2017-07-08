@@ -2,5 +2,6 @@
     <string name="app_name">I-Moby</string>
     <string name="catalog">КАТАЛОГ</string>
     <integer name="com_vk_sdk_AppId">5703451</integer>
+    <string name="no_goods">Нет товаров</string>
 
 </resources>
