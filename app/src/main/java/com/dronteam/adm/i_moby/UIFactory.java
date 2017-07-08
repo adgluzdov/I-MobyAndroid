@@ -11,6 +11,10 @@ import com.dronteam.adm.i_moby.scenarios.detail_information.DetailInfoView;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsFragment;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsPresenter;
 import com.dronteam.adm.i_moby.scenarios.goods.GoodsView;
+import com.dronteam.adm.i_moby.scenarios.lobby.LobbyFragment;
+import com.dronteam.adm.i_moby.scenarios.lobby.LobbyPresenter;
+import com.dronteam.adm.i_moby.scenarios.lobby.LobbyView;
+import com.dronteam.adm.i_moby.scenarios.main.MainActivity;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
@@ -26,6 +30,7 @@ public class UIFactory {
     private static DetailInfoView detailInfoView;
     private static CatalogFragment catalogView;
     private static final String QUERY_ALL = "";
+    private static LobbyView lobbyView;
 
     public static Presenter ShowCase(ViewManager viewManager) {
         if (showCaseView == null) showCaseView = new ShowCaseFragment();
@@ -50,6 +55,11 @@ public class UIFactory {
     public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {
         if (detailInfoView == null) detailInfoView = new DetailInfoFragment();
         return  new DetailInfoPresenter(viewManager, product, detailInfoView);
+    }
+
+    public static Presenter Lobby(ViewManager viewManager) {
+        if (lobbyView == null) lobbyView = new LobbyFragment();
+        return  new LobbyPresenter(lobbyView,viewManager);
     }
 /*
     public static Presenter DetailInfo(ViewManager viewManager) {

@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.common;
 
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 
 /**
  * Created by smb on 18/10/2016.
