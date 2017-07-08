@@ -1,18 +1,14 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
-import android.app.Fragment;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
-import com.dronteam.adm.i_moby.common.MainFragment;
-import com.dronteam.adm.i_moby.common.ViewListener;
+import com.dronteam.adm.i_moby.common.fragment.MainFragment;
 
 /**
  * Created by adm on 04.07.2017.

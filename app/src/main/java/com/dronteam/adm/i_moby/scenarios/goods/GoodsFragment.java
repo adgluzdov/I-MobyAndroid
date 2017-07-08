@@ -1,24 +1,14 @@
 package com.dronteam.adm.i_moby.scenarios.goods;
 
 
-import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.dronteam.adm.i_moby.R;
-import com.dronteam.adm.i_moby.common.MainFragment;
-import com.dronteam.adm.i_moby.common.toolbar.OptionsMenuListener;
+import com.dronteam.adm.i_moby.common.fragment.MainFragment;
+import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.OptionsMenuListener;
 
 public class GoodsFragment extends MainFragment implements GoodsView {
 

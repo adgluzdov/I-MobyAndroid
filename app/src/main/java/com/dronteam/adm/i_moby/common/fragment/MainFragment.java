@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.common;
+package com.dronteam.adm.i_moby.common.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -16,11 +16,13 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.dronteam.adm.i_moby.R;
+import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.ViewListener;
 
 /**
  * Created by smb on 13/12/2016.
  */
-public abstract class MainFragment extends Fragment implements CommonView{
+public abstract class MainFragment extends Fragment implements CommonView {
 
     private View view;
     private ViewListener onCreateViewListener;

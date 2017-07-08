@@ -5,12 +5,13 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.dronteam.adm.i_moby.R;
-import com.dronteam.adm.i_moby.common.MainFragment;
+import com.dronteam.adm.i_moby.common.fragment.MainFragment;
 
 /**
  * Created by smb on 13/12/2016.
  */
 public class ShowCaseFragment extends MainFragment implements ShowCaseView {
+
 
     @Override
     protected int getLayout() {

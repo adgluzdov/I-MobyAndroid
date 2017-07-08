@@ -5,7 +5,6 @@ import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.progressbar.CommonProgressbar;
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.toolbar.ToolbarWithSearchView;
 
 /**
  * Created by smb on 18/10/2016.

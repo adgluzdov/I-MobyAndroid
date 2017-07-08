@@ -3,13 +3,12 @@ package com.dronteam.adm.i_moby.scenarios.detail_information;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dronteam.adm.i_moby.R;
-import com.dronteam.adm.i_moby.common.MainFragment;
+import com.dronteam.adm.i_moby.common.fragment.MainFragment;
 
 /**
  * Created by adm on 27.04.2017.
