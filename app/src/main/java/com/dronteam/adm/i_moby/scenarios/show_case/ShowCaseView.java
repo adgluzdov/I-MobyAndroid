@@ -1,9 +1,9 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
-import android.widget.BaseAdapter;
+import android.support.v7.widget.RecyclerView;
 
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.progressbar.CommonProgressbar;
+import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
 /**
@@ -11,5 +11,6 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
  */
 
 public interface ShowCaseView extends CommonView, TopProgressbarView {
-    void setList(BaseAdapter adapter);
+    void setList(RecyclerView.Adapter<RecyclerView.ViewHolder>  adapter);
+    void setOnSwapProgressbarListener(SwapProgressbarListener listener);
 }

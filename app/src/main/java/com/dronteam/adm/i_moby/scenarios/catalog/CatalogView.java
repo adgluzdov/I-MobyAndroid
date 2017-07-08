@@ -3,7 +3,6 @@ package com.dronteam.adm.i_moby.scenarios.catalog;
 import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.CallBack;
-import com.dronteam.adm.i_moby.common.progressbar.CommonProgressbar;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
