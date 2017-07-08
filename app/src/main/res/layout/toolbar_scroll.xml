@@ -6,6 +6,7 @@
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:layout_scrollFlags="scroll|enterAlways"
     android:background="@android:color/transparent"
     android:elevation="0dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
