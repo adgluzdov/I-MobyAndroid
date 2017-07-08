@@ -16,7 +16,8 @@
         android:layout_gravity="center"
         card_view:cardBackgroundColor="#fff"
         card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="2dp">
+        card_view:cardElevation="2dp"
+        android:layout_margin="@dimen/item_product_margin">
 
         <RelativeLayout
             android:layout_width="match_parent"

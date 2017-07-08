@@ -5,4 +5,5 @@
     <dimen name="item_album_height">150dp</dimen>
     <dimen name="item_album_corner_radius">0dp</dimen>
     <dimen name="item_album_margin">0dp</dimen>
+    <dimen name="item_product_margin">0dp</dimen>
 </resources>
