@@ -19,5 +19,8 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#B2FFFFFF</item>
     </style>
+    <style name="CardViewStyle">
+        <item name="android:foreground">@drawable/foreground</item>
+    </style>
 
 </resources>
