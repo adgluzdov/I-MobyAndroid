@@ -84,7 +84,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     }
 
     private void startLoadGoods() {
-        view.startProgressBar();
+        view.startTopProgressbar();
         loadGoods();
     }
 
@@ -96,7 +96,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     }
 
     private void moreLoadGoods() {
-        view.startUnderProgressBar();
+        view.startUnderProgressbar();
         loadGoods();
     }
 
@@ -128,8 +128,8 @@ public class GoodsPresenter implements ViewListener, Presenter {
                 if(itemPresenterList.size() < COUNT_ITEM_LOAD)
                     goodsIsFull = true;
                 adapter.addItemPresenters(itemPresenterList);
-                view.stopProgressBar();
-                view.stopUnderProgressBar();
+                view.stopTopProgressbar();
+                view.stopUnderProgressbar();
                 onLoad = true;
             }
         };

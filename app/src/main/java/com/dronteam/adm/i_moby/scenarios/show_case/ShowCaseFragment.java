@@ -24,22 +24,12 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
-    public void startProgressBar() {
+    public void startTopProgressbar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
-    public void stopProgressBar() {
+    public void stopTopProgressbar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
-    }
-
-    @Override
-    public void startUnderProgressBar() {
-
-    }
-
-    @Override
-    public void stopUnderProgressBar() {
-
     }
 }

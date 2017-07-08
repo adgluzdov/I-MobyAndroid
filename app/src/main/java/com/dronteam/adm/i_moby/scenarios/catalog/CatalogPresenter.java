@@ -60,7 +60,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
     }
 
     private void startLoadCatalog() {
-        view.startProgressBar();
+        view.startTopProgressbar();
         loadCatalog();
     }
 
@@ -78,7 +78,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
             public void call(List<ItemPresenter> itemPresenters) {
                 onLoad = true;
                 adapter.addItemPresenters(itemPresenters);
-                view.stopProgressBar();
+                view.stopTopProgressbar();
             }
         };
     }

@@ -56,7 +56,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     }
 
     private void startLoad(){
-        view.startProgressBar();
+        view.startTopProgressbar();
         load();
     }
 
@@ -102,7 +102,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
             public void call(List<ItemPresenter> itemPresenterList) {
                 adapter.addItemPresenters(0, itemPresenterList);
                 onLoad = true;
-                view.stopProgressBar();
+                view.stopTopProgressbar();
             }
         };
     }

@@ -49,22 +49,22 @@ public class GoodsFragment extends MainFragment implements GoodsView {
     }
 
     @Override
-    public void startProgressBar() {
+    public void startTopProgressbar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
-    public void stopProgressBar() {
+    public void stopTopProgressbar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
 
     @Override
-    public void startUnderProgressBar() {
+    public void startUnderProgressbar() {
         ((ProgressBar)getView(R.id.under_progress_bar)).setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
-    public void stopUnderProgressBar() {
+    public void stopUnderProgressbar() {
         ((ProgressBar)getView(R.id.under_progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
 
