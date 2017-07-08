@@ -3,5 +3,6 @@
     <string name="catalog">КАТАЛОГ</string>
     <integer name="com_vk_sdk_AppId">5703451</integer>
     <string name="no_goods">Нет товаров</string>
+    <string name="no_albums">Нет подборок</string>
 
 </resources>
