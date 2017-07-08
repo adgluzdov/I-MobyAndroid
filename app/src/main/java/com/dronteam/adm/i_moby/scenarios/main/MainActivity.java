@@ -1,15 +1,13 @@
 package com.dronteam.adm.i_moby.scenarios.main;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import android.support.v4.app.FragmentManager;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.AuthListener;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
     @Override
     public void show(Presenter presenter) {
         if (presenter == null) return;
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_content, presenter.getView().getFragment(), "");
         transaction.addToBackStack(presenter.getView().getFragment().toString());
         transaction.commitAllowingStateLoss();
@@ -71,6 +69,6 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
 
     @Override
     public void onAuth() {
-        show(UIFactory.ShowCase(this));
+        show(UIFactory.Lobby(this));
     }
 }

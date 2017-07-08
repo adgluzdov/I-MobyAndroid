@@ -1,21 +1,12 @@
 package com.dronteam.adm.i_moby.common.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
 
-import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ViewListener;
 

@@ -27,7 +27,7 @@ public class LobbyPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return (Fragment) presenterList.get(position);
+        return presenterList.get(position).getView().getFragment();
     }
 
     @Override
