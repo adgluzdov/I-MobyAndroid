@@ -5,7 +5,6 @@ import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.adapters.base_adapter.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
-import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
@@ -27,7 +26,7 @@ import rx.schedulers.Schedulers;
  * Created by adm on 04.07.2017.
  */
 
-public class CatalogPresenter implements ViewListener, Presenter {
+public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.common.ItemPresenter {
     private static final String TAG = "My";
     private final CatalogView view;
     private final ItemService itemService;
@@ -111,4 +110,8 @@ public class CatalogPresenter implements ViewListener, Presenter {
         return view;
     }
 
+    @Override
+    public String getViewTitle() {
+        return view.getTitleFragment();
+    }
 }

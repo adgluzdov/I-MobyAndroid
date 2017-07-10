@@ -47,4 +47,9 @@ public class CatalogFragment extends MainFragment implements CatalogView {
     public void stopTopProgressbar() {
         ((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
     }
+
+    @Override
+    public String getTitleFragment() {
+        return "dssdsd";
+    }
 }

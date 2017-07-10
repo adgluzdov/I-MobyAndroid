@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.ItemFragment;
 import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
@@ -11,7 +12,8 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
  * Created by smb on 13/12/2016.
  */
 
-public interface ShowCaseView extends CommonView, TopProgressbarView {
+public interface ShowCaseView extends CommonView, TopProgressbarView,ItemFragment {
+    String getTitleFragment();
     void setList(RecyclerView.Adapter  adapter, Context context);
     void setEmpty();
     void setOnSwapProgressbarListener(SwapProgressbarListener listener);

@@ -4,13 +4,14 @@ import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.ItemFragment;
 import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
 /**
  * Created by adm on 04.07.2017.
  */
 
-public interface CatalogView extends CommonView,TopProgressbarView {
+public interface CatalogView extends CommonView,TopProgressbarView,ItemFragment {
     void setList(BaseAdapter adapter);
 
     void setOnButtonMainAlbumClick(CallBack callBack);
