@@ -3,7 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.product;
 import android.graphics.Bitmap;
 import android.view.View;
 
-import com.dronteam.adm.i_moby.common.ItemView;
+import com.dronteam.adm.i_moby.common.adapters.ItemView;
 
 /**
  * Created by adm on 14.11.2016.

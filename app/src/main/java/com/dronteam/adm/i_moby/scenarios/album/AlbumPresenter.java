@@ -6,8 +6,7 @@ import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
-import com.dronteam.adm.i_moby.common.ItemView;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.album.Item;
 import com.squareup.picasso.Picasso;

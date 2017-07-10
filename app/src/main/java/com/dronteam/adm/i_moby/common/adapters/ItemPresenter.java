@@ -1,6 +1,4 @@
-package com.dronteam.adm.i_moby.common;
-
-import android.view.View;
+package com.dronteam.adm.i_moby.common.adapters;
 
 /**
  * Created by adm on 21.04.2017.

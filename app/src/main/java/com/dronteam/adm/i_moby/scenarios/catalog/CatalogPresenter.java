@@ -2,9 +2,9 @@ package com.dronteam.adm.i_moby.scenarios.catalog;
 
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack;
-import com.dronteam.adm.i_moby.common.CommonBaseAdapter;
+import com.dronteam.adm.i_moby.common.adapters.base_adapter.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;

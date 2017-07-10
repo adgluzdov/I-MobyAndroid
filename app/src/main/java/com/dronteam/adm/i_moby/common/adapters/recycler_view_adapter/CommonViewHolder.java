@@ -1,7 +1,8 @@
-package com.dronteam.adm.i_moby.common;
+package com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+
+import com.dronteam.adm.i_moby.common.adapters.ItemView;
 
 /**
  * Created by adm on 10.07.2017.

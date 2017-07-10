@@ -1,8 +1,10 @@
-package com.dronteam.adm.i_moby.common;
+package com.dronteam.adm.i_moby.common.adapters.base_adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

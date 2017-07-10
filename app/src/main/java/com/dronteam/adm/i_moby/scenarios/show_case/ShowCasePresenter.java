@@ -3,7 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.show_case;
 import android.util.Log;
 
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.ModelAdapter;
+import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
@@ -11,7 +11,6 @@ import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
-import com.dronteam.adm.i_moby.scenarios.product.ProductView;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferAdapter;
 
 import java.util.ArrayList;

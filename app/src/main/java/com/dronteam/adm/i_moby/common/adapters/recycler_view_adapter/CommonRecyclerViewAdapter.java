@@ -1,7 +1,12 @@
-package com.dronteam.adm.i_moby.common;
+package com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.dronteam.adm.i_moby.common.ViewManager;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
+import com.dronteam.adm.i_moby.common.adapters.ItemView;
+import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +15,7 @@ import java.util.List;
  * Created by adm on 10.07.2017.
  */
 
-public abstract class CommonRecyclerViewAdapter<Model,View extends ItemView,Presenter extends ItemPresenter> extends RecyclerView.Adapter<CommonViewHolder<View>> implements ModelAdapter<Model>{
+public abstract class CommonRecyclerViewAdapter<Model,View extends ItemView,Presenter extends ItemPresenter> extends RecyclerView.Adapter<CommonViewHolder<View>> implements ModelAdapter<Model> {
 
 
     private final ViewManager viewManager;

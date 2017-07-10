@@ -1,4 +1,4 @@
-package com.dronteam.adm.i_moby.common;
+package com.dronteam.adm.i_moby.common.adapters;
 
 import android.view.View;
 
