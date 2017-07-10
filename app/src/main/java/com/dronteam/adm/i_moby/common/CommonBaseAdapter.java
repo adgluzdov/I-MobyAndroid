@@ -11,10 +11,10 @@ import java.util.List;
  * Created by adm on 21.04.2017.
  */
 
-public class CommonAdapter extends BaseAdapter{
+public class CommonBaseAdapter extends BaseAdapter{
     ArrayList<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>();
 
-    public CommonAdapter(final List<ItemPresenter> itemPresenters) {
+    public CommonBaseAdapter(final List<ItemPresenter> itemPresenters) {
         itemPresenterList = new ArrayList<ItemPresenter>(){{
             for (ItemPresenter object: itemPresenters) {
                 add(object);
@@ -22,7 +22,7 @@ public class CommonAdapter extends BaseAdapter{
         }};
     }
 
-    public CommonAdapter() {
+    public CommonBaseAdapter() {
 
     }
 

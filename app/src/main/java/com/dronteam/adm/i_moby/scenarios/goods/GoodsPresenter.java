@@ -3,7 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.goods;
 import android.util.Log;
 import android.widget.AbsListView;
 
-import com.dronteam.adm.i_moby.common.CommonAdapter;
+import com.dronteam.adm.i_moby.common.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.Presenter;
@@ -36,7 +36,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private String title;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private CommonAdapter adapter = new CommonAdapter();
+    private CommonBaseAdapter adapter = new CommonBaseAdapter();
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;

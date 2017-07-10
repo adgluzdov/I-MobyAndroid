@@ -3,11 +3,13 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 import android.graphics.Bitmap;
 import android.view.View;
 
+import com.dronteam.adm.i_moby.common.ItemView;
+
 /**
  * Created by User on 13.12.2016.
  */
 
-public interface SpecialOfferView {
+public interface SpecialOfferView extends ItemView {
     void setDiscount(String discount);
     void setBonus(String bonus);
     void setAdditionalInfo(String additionalInfo);

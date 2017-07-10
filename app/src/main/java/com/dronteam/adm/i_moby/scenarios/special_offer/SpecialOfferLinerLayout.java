@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,11 +13,10 @@ import com.dronteam.adm.i_moby.R;
 /**
  * Created by User on 19.12.2016.
  */
-public class SpecialOfferFragment extends LinearLayout implements SpecialOfferView {
+public class SpecialOfferLinerLayout extends LinearLayout implements SpecialOfferView {
 
-    public SpecialOfferFragment(Context context) {
+    public SpecialOfferLinerLayout(Context context) {
         super(context);
-
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.special_offer, this);
     }
@@ -59,5 +59,10 @@ public class SpecialOfferFragment extends LinearLayout implements SpecialOfferVi
     @Override
     public void setEditListener(OnClickListener listener) {
         setOnClickListener(listener);
+    }
+
+    @Override
+    public View getView() {
+        return this;
     }
 }

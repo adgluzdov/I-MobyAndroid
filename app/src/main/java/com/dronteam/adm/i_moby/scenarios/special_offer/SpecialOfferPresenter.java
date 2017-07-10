@@ -2,11 +2,13 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.ItemView;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.squareup.picasso.Picasso;
@@ -51,7 +53,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
 
     @Override
-    public Object getItem() {
+    public SpecialOffer getItem() {
         return offer;
     }
 
@@ -70,6 +72,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
     @Override
     public void fill(){
+        this.offer = offer;
         view.setAdditionalInfo(offer.getAdditionalInfo());
         view.setDiscount(offer.getDiscount());
         view.setBonus(offer.getBonus());

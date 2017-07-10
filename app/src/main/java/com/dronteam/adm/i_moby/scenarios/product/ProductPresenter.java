@@ -7,6 +7,7 @@ import android.view.View;
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.ItemView;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.product.Item;
@@ -16,7 +17,7 @@ import com.squareup.picasso.Target;
 /**
  * Created by adm on 14.11.2016.
  */
-public class ProductPresenter implements ItemPresenter {
+public class ProductPresenter implements ItemPresenter<Item,ProductView> {
     ProductView view;
     Item item;
     ViewManager viewManager;
@@ -65,12 +66,12 @@ public class ProductPresenter implements ItemPresenter {
     }
 
     @Override
-    public Object getView() {
+    public ProductView getView() {
         return view;
     }
 
     @Override
-    public Object getItem() {
+    public Item getItem() {
         return item;
     }
 

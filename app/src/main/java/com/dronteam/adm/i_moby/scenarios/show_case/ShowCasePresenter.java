@@ -2,17 +2,17 @@ package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import android.util.Log;
 
-import com.dronteam.adm.i_moby.common.CommonAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.ModelAdapter;
 import com.dronteam.adm.i_moby.common.Presenter;
-import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
+import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
+import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
-import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferFragment;
-import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferPresenter;
+import com.dronteam.adm.i_moby.scenarios.product.ProductView;
+import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +32,14 @@ public class ShowCasePresenter implements Presenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private CommonAdapter adapter = new CommonAdapter();
+    private ModelAdapter<SpecialOffer> adapter;
     private boolean onLoad = false;
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
         this.viewManager = viewManager;
         this.view = view;
         this.itemService = viewManager.getServiceFactory().getApi(ItemService.class);
+        this.adapter = new SpecialOfferAdapter(viewManager);
         view.setOnCreateViewListener(this);
     }
 
@@ -52,7 +53,7 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         if(!onLoad){
             startLoad();
         }
-        view.setList(adapter);
+        view.setList(adapter.getViewAdapter(),viewManager.getContext());
     }
 
     private void startLoad(){
@@ -64,43 +65,42 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         itemService.SearchSpecialOffers()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .map(responseToListItemPresenter())
+                .map(responseToListModel())
                 .map(deleteUnnecessaryItem())
                 .subscribe(OnLoad(),onError());
     }
 
-    private Func1<? super List<ItemPresenter>, List<ItemPresenter>> deleteUnnecessaryItem() {
-        return new Func1<List<ItemPresenter>, List<ItemPresenter>>() {
+    private Func1<? super GetResponse, List<SpecialOffer>> responseToListModel() {
+        return new Func1<GetResponse, List<SpecialOffer>>() {
             @Override
-            public List<ItemPresenter> call(List<ItemPresenter> itemPresenters) {
-                for (int j = itemPresenters.size()-1; j >= 0; j--) {
-                    if(((SpecialOffer) itemPresenters.get(j).getItem()).getItem().getDescription().indexOf("#IMoby") == -1)
-                        itemPresenters.remove(itemPresenters.get(j));
-                }
-                return itemPresenters;
-            }
-        };
-    }
-
-    private Func1<? super GetResponse, List<ItemPresenter>> responseToListItemPresenter() {
-        return new Func1<GetResponse, List<ItemPresenter>>() {
-            @Override
-            public List<ItemPresenter> call(final GetResponse getResponse) {
-                return new ArrayList<ItemPresenter>() {{
-                    for (final com.dronteam.adm.i_moby.model.product.Item item :
-                            getResponse.getResponse().getItems()) {
-                        add(new SpecialOfferPresenter(viewManager, new SpecialOffer(item), new SpecialOfferFragment(viewManager.getContext())));
+            public List<SpecialOffer> call(final GetResponse getResponse) {
+                return new ArrayList<SpecialOffer>(){{
+                    for (Item item : getResponse.getResponse().getItems()) {
+                        add(new SpecialOffer(item));
                     }
                 }};
             }
         };
     }
 
-    private Action1<? super List<ItemPresenter>> OnLoad() {
-        return new Action1<List<ItemPresenter>>() {
+    private Func1<? super List<SpecialOffer>, List<SpecialOffer>> deleteUnnecessaryItem() {
+        return new Func1<List<SpecialOffer>, List<SpecialOffer>>() {
             @Override
-            public void call(List<ItemPresenter> itemPresenterList) {
-                adapter.addItemPresenters(0, itemPresenterList);
+            public List<SpecialOffer> call(List<SpecialOffer> itemList) {
+                for (int j = itemList.size()-1; j >= 0; j--) {
+                    if(!itemList.get(j).getItem().getDescription().contains("#IMoby"))
+                        itemList.remove(itemList.get(j));
+                }
+                return itemList;
+            }
+        };
+    }
+
+    private Action1<? super List<SpecialOffer>> OnLoad() {
+        return new Action1<List<SpecialOffer>>() {
+            @Override
+            public void call(List<SpecialOffer> itemList) {
+                adapter.addModel(itemList);
                 onLoad = true;
                 view.stopTopProgressbar();
             }

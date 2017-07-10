@@ -48,4 +48,9 @@ public class ProductFragment extends LinearLayout implements ProductView {
     public void setEditListener(View.OnClickListener listener) {
         setOnClickListener(listener);
     }
+
+    @Override
+    public View getView() {
+        return this;
+    }
 }
