@@ -42,6 +42,12 @@ public abstract class CommonRecyclerViewAdapter<Model,View extends ItemView,Pres
 
     @Override
     public void onBindViewHolder(CommonViewHolder<View> holder, int position){
+        if(position < presenterList.size())
+            if(getPresenterList().get(position) != null){
+                Presenter presenter = getPresenterList().get(position);
+                presenter.fill();
+                return;
+            }
         View view = holder.getView();
         Presenter presenter = createPresenter(getModelList().get(position),holder.getView());
         addPresenter(presenter);
