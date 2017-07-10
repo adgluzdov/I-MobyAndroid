@@ -30,6 +30,11 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
+    public void setEmpty() {
+        
+    }
+
+    @Override
     public void startTopProgressbar() {
         //((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.VISIBLE);
     }

@@ -15,5 +15,6 @@ import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 
 public interface ShowCaseView extends CommonView, TopProgressbarView {
     void setList(RecyclerView.Adapter  adapter, Context context);
+    void setEmpty();
     void setOnSwapProgressbarListener(SwapProgressbarListener listener);
 }
