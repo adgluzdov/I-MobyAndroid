@@ -2,9 +2,9 @@ package com.dronteam.adm.i_moby.scenarios.catalog;
 
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack;
-import com.dronteam.adm.i_moby.common.CommonAdapter;
+import com.dronteam.adm.i_moby.common.adapters.base_adapter.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
@@ -33,7 +33,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private CommonAdapter adapter = new CommonAdapter();
+    private CommonBaseAdapter adapter = new CommonBaseAdapter();
     private static final String ID_MAIN_ALBUM = "0";
     private boolean onLoad = false;
 
@@ -42,7 +42,7 @@ public class CatalogPresenter implements ViewListener, Presenter {
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         this.view = view;
-        adapter = new CommonAdapter();
+        adapter = new CommonBaseAdapter();
         view.setOnCreateViewListener(this);
     }
 

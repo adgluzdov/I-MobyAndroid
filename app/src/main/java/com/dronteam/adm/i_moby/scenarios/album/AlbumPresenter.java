@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.album.Item;
 import com.squareup.picasso.Picasso;
@@ -16,7 +16,7 @@ import com.squareup.picasso.Target;
  * Created by adm on 18.04.2017.
  */
 
-public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
+public class AlbumPresenter implements ItemPresenter<Item,AlbumView>, View.OnClickListener {
     private AlbumView view;
     private Item item;
     private Bitmap loadedImage = null;
@@ -61,7 +61,7 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
     }
 
     @Override
-    public Object getItem() {
+    public Item getItem() {
         return item;
     }
 

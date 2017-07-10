@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.album;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,5 +45,10 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
     @Override
     public void setEditListener(OnClickListener listener) {
         setOnClickListener(listener);
+    }
+
+    @Override
+    public View getView() {
+        return this;
     }
 }

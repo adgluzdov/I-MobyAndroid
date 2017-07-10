@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.UIFactory;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.squareup.picasso.Picasso;
@@ -51,7 +51,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
 
     @Override
-    public Object getItem() {
+    public SpecialOffer getItem() {
         return offer;
     }
 
@@ -70,6 +70,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
     @Override
     public void fill(){
+        this.offer = offer;
         view.setAdditionalInfo(offer.getAdditionalInfo());
         view.setDiscount(offer.getDiscount());
         view.setBonus(offer.getBonus());
