@@ -12,5 +12,6 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
 public interface ShowCaseView extends CommonView, TopProgressbarView {
     void setList(RecyclerView.Adapter<RecyclerView.ViewHolder>  adapter);
+    void setEmpty();
     void setOnSwapProgressbarListener(SwapProgressbarListener listener);
 }
