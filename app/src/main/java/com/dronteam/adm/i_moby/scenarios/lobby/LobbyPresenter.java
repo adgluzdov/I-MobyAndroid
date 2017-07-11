@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack2;
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
@@ -40,9 +41,9 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
     @Override
     public void OnCreateView() {
         view.setTitle("Главная");
-        List<Presenter> presenterList = new ArrayList<Presenter>();
-        presenterList.add(UIFactory.ShowCase(viewManager));
-        presenterList.add(UIFactory.CatalogPresenter(viewManager));
+        List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
+        presenterList.add((ItemPresenter)UIFactory.ShowCase(viewManager));
+        presenterList.add((ItemPresenter)UIFactory.CatalogPresenter(viewManager));
         adapter = new LobbyPagerAdapter(viewManager.getSupportFragmentManager(),presenterList);
         view.setFragmentStatePagerAdapter(adapter);
     }

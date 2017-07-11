@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>320</x>
-      <y>112</y>
+      <y>56</y>
       <w>280</w>
       <h>24</h>
     </coordinates>
@@ -17,7 +17,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>160</y>
+      <y>104</y>
       <w>768</w>
       <h>104</h>
     </coordinates>
@@ -36,7 +36,7 @@
     <id>Relation</id>
     <coordinates>
       <x>448</x>
-      <y>128</y>
+      <y>72</y>
       <w>24</w>
       <h>48</h>
     </coordinates>
@@ -47,7 +47,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>824</x>
-      <y>288</y>
+      <y>232</y>
       <w>448</w>
       <h>48</h>
     </coordinates>
@@ -61,7 +61,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>232</x>
-      <y>288</y>
+      <y>232</y>
       <w>472</w>
       <h>48</h>
     </coordinates>
@@ -75,7 +75,7 @@
     <id>Relation</id>
     <coordinates>
       <x>448</x>
-      <y>256</y>
+      <y>200</y>
       <w>24</w>
       <h>48</h>
     </coordinates>
@@ -86,33 +86,32 @@
     <id>UMLInterface</id>
     <coordinates>
       <x>344</x>
-      <y>376</y>
+      <y>320</y>
       <w>224</w>
-      <h>96</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>ModelAdapter&lt;Model&gt;
 --
 void addModel(List&lt;Model&gt; modelList)
-RecyclerView.Adapter getViewAdapter();
-Presenter </panel_attributes>
+RecyclerView.Adapter getViewAdapter();</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>656</x>
-      <y>384</y>
-      <w>208</w>
+      <y>328</y>
+      <w>104</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>ThePresenter extends ItemPresenter</panel_attributes>
+    <panel_attributes>ThePresenter</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>456</x>
-      <y>512</y>
+      <y>456</y>
       <w>128</w>
       <h>24</h>
     </coordinates>
@@ -123,7 +122,7 @@ Presenter </panel_attributes>
     <id>UMLInterface</id>
     <coordinates>
       <x>608</x>
-      <y>504</y>
+      <y>448</y>
       <w>208</w>
       <h>72</h>
     </coordinates>
@@ -136,7 +135,7 @@ setList(RecyclerView.Adapter adapter)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>576</x>
-      <y>512</y>
+      <y>456</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
@@ -147,7 +146,7 @@ setList(RecyclerView.Adapter adapter)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>704</x>
-      <y>400</y>
+      <y>344</y>
       <w>24</w>
       <h>128</h>
     </coordinates>
@@ -157,19 +156,8 @@ setList(RecyclerView.Adapter adapter)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>696</x>
-      <y>288</y>
-      <w>144</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>448</x>
-      <y>328</y>
+      <y>272</y>
       <w>24</w>
       <h>72</h>
     </coordinates>
@@ -180,7 +168,7 @@ setList(RecyclerView.Adapter adapter)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>456</x>
-      <y>384</y>
+      <y>328</y>
       <w>216</w>
       <h>24</h>
     </coordinates>
@@ -191,7 +179,7 @@ setList(RecyclerView.Adapter adapter)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>760</x>
-      <y>160</y>
+      <y>104</y>
       <w>96</w>
       <h>144</h>
     </coordinates>

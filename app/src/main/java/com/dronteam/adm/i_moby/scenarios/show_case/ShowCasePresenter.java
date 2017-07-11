@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.show_case;
 import android.util.Log;
 
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
@@ -27,7 +28,7 @@ import static android.content.ContentValues.TAG;
  * Created by smb on 13/12/2016.
  */
 
-public class ShowCasePresenter implements Presenter, ViewListener {
+public class ShowCasePresenter implements ItemPresenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
@@ -115,4 +116,8 @@ public class ShowCasePresenter implements Presenter, ViewListener {
         };
     }
 
+    @Override
+    public String getViewTitle() {
+        return view.getTitleFragment();
+    }
 }

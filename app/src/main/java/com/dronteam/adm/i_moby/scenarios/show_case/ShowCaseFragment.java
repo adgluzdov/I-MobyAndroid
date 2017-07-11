@@ -20,6 +20,11 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
+    public String getTitleFragment() {
+        return "Kzkzk";
+    }
+
+    @Override
     public void setList(RecyclerView.Adapter adapter, Context context) {
         RecyclerView mRecyclerView = (RecyclerView) getView(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
