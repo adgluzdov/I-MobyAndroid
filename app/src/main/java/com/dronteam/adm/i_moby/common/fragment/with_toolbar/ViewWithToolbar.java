@@ -5,5 +5,5 @@ package com.dronteam.adm.i_moby.common.fragment.with_toolbar;
  */
 
 public interface ViewWithToolbar {
-    void setTitle(String title);
+    void setTitle();
 }

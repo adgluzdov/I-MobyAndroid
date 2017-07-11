@@ -31,6 +31,11 @@ public class LobbyFragment extends FragmentWithToolbarWithSearchView implements 
     }
 
     @Override
+    public String getTitle() {
+        return "Главная";
+    }
+
+    @Override
     protected int getMenuXml() {
         return R.menu.search_menu;
     }
