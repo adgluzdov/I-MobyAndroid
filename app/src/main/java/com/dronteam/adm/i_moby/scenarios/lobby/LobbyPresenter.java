@@ -22,9 +22,9 @@ import java.util.List;
  */
 
 public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListener {
-    LobbyView view;
-    ViewManager viewManager;
-    LobbyPagerAdapter adapter;
+    private LobbyView view;
+    private ViewManager viewManager;
+    private LobbyPagerAdapter adapter = null;
 
     public LobbyPresenter(LobbyView view, ViewManager viewManager) {
         this.view = view;
@@ -40,11 +40,13 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
 
     @Override
     public void OnCreateView() {
-        view.setTitle("Главная");
-        List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
-        presenterList.add((ItemPresenter)UIFactory.ShowCase(viewManager));
-        presenterList.add((ItemPresenter)UIFactory.CatalogPresenter(viewManager));
-        adapter = new LobbyPagerAdapter(viewManager.getSupportFragmentManager(),presenterList);
+        view.setTitle();
+        if(adapter == null){
+            List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
+            presenterList.add((ItemPresenter)UIFactory.ShowCase(viewManager));
+            presenterList.add((ItemPresenter)UIFactory.CatalogPresenter(viewManager));
+            adapter = new LobbyPagerAdapter(view.getChildFragmentManager(),presenterList);
+        }
         view.setFragmentStatePagerAdapter(adapter);
     }
 

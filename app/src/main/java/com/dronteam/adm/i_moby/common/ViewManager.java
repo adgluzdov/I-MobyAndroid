@@ -13,5 +13,4 @@ public interface ViewManager {
     void show(Presenter presenter);
     ServiceFactory getServiceFactory();
     Context getContext();
-    FragmentManager getSupportFragmentManager();
 }

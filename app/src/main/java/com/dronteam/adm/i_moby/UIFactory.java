@@ -48,7 +48,7 @@ public class UIFactory {
     }
 
     public static Presenter CatalogPresenter(ViewManager viewManager) {
-        if (goodsView == null) catalogView = new CatalogFragment();
+        if (catalogView == null) catalogView = new CatalogFragment();
         return  new CatalogPresenter(viewManager, catalogView);
     }
 

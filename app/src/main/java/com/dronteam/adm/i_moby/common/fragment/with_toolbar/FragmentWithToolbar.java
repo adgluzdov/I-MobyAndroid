@@ -28,8 +28,10 @@ public abstract class FragmentWithToolbar extends MainFragment implements ViewWi
 
     protected abstract int getIdToolbar();
 
+    public abstract String getTitle();
+
     @Override
-    public void setTitle(String title) {
-        getToolbar().setTitle(title);
+    public void setTitle() {
+        getToolbar().setTitle(getTitle());
     }
 }
