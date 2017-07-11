@@ -35,8 +35,8 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
-    public void setEmpty() {
-        
+    public void notifyNoGoods() {
+
     }
 
     @Override
@@ -47,10 +47,5 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public void stopTopProgressbar() {
         //((ProgressBar)getView(R.id.progress_bar)).setVisibility(ProgressBar.INVISIBLE);
-    }
-
-    @Override
-    public void setOnSwapProgressbarListener(SwapProgressbarListener listener) {
-
     }
 }
