@@ -22,5 +22,9 @@
     <style name="CardViewStyle">
         <item name="android:foreground">@drawable/foreground</item>
     </style>
+    <style name="MyButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
 
 </resources>
