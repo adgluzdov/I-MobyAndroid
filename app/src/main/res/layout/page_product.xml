@@ -13,11 +13,186 @@
         android:elevation="0dp">
         <include layout="@layout/toolbar_scroll"/>
     </android.support.design.widget.AppBarLayout>
-    <FrameLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#fff"
+        android:id="@+id/scroller"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:background="#fff"
+            android:paddingBottom="64dp"
+            android:id="@+id/inner">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="328dp"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:background="#fff">
+
+                    <ImageView
+                        android:layout_width="280dp"
+                        android:layout_height="280dp"
+                        android:id="@+id/image"
+                        android:src="@drawable/img_pre2" />
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Абрикосы"
+                    android:id="@+id/title"
+                    android:textColor="#444444"
+                    android:textSize="24sp"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp" />
+
+                <LinearLayout
+                    android:id="@+id/cat_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="0dp"
+                        android:text="Категория: Фрукты"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#444444"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="0dp"
+                        android:text="Добавлено 15 июня 2017"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#444444"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:text="Описание описание"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#444444"
+                    android:textSize="16sp" />
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/payment_outer"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_marginTop="56dp"
+        android:gravity="right"
+        android:orientation="vertical">
+
+
+        <View
+            android:id="@+id/payment_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginBottom="-2dp"
+            android:alpha="0.3"
+            android:background="@drawable/dropshadow_bottom" />
+
+        <RelativeLayout
+            android:id="@+id/payment"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginBottom="-51dp"
+            android:background="#fff"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="145dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="120 руб"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#444444"
+                android:textSize="22sp" />
+
+            <RelativeLayout
+                android:layout_width="130dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true">
+
+                <Button
+                    android:id="@+id/pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Купить"
+                    android:textColor="#fff"
+                    android:textSize="14dp"
+                    android:theme="@style/MyButton"
+                    android:visibility="visible" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <include layout="@layout/bottom_shadow"/>
     </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>
