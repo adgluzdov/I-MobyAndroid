@@ -35,8 +35,18 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
     }
 
     @Override
+    public void removeModel(int position) {
+        modelList.remove(position);
+    }
+
+    @Override
     public RecyclerView.Adapter getViewAdapter() {
         return this;
+    }
+
+    @Override
+    public int getCount() {
+        return getItemCount();
     }
 
     @Override
