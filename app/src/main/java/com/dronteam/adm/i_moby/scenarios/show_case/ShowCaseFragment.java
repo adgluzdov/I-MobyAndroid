@@ -49,14 +49,14 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     @Override
     public void setList(RecyclerView.Adapter adapter, Context context) {
         mRecyclerView.setHasFixedSize(true);
-        if(ScreenInfo.sizes(getActivity()).x<600) {
+        if(ScreenInfo.sizes(context).x<600) {
             COLUMNS_COUNT = 1;
-            layoutManagerPhone = new LinearLayoutManager(getActivity());
+            layoutManagerPhone = new LinearLayoutManager(context);
             mRecyclerView.setLayoutManager(layoutManagerPhone);
         }
         else {
             COLUMNS_COUNT = 2;
-            layoutManagerPhone = new GridLayoutManager(getActivity(), 2);
+            layoutManagerPhone = new GridLayoutManager(context, 2);
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);
