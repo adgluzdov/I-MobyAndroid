@@ -16,7 +16,7 @@ import com.squareup.picasso.Target;
  * Created by adm on 18.04.2017.
  */
 
-public class AlbumPresenter implements ItemPresenter<Item,AlbumView>, View.OnClickListener {
+public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
     private AlbumView view;
     private Item item;
     private Bitmap loadedImage = null;
@@ -66,8 +66,13 @@ public class AlbumPresenter implements ItemPresenter<Item,AlbumView>, View.OnCli
     }
 
     @Override
-    public int getItemId() {
+    public int getItemId_() {
         return item.getId();
+    }
+
+    @Override
+    public void setModel(Object model) {
+        this.item = (Item) model;
     }
 
     @Override
