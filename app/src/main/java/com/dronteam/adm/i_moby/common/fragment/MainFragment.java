@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.common.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +27,15 @@ public abstract class MainFragment extends Fragment implements CommonView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(getLayout(), container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if (onCreateViewListener != null) {
             onCreateViewListener.OnCreateView();
         }
-        return view;
     }
 
     protected abstract int getLayout();
