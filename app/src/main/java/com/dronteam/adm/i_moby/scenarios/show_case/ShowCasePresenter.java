@@ -12,17 +12,18 @@ import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
+import com.dronteam.adm.i_moby.model.special_offer.Tags;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferAdapter;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by smb on 13/12/2016.
@@ -32,7 +33,7 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private ModelAdapter<SpecialOffer> adapter;
+    private ModelAdapter adapter;
     private boolean onLoad = false;
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
@@ -62,12 +63,12 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
     }
 
     private void load(){
-        itemService.SearchSpecialOffers()
+        itemService.SearchSpecialOffers(SpecialOffer.TAG)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .map(responseToListModel())
                 .map(deleteUnnecessaryItem())
-                .subscribe(OnLoad(),onError());
+                .map(responseToListModel())
+                .subscribe(OnLoad(), onError());
     }
 
     private Func1<? super GetResponse, List<SpecialOffer>> responseToListModel() {
@@ -83,15 +84,15 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
         };
     }
 
-    private Func1<? super List<SpecialOffer>, List<SpecialOffer>> deleteUnnecessaryItem() {
-        return new Func1<List<SpecialOffer>, List<SpecialOffer>>() {
+    private Func1<? super GetResponse, GetResponse> deleteUnnecessaryItem() {
+        return new Func1<GetResponse, GetResponse>() {
             @Override
-            public List<SpecialOffer> call(List<SpecialOffer> itemList) {
-                for (int j = itemList.size()-1; j >= 0; j--) {
-                    if(!itemList.get(j).getItem().getDescription().contains("#IMoby"))
-                        itemList.remove(itemList.get(j));
+            public GetResponse call(GetResponse getResponse) {
+                for (int j = getResponse.getResponse().getItems().size()-1; j >= 0; j--) {
+                    if(!getResponse.getResponse().getItems().get(j).getDescription().contains(SpecialOffer.TAG))
+                        getResponse.getResponse().getItems().remove(getResponse.getResponse().getItems().get(j));
                 }
-                return itemList;
+                return getResponse;
             }
         };
     }
@@ -100,7 +101,10 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
         return new Action1<List<SpecialOffer>>() {
             @Override
             public void call(List<SpecialOffer> itemList) {
-                adapter.addModel(itemList);
+                if(itemList.size() == 0)
+                    view.notifyNoGoods();
+                else
+                    adapter.addModel(itemList);
                 onLoad = true;
                 view.stopTopProgressbar();
             }
@@ -111,7 +115,7 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.d(TAG, "call: ");
+
             }
         };
     }

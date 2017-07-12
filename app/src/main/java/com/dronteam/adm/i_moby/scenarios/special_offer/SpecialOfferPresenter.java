@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
@@ -42,7 +43,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
         this.offer = offer;
         this.view = view;
         this.viewManager = viewManager;
-        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
         view.setEditListener(edit());
     }
     @Override
@@ -56,8 +56,13 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
 
     @Override
-    public int getItemId() {
+    public int getItemId_() {
         return offer.getItem().getId();
+    }
+
+    @Override
+    public void setModel(Object model) {
+        this.offer = (SpecialOffer) model;
     }
 
     private View.OnClickListener edit() {
@@ -70,10 +75,10 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
     @Override
     public void fill(){
-        this.offer = offer;
-        view.setAdditionalInfo(offer.getAdditionalInfo());
-        view.setDiscount(offer.getDiscount());
-        view.setBonus(offer.getBonus());
+        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
+        //view.setAdditionalInfo(offer.getAdditionalInfo());
+        //view.setDiscount(offer.getDiscount());
+        //view.setBonus(offer.getBonus());
         view.setTitle(offer.getItem().getTitle());
         view.setPrice(offer.getItem().getPrice().getText());
         if(loadedImage != null)
