@@ -32,7 +32,7 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private ModelAdapter<SpecialOffer> adapter;
+    private ModelAdapter adapter;
     private boolean onLoad = false;
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
@@ -100,7 +100,10 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
         return new Action1<List<SpecialOffer>>() {
             @Override
             public void call(List<SpecialOffer> itemList) {
-                adapter.addModel(itemList);
+                if(itemList.size() == 0)
+                    view.notifyNoGoods();
+                else
+                    adapter.addModel(itemList);
                 onLoad = true;
                 view.stopTopProgressbar();
             }
