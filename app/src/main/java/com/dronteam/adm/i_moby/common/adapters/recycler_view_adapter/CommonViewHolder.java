@@ -2,21 +2,23 @@ package com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.adapters.ItemView;
 
 /**
  * Created by adm on 10.07.2017.
  */
 
-public class CommonViewHolder<View extends ItemView> extends RecyclerView.ViewHolder {
-    private View view;
+public class CommonViewHolder extends RecyclerView.ViewHolder {
+    private ItemPresenter itemPresenter;
 
-    public CommonViewHolder(View view) {
-        super(view.getView());
-        this.view = view;
+    public CommonViewHolder(ItemPresenter itemPresenter) {
+        super(itemPresenter.getView().getView());
+        this.itemPresenter = itemPresenter;
     }
 
-    public View getView(){
-        return view;
+    public void fill(Object object){
+        itemPresenter.setModel(object);
+        itemPresenter.fill();
     }
 }
