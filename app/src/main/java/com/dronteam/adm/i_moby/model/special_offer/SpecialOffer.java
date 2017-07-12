@@ -9,6 +9,7 @@ import com.dronteam.adm.i_moby.model.product.Item;
 
 public class SpecialOffer {
 
+    public static String TAG = "#special";
     private Tags tags;
     private Item item;
 
@@ -17,6 +18,14 @@ public class SpecialOffer {
         this.item = item;
         String description = item.getDescription();
         this.tags = new Tags(description.contains(Tags.TAG_SALE),description.contains(Tags.TAG_HIT));
+        description = description
+                .replace(TAG+"\n","")
+                .replace(TAG,"")
+                .replace(Tags.TAG_SALE+"\n","")
+                .replace(Tags.TAG_SALE,"")
+                .replace(Tags.TAG_HIT+"\n","")
+                .replace(Tags.TAG_HIT,"");
+        item.setDescription(description);
     }
 
     public Item getItem() {

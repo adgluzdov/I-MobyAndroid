@@ -5,8 +5,8 @@ package com.dronteam.adm.i_moby.model.special_offer;
  */
 
 public class Tags {
-    static String TAG_SALE = "#sale";
-    static String TAG_HIT = "#hit";
+    public static String TAG_SALE = "#sale";
+    public static String TAG_HIT = "#hit";
     boolean sale;
     boolean hit;
 
