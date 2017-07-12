@@ -1,5 +1,6 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.widget.BaseAdapter;
 
@@ -14,5 +15,5 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
  */
 
 public interface CatalogView extends CommonView,TopProgressbarView,ItemFragment {
-    void setList(RecyclerView.Adapter adapter);
+    void setList(RecyclerView.Adapter adapter, Context context);
 }
