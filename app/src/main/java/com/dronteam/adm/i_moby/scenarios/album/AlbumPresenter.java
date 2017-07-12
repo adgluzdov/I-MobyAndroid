@@ -42,11 +42,11 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
         this.view = aLbumView;
         this.viewManager = viewManager;
         this.view.setEditListener(this);
-        Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
     }
 
     @Override
     public void fill() {
+        Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
         view.setCount(String.valueOf(item.getCount()));
         view.setTitle(item.getTitle());
         if(loadedImage != null)
