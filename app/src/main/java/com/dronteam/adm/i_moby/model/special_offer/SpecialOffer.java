@@ -9,56 +9,21 @@ import com.dronteam.adm.i_moby.model.product.Item;
 
 public class SpecialOffer {
 
-    private String discount;
-    private String bonus;
-    private String additionalInfo;
+    private Tags tags;
     private Item item;
 
 
     public SpecialOffer(Item item) {
         this.item = item;
         String description = item.getDescription();
-        this.setDiscount(parseStr(description,"Скидка: ","%"));
-        this.setBonus(parseStr(description,"Бонус: ","!"));
-        this.setAdditionalInfo(parseStr(description,"Дополнительная информация: ","!"));
+        this.tags = new Tags(description.contains(Tags.TAG_SALE),description.contains(Tags.TAG_HIT));
     }
 
-    private String parseStr(String str,String start,String end){
-        String string = "";
-        int startindex = str.indexOf(start)+start.length();
-        int endindex = str.indexOf(end,startindex-1);
-        if(endindex>0)
-            string = str.substring(startindex, endindex);
-        return string;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
-
-    public String getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(String bonus) {
-        this.bonus = bonus;
-    }
-
-    public String getAdditionalInfo() {
-        if (additionalInfo == null)
-            additionalInfo = "No additional info";
-        return additionalInfo;
-    }
-
-    public void setAdditionalInfo(String additionalInfo) {
-        this.additionalInfo = additionalInfo;
-    }
     public Item getItem() {
         return item;
     }
 
+    public Tags getTags() {
+        return tags;
+    }
 }
