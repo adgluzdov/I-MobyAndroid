@@ -49,13 +49,13 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
     public void OnCreateView() {
         if(!onLoad)
             startLoadCatalog();
-        view.setList(adapter);
-        view.setOnButtonMainAlbumClick(new CallBack() {
-            @Override
-            public void call() {
-                viewManager.show(UIFactory.GoodsPresenter(viewManager, ID_MAIN_ALBUM, "Все товары"));
-            }
-        });
+        //view.setList(adapter);
+//        view.setOnButtonMainAlbumClick(new CallBack() {
+//            @Override
+//            public void call() {
+//                viewManager.show(UIFactory.GoodsPresenter(viewManager, ID_MAIN_ALBUM, "Все товары"));
+//            }
+//        });
     }
 
     private void startLoadCatalog() {
