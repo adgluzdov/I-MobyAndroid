@@ -10,5 +10,7 @@ import java.util.List;
 
 public interface ModelAdapter {
     void addModel(List modelList);
+    void removeModel(int position);
     RecyclerView.Adapter getViewAdapter();
+    int getCount();
 }
