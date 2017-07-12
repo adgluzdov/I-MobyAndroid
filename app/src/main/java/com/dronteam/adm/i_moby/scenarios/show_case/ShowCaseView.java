@@ -13,8 +13,6 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
  */
 
 public interface ShowCaseView extends CommonView, TopProgressbarView,ItemFragment {
-    String getTitleFragment();
     void setList(RecyclerView.Adapter  adapter, Context context);
-    void setEmpty();
-    void setOnSwapProgressbarListener(SwapProgressbarListener listener);
+    void notifyNoGoods();
 }

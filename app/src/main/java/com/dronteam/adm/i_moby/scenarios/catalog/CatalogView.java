@@ -1,10 +1,12 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
+import android.support.v7.widget.RecyclerView;
 import android.widget.BaseAdapter;
 
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemFragment;
+import com.dronteam.adm.i_moby.common.fragment.with_toolbar.ViewWithToolbar;
 import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
 /**
@@ -12,7 +14,5 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
  */
 
 public interface CatalogView extends CommonView,TopProgressbarView,ItemFragment {
-    void setList(BaseAdapter adapter);
-
-    void setOnButtonMainAlbumClick(CallBack callBack);
+    void setList(RecyclerView.Adapter adapter);
 }

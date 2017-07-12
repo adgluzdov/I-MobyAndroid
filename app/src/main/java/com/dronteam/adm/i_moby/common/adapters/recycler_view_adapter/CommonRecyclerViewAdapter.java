@@ -15,20 +15,20 @@ import java.util.List;
  * Created by adm on 10.07.2017.
  */
 
-public abstract class CommonRecyclerViewAdapter<Model,View extends ItemView,Presenter extends ItemPresenter> extends RecyclerView.Adapter<CommonViewHolder<View>> implements ModelAdapter<Model> {
+public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<CommonViewHolder> implements ModelAdapter {
 
 
     private final ViewManager viewManager;
-    private List<Model> modelList = new ArrayList<Model>();
-    private List<Presenter> presenterList = new ArrayList<Presenter>();
+    private List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
+    private List<Object> modelList = new ArrayList<Object>();
 
     public CommonRecyclerViewAdapter(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
 
     @Override
-    public void addModel(List<Model> modelList) {
-        for (Model model : modelList) {
+    public void addModel(List modelList) {
+        for (Object model : modelList) {
             this.modelList.add(model);
         }
         notifyDataSetChanged();
@@ -40,28 +40,18 @@ public abstract class CommonRecyclerViewAdapter<Model,View extends ItemView,Pres
     }
 
     @Override
-    public CommonViewHolder<View> onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = createView();
-        return new CommonViewHolder<View>(view);
+    public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        ItemPresenter presenter = createItemPresenter();
+        presenterList.add(presenter);
+        return new CommonViewHolder(presenter);
     }
 
     @Override
-    public void onBindViewHolder(CommonViewHolder<View> holder, int position){
-        if(position < presenterList.size())
-            if(getPresenterList().get(position) != null){
-                Presenter presenter = getPresenterList().get(position);
-                presenter.fill();
-                return;
-            }
-        View view = holder.getView();
-        Presenter presenter = createPresenter(getModelList().get(position),holder.getView());
-        addPresenter(presenter);
-        presenter.fill();
+    public void onBindViewHolder(CommonViewHolder holder, int position){
+        holder.fill(modelList.get(position));
     }
 
-    public abstract Presenter createPresenter(Model model,View view);
-
-    public abstract View createView();
+    public abstract ItemPresenter createItemPresenter();
 
     @Override
     public int getItemCount() {
@@ -72,15 +62,15 @@ public abstract class CommonRecyclerViewAdapter<Model,View extends ItemView,Pres
         return viewManager;
     }
 
-    public List<Model> getModelList() {
+    public List getModelList() {
         return modelList;
     }
 
-    public List<Presenter> getPresenterList() {
+    public List getPresenterList() {
         return presenterList;
     }
 
-    public void addPresenter(Presenter presenter) {
+    public void addPresenter(ItemPresenter presenter) {
         this.presenterList.add(presenter);
     }
 }
