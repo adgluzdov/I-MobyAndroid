@@ -8,7 +8,7 @@ import java.util.List;
  * Created by adm on 10.07.2017.
  */
 
-public interface ModelAdapter<Model> {
-    void addModel(List<Model> modelList);
+public interface ModelAdapter {
+    void addModel(List modelList);
     RecyclerView.Adapter getViewAdapter();
 }
