@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.goods;
 import android.util.Log;
 import android.widget.AbsListView;
 
+import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.adapters.base_adapter.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
@@ -36,7 +37,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private String title;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private CommonBaseAdapter adapter = new CommonBaseAdapter();
+    private ModelAdapter adapter;
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
@@ -59,7 +60,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
         if(!onLoad){
             startLoadGoods();
         }
-        view.setList(adapter);
+        view.setList(adapter.);
         view.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {
