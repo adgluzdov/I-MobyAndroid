@@ -14,4 +14,12 @@ public class Tags {
         this.sale = sale;
         this.hit = hit;
     }
+
+    public boolean isSale() {
+        return sale;
+    }
+
+    public boolean isHit() {
+        return hit;
+    }
 }
