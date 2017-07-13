@@ -18,6 +18,7 @@ public interface DetailInfoView extends CommonView,ViewWithToolbar {
     void setPlaceHolder(int resId);
     void setTitle(String title);
     void setCategoty(Category category);
+    void setDescription(String description);
     void setDate(Integer date);
     void setPrice(Price price);
 
