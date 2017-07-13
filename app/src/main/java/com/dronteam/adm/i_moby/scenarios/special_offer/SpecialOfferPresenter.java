@@ -60,11 +60,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
         return offer.getItem().getId();
     }
 
-    @Override
-    public void setModel(Object model) {
-        this.offer = (SpecialOffer) model;
-    }
-
     private View.OnClickListener edit() {
         return new View.OnClickListener() {
             @Override

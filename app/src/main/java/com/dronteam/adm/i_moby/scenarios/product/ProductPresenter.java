@@ -78,9 +78,4 @@ public class ProductPresenter implements ItemPresenter {
         return item.getId();
     }
 
-    @Override
-    public void setModel(Object model) {
-        this.item = (Item) model;
-    }
-
 }
