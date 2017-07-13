@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
     }
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() == 1) {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             this.finish();
             return;
         }

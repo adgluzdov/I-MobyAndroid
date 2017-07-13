@@ -26,7 +26,6 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
         this.staticItem = staticItem;
     }
 
-
     public CommonRecyclerViewAdapter(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
@@ -84,5 +83,4 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
     public List getModelList() {
         return modelList;
     }
-
 }
