@@ -34,6 +34,7 @@ public class CatalogFragment extends MainFragment implements CatalogView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
         swipeRefreshLayout = (SwipeRefreshLayout)getView(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mRecyclerView = (RecyclerView)getView(R.id.recyclerView);
         no_albums = getView(R.id.no_albums);
         no_albums.setVisibility(View.GONE);
