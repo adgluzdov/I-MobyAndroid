@@ -15,7 +15,7 @@ import com.squareup.picasso.Target;
 /**
  * Created by adm on 14.11.2016.
  */
-public class ProductPresenter implements ItemPresenter<Item,ProductView> {
+public class ProductPresenter implements ItemPresenter {
     ProductView view;
     Item item;
     ViewManager viewManager;
@@ -74,7 +74,7 @@ public class ProductPresenter implements ItemPresenter<Item,ProductView> {
     }
 
     @Override
-    public int getItemId() {
+    public int getItemId_() {
         return item.getId();
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,10 +17,11 @@ import com.dronteam.adm.i_moby.R;
 
 public class AlbumFragment extends LinearLayout implements AlbumView {
 
-    public AlbumFragment(Context context) {
+    public AlbumFragment(Context context, ViewGroup parent) {
         super(context);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.album, this);
+
     }
 
     @Override
