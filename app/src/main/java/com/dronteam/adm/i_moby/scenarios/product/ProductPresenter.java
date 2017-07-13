@@ -41,7 +41,6 @@ public class ProductPresenter implements ItemPresenter {
         this.item = item;
         this.viewManager = viewManager;
         this.view.setEditListener(edit());
-        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
     }
 
     private View.OnClickListener edit() {
@@ -55,12 +54,13 @@ public class ProductPresenter implements ItemPresenter {
 
     @Override
     public void fill(){
+        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
+        view.setPrice(item.getPrice());
         view.setTitle(item.getTitle());
-        view.setPrice(item.getPrice().getText());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setImage(R.mipmap.ic_launcher);
+            view.setPlaceHolder(R.mipmap.ic_launcher);
     }
 
     @Override
