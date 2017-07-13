@@ -60,11 +60,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
         return offer.getItem().getId();
     }
 
-    @Override
-    public void setModel(Object model) {
-        this.offer = (SpecialOffer) model;
-    }
-
     private View.OnClickListener edit() {
         return new View.OnClickListener() {
             @Override
@@ -76,9 +71,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
     @Override
     public void fill(){
         Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
-        //view.setAdditionalInfo(offer.getAdditionalInfo());
-        //view.setDiscount(offer.getDiscount());
-        //view.setBonus(offer.getBonus());
         view.setTitle(offer.getItem().getTitle());
         view.setPrice(offer.getItem().getPrice().getText());
         if(loadedImage != null)

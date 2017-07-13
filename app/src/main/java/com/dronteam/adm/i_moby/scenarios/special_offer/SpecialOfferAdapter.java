@@ -22,8 +22,8 @@ public class SpecialOfferAdapter extends CommonRecyclerViewAdapter {
     }
 
     @Override
-    public ItemPresenter createItemPresenter() {
-        return new SpecialOfferPresenter(getViewManager(),null,new SpecialOfferLinerLayout(getViewManager().getContext()));
+    public ItemPresenter createItemPresenter(int position,ViewGroup parent) {
+        return new SpecialOfferPresenter(getViewManager(),(SpecialOffer) getModelList().get(position),new SpecialOfferLinerLayout(getViewManager().getContext()));
     }
 }
 

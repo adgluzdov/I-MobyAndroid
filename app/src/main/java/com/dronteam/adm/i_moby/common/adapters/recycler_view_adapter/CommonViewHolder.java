@@ -17,8 +17,7 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         this.itemPresenter = itemPresenter;
     }
 
-    public void fill(Object object){
-        itemPresenter.setModel(object);
+    public void fill(){
         itemPresenter.fill();
     }
 }

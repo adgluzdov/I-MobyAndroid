@@ -30,6 +30,7 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
         swipeRefreshLayout = (SwipeRefreshLayout)getView(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mRecyclerView = (RecyclerView)getView(R.id.recyclerView);
         no_goods = getView(R.id.no_goods);
         no_goods.setVisibility(View.GONE);
