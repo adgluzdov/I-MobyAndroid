@@ -18,10 +18,10 @@ public class AllGoodsPresenter implements ItemPresenter {
     public AllGoodsPresenter(AllGoodsView view, final ViewManager viewManager) {
         this.view = view;
         this.viewManager = viewManager;
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIFactory.GoodsPresenter(viewManager,"0","Все товары");
+                viewManager.show(UIFactory.GoodsPresenter(viewManager,"0","Все товары"));
             }
         });
     }
@@ -44,10 +44,5 @@ public class AllGoodsPresenter implements ItemPresenter {
     @Override
     public int getItemId_() {
         return 0;
-    }
-
-    @Override
-    public void setModel(Object model) {
-
     }
 }

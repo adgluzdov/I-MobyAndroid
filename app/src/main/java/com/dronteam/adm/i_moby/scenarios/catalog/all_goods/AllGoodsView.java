@@ -9,5 +9,5 @@ import com.dronteam.adm.i_moby.common.adapters.ItemView;
  */
 
 public interface AllGoodsView extends ItemView{
-    public void setOnClickListener(View.OnClickListener listener);
+    public void setOnButtonClickListener(View.OnClickListener listener);
 }

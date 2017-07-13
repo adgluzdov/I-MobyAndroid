@@ -17,16 +17,6 @@ import java.util.List;
 public class AlbumsAdapter extends BaseAdapter {
     List<AlbumPresenter> albumPresenterList = new ArrayList<AlbumPresenter>();
 
-    public AlbumsAdapter(final ViewManager viewManager, final List<Item> albumList) {
-        albumPresenterList = new ArrayList<AlbumPresenter>(){{
-            for (Item object: albumList) {
-                add(new AlbumPresenter(
-                        viewManager,
-                        object,
-                        new AlbumFragment(viewManager.getContext())));
-            }
-        }};
-    }
 
     @Override
     public int getCount() {

@@ -9,5 +9,4 @@ public interface ItemPresenter{
     public ItemView getView();
     public Object getItem();
     int getItemId_();
-    void setModel(Object model);
 }

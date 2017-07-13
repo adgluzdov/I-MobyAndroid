@@ -19,12 +19,18 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
 
     private final ViewManager viewManager;
-    private List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
     private List<Object> modelList = new ArrayList<Object>();
+    private int staticItem = 0;
+
+    public void setStaticItem(int staticItem) {
+        this.staticItem = staticItem;
+    }
+
 
     public CommonRecyclerViewAdapter(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
+
 
     @Override
     public void addModel(List modelList) {
@@ -50,22 +56,25 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
     }
 
     @Override
-    public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        ItemPresenter presenter = createItemPresenter();
-        presenterList.add(presenter);
-        return new CommonViewHolder(presenter);
+    public CommonViewHolder onCreateViewHolder(ViewGroup parent, int position){
+        return new CommonViewHolder(createItemPresenter(position,parent));
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position){
-        holder.fill(modelList.get(position));
+        holder.fill();
     }
 
-    public abstract ItemPresenter createItemPresenter();
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    public abstract ItemPresenter createItemPresenter(int position, ViewGroup parent);
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        return modelList.size()+staticItem;
     }
 
     public ViewManager getViewManager() {
@@ -76,11 +85,4 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
         return modelList;
     }
 
-    public List getPresenterList() {
-        return presenterList;
-    }
-
-    public void addPresenter(ItemPresenter presenter) {
-        this.presenterList.add(presenter);
-    }
 }

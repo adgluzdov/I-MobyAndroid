@@ -44,7 +44,6 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
         this.view = view;
-        adapter = new AlbumAdapter(viewManager);
         view.setOnCreateViewListener(this);
     }
 
@@ -52,7 +51,8 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
     public void OnCreateView() {
         if(!onLoad)
             startLoadCatalog();
-        view.setList(adapter.getViewAdapter(),viewManager.getContext());
+        if(adapter != null)
+            view.setList(adapter.getViewAdapter(),viewManager.getContext());
     }
 
     private void startLoadCatalog() {
@@ -82,7 +82,9 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
             @Override
             public void call(List<Item> itemList) {
                 onLoad = true;
+                adapter = new AlbumAdapter(viewManager);
                 adapter.addModel(itemList);
+                view.setList(adapter.getViewAdapter(),viewManager.getContext());
                 view.stopTopProgressbar();
             }
         };
