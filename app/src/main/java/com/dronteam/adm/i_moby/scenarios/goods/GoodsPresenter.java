@@ -3,6 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.goods;
 import android.util.Log;
 import android.widget.AbsListView;
 
+import com.dronteam.adm.i_moby.common.OnScrollViewListener;
 import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.adapters.base_adapter.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -14,10 +15,12 @@ import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.model.product.Item;
+import com.dronteam.adm.i_moby.scenarios.product.ProductAdapter;
 import com.dronteam.adm.i_moby.scenarios.product.ProductFragment;
 import com.dronteam.adm.i_moby.scenarios.product.ProductPresenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -51,7 +54,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
         this.view = view;
         this.albumId = albumId;
         this.searchQuery = query;
-
+        this.adapter = new ProductAdapter(viewManager);
         view.setOnCreateViewListener(this);
     }
 
@@ -60,18 +63,10 @@ public class GoodsPresenter implements ViewListener, Presenter {
         if(!onLoad){
             startLoadGoods();
         }
-        view.setList(adapter.);
-        view.setOnScrollListener(new AbsListView.OnScrollListener() {
+        view.setList(adapter.getViewAdapter(),viewManager);
+        view.setOnScrollListener(new OnScrollViewListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && (view.listViewGetLastVisiblePosition() - view.listViewGetHeaderViewsCount() -
-                        view.listViewGetFooterViewsCount()) >= (adapter.getCount() - 1)) {
-                    onScrollDown();
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+            public void onScroll(int visiblePositin) {
 
             }
         });
@@ -80,7 +75,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private void refresh(){
         goodsIsFull = false;
         onLoad = false;
-        adapter.clear();
+        //adapter.clear();
         startLoadGoods();
     }
 
@@ -97,7 +92,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     }
 
     private void moreLoadGoods() {
-        view.startUnderProgressbar();
+        //view.startUnderProgressbar();
         loadGoods();
     }
 
@@ -120,17 +115,12 @@ public class GoodsPresenter implements ViewListener, Presenter {
             @Override
             public void call(final GetResponse repo) {
                 Log.d(TAG, "call: success");
-                ArrayList<ItemPresenter> itemPresenterList = new ArrayList<ItemPresenter>(){{
-                    for (final Item item:
-                        repo.getResponse().getItems()) {
-                        add(new ProductPresenter(viewManager,item,new ProductFragment(viewManager.getContext())));
-                    }
-                }};
-                if(itemPresenterList.size() < COUNT_ITEM_LOAD)
+                List<Item> itemList = repo.getResponse().getItems();
+                if(itemList.size() < COUNT_ITEM_LOAD)
                     goodsIsFull = true;
-                adapter.addItemPresenters(itemPresenterList);
+                adapter.addModel(itemList);
                 view.stopTopProgressbar();
-                view.stopUnderProgressbar();
+                //view.stopUnderProgressbar();
                 onLoad = true;
             }
         };
