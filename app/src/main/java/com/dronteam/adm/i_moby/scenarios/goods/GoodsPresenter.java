@@ -44,6 +44,7 @@ public class GoodsPresenter implements ViewListener, Presenter {
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
+    private int NUMBER_START_LOAD;
     private boolean onLoad = false;
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String title, String query) {
@@ -67,7 +68,10 @@ public class GoodsPresenter implements ViewListener, Presenter {
         view.setOnScrollListener(new OnScrollViewListener() {
             @Override
             public void onScroll(int visiblePositin) {
-
+                if(adapter.getCount() - visiblePositin <= NUMBER_START_LOAD){
+                    adapter.addModel(new ArrayList<String>(){{add("");}});
+                    onScrollDown();
+                }
             }
         });
     }
