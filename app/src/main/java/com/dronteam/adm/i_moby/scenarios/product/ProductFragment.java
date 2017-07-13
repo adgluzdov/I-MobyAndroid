@@ -50,7 +50,7 @@ public class ProductFragment extends LinearLayout implements ProductView {
 
     @Override
     public void setPrice(Price price) {
-        ((TextView)findViewById(R.id.title)).setText(price.getText());
+        ((TextView)findViewById(R.id.price)).setText(price.getText());
     }
 
     @Override
