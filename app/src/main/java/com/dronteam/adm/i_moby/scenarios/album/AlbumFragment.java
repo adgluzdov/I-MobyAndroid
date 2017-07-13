@@ -33,12 +33,12 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
 
     @Override
     public void setImage(Bitmap image) {
-        ((ImageView)findViewById(R.id.image)).setImageBitmap(image);
+        ((ImageView)findViewById(R.id.background_image)).setImageBitmap(image);
     }
 
     @Override
     public void setImage(int resId) {
-        ((ImageView)findViewById(R.id.image)).setImageResource(R.drawable.img_pre);
+        ((ImageView)findViewById(R.id.background_image)).setImageResource(R.drawable.img_pre);
     }
 
     @Override
