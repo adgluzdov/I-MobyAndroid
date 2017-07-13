@@ -111,7 +111,7 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
         view.setPrice(product.getPrice());
         view.setCategoty(product.getCategory());
         view.setTitle(product.getTitle());
-        //view.setDescription(product.getDescription());
+        view.setDescription(product.getDescription());
         view.setDate(product.getDate());
         if(loadedImage != null)
             view.setImage(loadedImage);
