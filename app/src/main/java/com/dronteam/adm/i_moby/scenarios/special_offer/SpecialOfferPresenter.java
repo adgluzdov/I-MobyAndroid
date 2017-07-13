@@ -43,7 +43,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
         this.offer = offer;
         this.view = view;
         this.viewManager = viewManager;
-        view.setEditListener(edit());
     }
     @Override
     public SpecialOfferView getView() {
@@ -71,14 +70,12 @@ public class SpecialOfferPresenter implements ItemPresenter {
     @Override
     public void fill(){
         Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
-        view.setAdditionalInfo(offer.getAdditionalInfo());
-        view.setDiscount(offer.getDiscount());
-        view.setBonus(offer.getBonus());
         view.setTitle(offer.getItem().getTitle());
-        view.setPrice(offer.getItem().getPrice().getText());
+        view.setPrice(offer.getItem().getPrice());
+        view.setTags(offer.getTags());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setImage(R.mipmap.ic_launcher);
+            view.setPlaceHolder(R.mipmap.ic_launcher);
     }
 }
