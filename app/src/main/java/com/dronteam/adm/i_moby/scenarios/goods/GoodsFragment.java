@@ -53,9 +53,19 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int position = layoutManagerPhone.getItemCount() - layoutManagerPhone.getChildCount() - layoutManagerPhone.findFirstVisibleItemPosition();
-                listener.onScroll(dy,position);
+                listener.onScroll(dy);
             }
         });
+    }
+
+    @Override
+    public int getChildCount() {
+        return layoutManagerPhone.getChildCount();
+    }
+
+    @Override
+    public int findFirstVisibleItemPosition() {
+        return layoutManagerPhone.findFirstVisibleItemPosition();
     }
 
     @Override

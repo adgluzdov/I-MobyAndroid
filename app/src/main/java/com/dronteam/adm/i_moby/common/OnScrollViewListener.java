@@ -5,5 +5,5 @@ package com.dronteam.adm.i_moby.common;
  */
 
 public interface OnScrollViewListener {
-    void onScroll(int dx, int position);
+    void onScroll(int dx);
 }
