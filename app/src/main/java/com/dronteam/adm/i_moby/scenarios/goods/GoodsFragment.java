@@ -21,8 +21,7 @@ import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.with_searc
 
 public class GoodsFragment extends FragmentWithToolbarWithSearchView implements GoodsView {
 
-    OptionsMenuListener optionsMenuListener = null;
-
+    LinearLayoutManager layoutManagerPhone;
     @Override
     protected int getLayout() {
         return R.layout.goods2;
@@ -41,7 +40,7 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
     public void setList(RecyclerView.Adapter adapter, ViewManager viewManager) {
         RecyclerView mRecyclerView = (RecyclerView)getView(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManagerPhone = new LinearLayoutManager(viewManager.getContext());
+        layoutManagerPhone = new LinearLayoutManager(viewManager.getContext());
         mRecyclerView.setLayoutManager(layoutManagerPhone);
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);
     }
@@ -53,7 +52,8 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                listener.onScroll(dy);
+                int position = layoutManagerPhone.getItemCount() - layoutManagerPhone.getChildCount() - layoutManagerPhone.findFirstVisibleItemPosition();
+                listener.onScroll(dy,position);
             }
         });
     }
