@@ -2,6 +2,7 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
@@ -42,8 +43,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
         this.offer = offer;
         this.view = view;
         this.viewManager = viewManager;
-        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
-        view.setEditListener(edit());
     }
     @Override
     public SpecialOfferView getView() {
@@ -56,7 +55,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
 
     @Override
-    public int getItemId() {
+    public int getItemId_() {
         return offer.getItem().getId();
     }
 
@@ -70,15 +69,13 @@ public class SpecialOfferPresenter implements ItemPresenter {
     }
     @Override
     public void fill(){
-        this.offer = offer;
-        view.setAdditionalInfo(offer.getAdditionalInfo());
-        view.setDiscount(offer.getDiscount());
-        view.setBonus(offer.getBonus());
+        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
         view.setTitle(offer.getItem().getTitle());
-        view.setPrice(offer.getItem().getPrice().getText());
+        view.setPrice(offer.getItem().getPrice());
+        view.setTags(offer.getTags());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setImage(R.mipmap.ic_launcher);
+            view.setPlaceHolder(R.mipmap.ic_launcher);
     }
 }

@@ -61,7 +61,7 @@ public class CommonBaseAdapter extends BaseAdapter{
 
     @Override
     public long getItemId(int i) {
-        return itemPresenterList.get(i).getItemId();
+        return itemPresenterList.get(i).getItemId_();
     }
 
     @Override

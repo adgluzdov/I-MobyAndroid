@@ -15,7 +15,7 @@ import com.squareup.picasso.Target;
 /**
  * Created by adm on 14.11.2016.
  */
-public class ProductPresenter implements ItemPresenter<Item,ProductView> {
+public class ProductPresenter implements ItemPresenter {
     ProductView view;
     Item item;
     ViewManager viewManager;
@@ -41,7 +41,6 @@ public class ProductPresenter implements ItemPresenter<Item,ProductView> {
         this.item = item;
         this.viewManager = viewManager;
         this.view.setEditListener(edit());
-        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
     }
 
     private View.OnClickListener edit() {
@@ -55,12 +54,13 @@ public class ProductPresenter implements ItemPresenter<Item,ProductView> {
 
     @Override
     public void fill(){
+        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
+        view.setPrice(item.getPrice());
         view.setTitle(item.getTitle());
-        view.setPrice(item.getPrice().getText());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setImage(R.mipmap.ic_launcher);
+            view.setPlaceHolder(R.mipmap.ic_launcher);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ProductPresenter implements ItemPresenter<Item,ProductView> {
     }
 
     @Override
-    public int getItemId() {
+    public int getItemId_() {
         return item.getId();
     }
 
