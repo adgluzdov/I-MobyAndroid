@@ -24,8 +24,6 @@ public class ProductAdapter extends CommonRecyclerViewAdapter{
         ItemPresenter presenter = null;
         if(model.getClass() == Item.class)
             presenter = new ProductPresenter(getViewManager(),(Item) getModelList().get(position),new ProductFragment(getViewManager().getContext()));
-//        if(model.getClass() == String.class)
-//            presenter = new AllGoodsPresenter(new AllGoodsLinerLayout(getViewManager().getContext()),getViewManager());
         return presenter;
     }
 }
