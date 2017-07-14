@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ModelAdapter {
     void addListModel(List modelList);
-    void addModel(Object model);
+    void addModel(Object model, int position);
     void removeModel(int position);
     void removeAll();
     int getCount();

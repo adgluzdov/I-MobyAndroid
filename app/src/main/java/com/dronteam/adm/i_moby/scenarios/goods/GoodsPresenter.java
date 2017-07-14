@@ -38,9 +38,11 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
-    private int NUMBER_START_LOAD = 3;
+    private int NUMBER_START_LOAD = 0;
     private boolean loaded = false;
     private boolean loadingMore = false;
+    private int progressbarPosition;
+    private int countModelLoaded = 0;
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String title, String query) {
         this.viewManager = viewManager;
@@ -87,7 +89,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     }
 
     private void loadGoods() {
-        itemService.Search(searchQuery,albumId,adapter.getCount(),COUNT_ITEM_LOAD)
+        itemService.Search(searchQuery,albumId,countModelLoaded,COUNT_ITEM_LOAD)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onItemLoaded(), onError());
@@ -95,7 +97,8 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
 
     private void moreLoadGoods() {
         loadingMore = true;
-        // Добавляет Progressbar вниз.
+        progressbarPosition = adapter.getCount();
+        adapter.addModel("Progressbar",adapter.getCount());
         loadGoods();
     }
 
@@ -113,20 +116,22 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
             @Override
             public void call(final GetResponse repo) {
                 List<Item> itemList = repo.getResponse().getItems();
+                countModelLoaded += itemList.size();
                 if(itemList.size() < COUNT_ITEM_LOAD)
                     goodsIsFull = true;
 
+                if(loadingMore){
+                    loadingMore = false;
+                    adapter.removeModel(progressbarPosition);
+                }
                 if(itemList.size() == 0)
                     view.notifyNoGoods();
-                else
+                else{
                     adapter.addListModel(itemList);
+                }
 
                 view.stopTopProgressbar();
                 loaded = true;
-                if(loadingMore){
-                    loadingMore = false;
-                    //Убрать нижний прогресс бар
-                }
             }
         };
     }
