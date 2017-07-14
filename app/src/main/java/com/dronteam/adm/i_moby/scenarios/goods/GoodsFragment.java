@@ -46,14 +46,18 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
     }
 
     @Override
+    public void notifyNoGoods() {
+
+    }
+
+    @Override
     public void setOnScrollListener(final OnScrollViewListener listener) {
         RecyclerView mRecyclerView = (RecyclerView)getView(R.id.recyclerView);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int position = layoutManagerPhone.getItemCount() - layoutManagerPhone.getChildCount() - layoutManagerPhone.findFirstVisibleItemPosition();
-                listener.onScroll(dy);
+                 listener.onScroll(dy);
             }
         });
     }

@@ -18,6 +18,7 @@ import com.dronteam.adm.i_moby.common.progressbar.UnderProgressbarView;
 
 public interface GoodsView extends CommonView,TopProgressbarView,ViewWithToolbarWithSearchView {
     void setList(RecyclerView.Adapter adapter, ViewManager viewManager);
+    void notifyNoGoods();
     void setOnScrollListener(OnScrollViewListener listener);
     int getChildCount();
     int findFirstVisibleItemPosition();

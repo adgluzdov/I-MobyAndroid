@@ -38,7 +38,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
-    private int NUMBER_START_LOAD;
+    private int NUMBER_START_LOAD = 3;
     private boolean loaded = false;
     private boolean loadingMore = false;
 
@@ -63,11 +63,12 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
         view.setList(adapter.getViewAdapter(),viewManager);
         view.setOnScrollListener(new OnScrollViewListener() {
             @Override
-            public void onScroll(int visiblePosition) {
+            public void onScroll(int dx) {
                 if(!loadingMore)
-                    if(!goodsIsFull)
-                        if(adapter.getCount() - visiblePosition <= NUMBER_START_LOAD)
-                            moreLoadGoods();
+                    if(loaded)
+                        if(!goodsIsFull)
+                            if(adapter.getCount() - view.findFirstVisibleItemPosition() - view.getChildCount() <= NUMBER_START_LOAD)
+                                moreLoadGoods();
             }
         });
     }
@@ -76,7 +77,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
         loadingMore = false;
         goodsIsFull = false;
         loaded = false;
-        //adapter.clear();
+        adapter.removeAll();
         startLoadGoods();
     }
 
@@ -114,7 +115,12 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                 List<Item> itemList = repo.getResponse().getItems();
                 if(itemList.size() < COUNT_ITEM_LOAD)
                     goodsIsFull = true;
-                adapter.addModel(itemList);
+
+                if(itemList.size() == 0)
+                    view.notifyNoGoods();
+                else
+                    adapter.addListModel(itemList);
+
                 view.stopTopProgressbar();
                 loaded = true;
                 if(loadingMore){
