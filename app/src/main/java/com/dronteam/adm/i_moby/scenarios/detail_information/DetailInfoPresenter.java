@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
@@ -64,6 +65,7 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     @Override
     public void OnCreateView() {
         Picasso.with(viewManager.getContext()).load(product.getThumb_photo()).into(target);
+        view.setTitle();
         fill();
         view.setEditListener(edit());
     }
@@ -72,11 +74,13 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isSend)
-                    itemService.MessegesSend("Хочу эту штуку.", "market"+product.getOwner_id()+"_"+product.getId(),String.valueOf(random_id))
+                if(!isSend){
+                    String attachment = "market"+product.getOwner_id()+"_"+product.getId();
+                    itemService.MessegesSend(Item.MESSEGE_ORDER,attachment,String.valueOf(random_id))
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.newThread())
                             .subscribe(onMessegesSend(), onError());
+                }
                 else
                     view.informingMessageAlreadySent(viewManager.getContext());
             }
@@ -104,15 +108,15 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     }
 
     private void fill() {
-        view.setCategoryName(product.getCategory().getName());
+        view.setPrice(product.getPrice());
+        view.setCategoty(product.getCategory());
+        view.setTitle(product.getTitle());
         view.setDescription(product.getDescription());
-        view.setCategorySection(product.getCategory().getSection().getName());
-        view.setDate(String.valueOf(new Date(product.getDate())));
-        view.setPrice(product.getPrice().getText());
+        view.setDate(product.getDate());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setBlankImage();
+            view.setPlaceHolder(R.mipmap.ic_launcher);
     }
 
     @Override
