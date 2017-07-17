@@ -130,66 +130,74 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/payment_outer"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_marginTop="56dp"
-        android:gravity="right"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
-
-        <View
-            android:id="@+id/payment_shadow"
+        <LinearLayout
+            android:id="@+id/payment_outer"
             android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_marginBottom="-2dp"
-            android:alpha="0.3"
-            android:background="@drawable/dropshadow_bottom" />
+            android:layout_height="68dp"
+            android:layout_marginTop="56dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            android:translationY="68dp">
 
-        <RelativeLayout
-            android:id="@+id/payment"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginBottom="-51dp"
-            android:background="#fff"
-            android:paddingBottom="8dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="8dp">
 
-            <TextView
-                android:id="@+id/price"
+            <View
+                android:id="@+id/payment_shadow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="145dp"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:text="120 руб"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#444444"
-                android:textSize="22sp" />
+                android:layout_height="6dp"
+                android:layout_marginBottom="-2dp"
+                android:alpha="0.3"
+                android:background="@drawable/dropshadow_bottom" />
 
             <RelativeLayout
-                android:layout_width="130dp"
-                android:layout_height="48dp"
-                android:layout_alignParentRight="true">
+                android:id="@+id/payment"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginBottom="-51dp"
+                android:background="#fff"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
 
-                <Button
-                    android:id="@+id/pay"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="145dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="120 руб"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#444444"
+                    android:textSize="22sp" />
+
+                <RelativeLayout
+                    android:layout_width="130dp"
                     android:layout_height="48dp"
-                    android:layout_alignParentRight="true"
-                    android:text="Купить"
-                    android:textColor="#fff"
-                    android:textSize="14dp"
-                    android:theme="@style/MyButton"
-                    android:visibility="visible" />
+                    android:layout_alignParentRight="true">
+
+                    <Button
+                        android:id="@+id/pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_alignParentRight="true"
+                        android:text="Купить"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:theme="@style/MyButton"
+                        android:visibility="visible" />
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="4dp"

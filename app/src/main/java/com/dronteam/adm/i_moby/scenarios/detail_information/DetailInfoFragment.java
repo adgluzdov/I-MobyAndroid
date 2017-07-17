@@ -6,9 +6,6 @@ import android.graphics.Bitmap;
 import java.text.SimpleDateFormat;
 
 import android.os.Bundle;
-import android.support.v4.app.SupportActivity;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +17,11 @@ import android.widget.Toast;
 
 import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.ScreenInfo;
-import com.dronteam.adm.i_moby.common.fragment.MainFragment;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.FragmentWithToolbar;
-import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.with_search_view.FragmentWithToolbarWithSearchView;
 import com.dronteam.adm.i_moby.model.product.Category;
 import com.dronteam.adm.i_moby.model.product.Price;
 
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by adm on 27.04.2017.
@@ -36,35 +30,29 @@ import java.util.TimeZone;
 public class DetailInfoFragment extends FragmentWithToolbar implements DetailInfoView {
     Toast toast = null;
     boolean IS_CONTENT_DRAWN = false;
+    LinearLayout payment_outer;
+    ViewTreeObserver obs;
+    int payment_outer_height;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         IS_CONTENT_DRAWN = false;
         View view = super.onCreateView(inflater,container,savedInstanceState);
-        final LinearLayout payment_outer = (LinearLayout)getView(R.id.payment_outer);
-        payment_outer.setVisibility(View.GONE);
+        payment_outer = (LinearLayout)getView(R.id.payment_outer);
         payment_outer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
-        final ViewGroup.MarginLayoutParams parms =
-                (ViewGroup.MarginLayoutParams)getView(R.id.payment_outer).getLayoutParams();
-        final View outer = getView(R.id.coordinator);
-        final ViewTreeObserver obs = outer.getViewTreeObserver();
+        payment_outer_height = (int)(ScreenInfo.density(getActivity())*68);
+        obs = getView(R.id.coordinator).getViewTreeObserver();
         obs.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw () {
                 if(!IS_CONTENT_DRAWN) {
                     IS_CONTENT_DRAWN = true;
-                    int animation_delta = (int)(ScreenInfo.density(getActivity())*68);
-                    int height = outer.getHeight();
-                    parms.setMargins(0, height-animation_delta, 0, 0);
-                    payment_outer.setLayoutParams(parms);
-                    payment_outer.setTranslationY(animation_delta);
-                    payment_outer.setVisibility(View.VISIBLE);
                     ObjectAnimator transAnimation= ObjectAnimator.ofFloat(payment_outer, "translationY",
-                            animation_delta,0);
+                            payment_outer_height,0);
                     transAnimation.setStartDelay(300);
                     transAnimation.setDuration(500);
                     transAnimation.start();
