@@ -1,25 +1,19 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
-import android.util.Log;
-
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
 import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
-import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
-import com.dronteam.adm.i_moby.model.special_offer.Tags;
 import com.dronteam.adm.i_moby.scenarios.special_offer.SpecialOfferAdapter;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -104,7 +98,7 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
                 if(itemList.size() == 0)
                     view.notifyNoGoods();
                 else
-                    adapter.addModel(itemList);
+                    adapter.addListModel(itemList);
                 onLoad = true;
                 view.stopTopProgressbar();
             }

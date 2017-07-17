@@ -32,7 +32,7 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
 
     @Override
-    public void addModel(List modelList) {
+    public void addListModel(List modelList) {
         for (Object model : modelList) {
             this.modelList.add(model);
         }
@@ -40,8 +40,22 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
     }
 
     @Override
+    public void addModel(Object model) {
+        modelList.add(model);
+        notifyItemInserted(getCount());
+    }
+
+    @Override
     public void removeModel(int position) {
         modelList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public void removeAll() {
+        int range = modelList.size();
+        modelList.clear();
+        this.notifyItemRangeRemoved(0, range);
     }
 
     @Override

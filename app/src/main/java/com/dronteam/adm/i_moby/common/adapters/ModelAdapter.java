@@ -9,8 +9,10 @@ import java.util.List;
  */
 
 public interface ModelAdapter {
-    void addModel(List modelList);
+    void addListModel(List modelList);
+    void addModel(Object model);
     void removeModel(int position);
-    RecyclerView.Adapter getViewAdapter();
+    void removeAll();
     int getCount();
+    RecyclerView.Adapter getViewAdapter();
 }

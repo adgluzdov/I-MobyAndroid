@@ -1,23 +1,15 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
-import com.dronteam.adm.i_moby.UIFactory;
-import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
-import com.dronteam.adm.i_moby.common.adapters.base_adapter.CommonBaseAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
-import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.model.album.Item;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumAdapter;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -83,7 +75,7 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
             public void call(List<Item> itemList) {
                 onLoad = true;
                 adapter = new AlbumAdapter(viewManager);
-                adapter.addModel(itemList);
+                adapter.addListModel(itemList);
                 view.setList(adapter.getViewAdapter(),viewManager.getContext());
                 view.stopTopProgressbar();
             }
