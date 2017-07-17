@@ -57,7 +57,7 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
         }
         else {
             COLUMNS_COUNT = 2;
-            layoutManagerPhone = new GridLayoutManager(context, 2);
+            layoutManagerTablet = new GridLayoutManager(context, 2);
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);

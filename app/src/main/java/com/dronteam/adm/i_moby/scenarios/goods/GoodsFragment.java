@@ -68,7 +68,7 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
         }
         else {
             COLUMNS_COUNT = 2;
-            layoutManagerPhone = new GridLayoutManager(viewManager.getContext(), 2);
+            layoutManagerTablet = new GridLayoutManager(viewManager.getContext(), 2);
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);
