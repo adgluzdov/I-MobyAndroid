@@ -59,16 +59,16 @@
                 android:paddingBottom="20dp">
 
                 <TextView
+                    android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Абрикосы"
-                    android:id="@+id/title"
-                    android:textColor="#444444"
-                    android:textSize="24sp"
                     android:paddingBottom="16dp"
                     android:paddingLeft="24dp"
-                    android:paddingRight="24dp" />
+                    android:paddingRight="24dp"
+                    android:text="Абрикосы"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#212121"
+                    android:textSize="24sp" />
 
                 <LinearLayout
                     android:id="@+id/cat_layout"

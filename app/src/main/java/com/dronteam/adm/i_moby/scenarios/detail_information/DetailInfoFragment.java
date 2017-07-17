@@ -75,7 +75,7 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
 
     @Override
     public void setCategoty(Category category) {
-        ((TextView)getView(R.id.cat)).setText("Категория: "+category.getSection().getName()+" / "+category.getName());
+        ((TextView)getView(R.id.cat)).setText(category.getSection().getName()+" / "+category.getName());
     }
 
     @Override

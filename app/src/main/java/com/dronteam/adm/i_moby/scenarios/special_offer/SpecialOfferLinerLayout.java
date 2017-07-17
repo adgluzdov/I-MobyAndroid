@@ -25,7 +25,7 @@ public class SpecialOfferLinerLayout extends LinearLayout implements SpecialOffe
     public SpecialOfferLinerLayout(Context context) {
         super(context);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_special_offer, this);
+        View view = inflater.inflate(R.layout.item_special_offer2, this);
         view.setLayoutParams(new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)

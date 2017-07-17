@@ -6,4 +6,5 @@
     <dimen name="item_album_corner_radius">0dp</dimen>
     <dimen name="item_album_margin">0dp</dimen>
     <dimen name="item_product_margin">0dp</dimen>
+    <dimen name="item_product_corner_radius">0dp</dimen>
 </resources>

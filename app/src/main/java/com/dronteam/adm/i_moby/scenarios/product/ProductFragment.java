@@ -25,7 +25,7 @@ public class ProductFragment extends LinearLayout implements ProductView {
     public ProductFragment(Context context) {
         super(context);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_product, this);
+        View view = inflater.inflate(R.layout.item_product2, this);
         view.setLayoutParams(new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)

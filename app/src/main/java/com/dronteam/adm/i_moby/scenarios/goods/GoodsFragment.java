@@ -62,13 +62,13 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
     public void setList(RecyclerView.Adapter adapter, ViewManager viewManager) {
         mRecyclerView.setHasFixedSize(true);
         if(ScreenInfo.sizes(viewManager.getContext()).x<600) {
-            COLUMNS_COUNT = 1;
-            layoutManagerPhone = new LinearLayoutManager(viewManager.getContext());
-            mRecyclerView.setLayoutManager(layoutManagerPhone);
-        }
-        else {
             COLUMNS_COUNT = 2;
             layoutManagerTablet = new GridLayoutManager(viewManager.getContext(), 2);
+            mRecyclerView.setLayoutManager(layoutManagerTablet);
+        }
+        else {
+            COLUMNS_COUNT = 3;
+            layoutManagerTablet = new GridLayoutManager(viewManager.getContext(), 3);
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);
