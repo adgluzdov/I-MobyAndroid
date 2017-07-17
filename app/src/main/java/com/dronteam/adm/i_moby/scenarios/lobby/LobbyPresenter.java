@@ -42,11 +42,11 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
             adapter = new LobbyPagerAdapter(view.getChildFragmentManager(),presenterList);
         }
         view.setFragmentStatePagerAdapter(adapter);
+        view.setToolbarTitle("Главная");
     }
 
     @Override
     public void onCreateOptionsMenu() {
-        view.setToolbarTitle("Главная");
         view.setOnSubmit(new CallBack2<String>() {
             @Override
             public void call(String params) {

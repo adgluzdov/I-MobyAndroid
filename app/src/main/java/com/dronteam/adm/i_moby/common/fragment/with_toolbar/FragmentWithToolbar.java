@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.common.fragment.with_toolbar;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -26,10 +27,14 @@ public abstract class FragmentWithToolbar extends MainFragment implements ViewWi
         return (Toolbar) getView(getIdToolbar());
     }
 
+    protected ActionBar getActionBar(){
+        return ((AppCompatActivity)getActivity()).getSupportActionBar();
+    }
+
     protected abstract int getIdToolbar();
 
     @Override
     public void setToolbarTitle(String string) {
-        getToolbar().setTitle(string);
+        getActionBar().setTitle(string);
     }
 }
