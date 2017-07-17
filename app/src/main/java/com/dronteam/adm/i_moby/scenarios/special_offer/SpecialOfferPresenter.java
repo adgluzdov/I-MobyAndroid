@@ -43,6 +43,7 @@ public class SpecialOfferPresenter implements ItemPresenter {
         this.offer = offer;
         this.view = view;
         this.viewManager = viewManager;
+        this.view.setEditListener(edit());
     }
     @Override
     public SpecialOfferView getView() {
