@@ -53,7 +53,7 @@ public class UIFactory {
     }
 
     public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {
-        if (detailInfoView == null) detailInfoView = new DetailInfoFragment();
+        detailInfoView = new DetailInfoFragment();
         return  new DetailInfoPresenter(viewManager, product, detailInfoView);
     }
 

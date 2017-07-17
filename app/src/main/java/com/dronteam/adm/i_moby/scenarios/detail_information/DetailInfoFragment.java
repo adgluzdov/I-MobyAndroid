@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import java.text.SimpleDateFormat;
 
 import android.os.Bundle;
+import android.support.v4.app.SupportActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
     boolean IS_CONTENT_DRAWN = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        IS_CONTENT_DRAWN = false;
         View view = super.onCreateView(inflater,container,savedInstanceState);
         final LinearLayout payment_outer = (LinearLayout)getView(R.id.payment_outer);
         payment_outer.setVisibility(View.GONE);
@@ -53,9 +55,9 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
         obs.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw () {
-                int animation_delta = (int)(ScreenInfo.density(getContext())*68);
                 if(!IS_CONTENT_DRAWN) {
                     IS_CONTENT_DRAWN = true;
+                    int animation_delta = (int)(ScreenInfo.density(getActivity())*68);
                     int height = outer.getHeight();
                     parms.setMargins(0, height-animation_delta, 0, 0);
                     payment_outer.setLayoutParams(parms);
@@ -85,7 +87,7 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
 
     @Override
     public void setCategoty(Category category) {
-        ((TextView)getView(R.id.price)).setText(category.getSection()+" / "+category.getName());
+        ((TextView)getView(R.id.cat)).setText("Категория: "+category.getSection().getName()+" / "+category.getName());
     }
 
     @Override
@@ -98,12 +100,12 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(unixSeconds*1000L);
         String formattedDate = dateFormat.format(date);
-        ((TextView)getView(R.id.date)).setText(formattedDate);
+        ((TextView)getView(R.id.date)).setText("Добавлено: "+formattedDate);
     }
 
     @Override
     public void setPrice(Price price) {
-        ((TextView)getView().findViewById(R.id.price)).setText(price.getText());
+        ((TextView)getView(R.id.price)).setText(price.getText());
     }
 
     @Override
