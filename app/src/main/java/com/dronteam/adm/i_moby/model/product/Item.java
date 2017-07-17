@@ -2,6 +2,7 @@
 package com.dronteam.adm.i_moby.model.product;
 
 public class Item {
+    public static String MESSEGE_ORDER;
 
     public Integer id;
     public Integer owner_id;
