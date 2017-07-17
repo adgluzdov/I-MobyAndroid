@@ -50,6 +50,7 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
     public void removeModel(int position) {
         modelList.remove(position);
         notifyItemRemoved(position);
+        notifyItemRangeChanged(position,getCount());
     }
 
     @Override

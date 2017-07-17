@@ -38,7 +38,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     private String albumId;
     private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
-    private int NUMBER_START_LOAD = 0;
+    private int NUMBER_START_LOAD = 3;
     private boolean loaded = false;
     private boolean loadingMore = false;
     private int progressbarPosition;
