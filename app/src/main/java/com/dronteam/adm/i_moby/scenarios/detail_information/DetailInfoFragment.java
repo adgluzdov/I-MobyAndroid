@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import java.text.SimpleDateFormat;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
                 return true;
             }
         });
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return view;
     }
 
