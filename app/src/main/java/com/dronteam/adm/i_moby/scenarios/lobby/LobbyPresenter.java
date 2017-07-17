@@ -1,10 +1,5 @@
 package com.dronteam.adm.i_moby.scenarios.lobby;
 
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack2;
 import com.dronteam.adm.i_moby.common.CommonView;
@@ -40,7 +35,6 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
 
     @Override
     public void OnCreateView() {
-        view.setTitle();
         if(adapter == null){
             List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
             presenterList.add((ItemPresenter)UIFactory.ShowCase(viewManager));
@@ -52,6 +46,7 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
 
     @Override
     public void onCreateOptionsMenu() {
+        view.setToolbarTitle("Главная");
         view.setOnSubmit(new CallBack2<String>() {
             @Override
             public void call(String params) {

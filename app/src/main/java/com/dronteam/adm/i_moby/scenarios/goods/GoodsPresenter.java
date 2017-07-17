@@ -143,6 +143,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
 
     @Override
     public void onCreateOptionsMenu() {
+        view.setToolbarTitle(title);
         view.setOnSubmit(new CallBack2<String>() {
             @Override
             public void call(String query) {

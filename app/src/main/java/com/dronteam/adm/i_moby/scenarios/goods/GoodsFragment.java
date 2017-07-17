@@ -118,11 +118,6 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
     }
 
     @Override
-    public String getTitle() {
-        return "Товары";
-    }
-
-    @Override
     protected int getMenuXml() {
         return R.menu.search_menu;
     }
