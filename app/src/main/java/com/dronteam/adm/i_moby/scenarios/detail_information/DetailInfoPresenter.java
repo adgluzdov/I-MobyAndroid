@@ -65,9 +65,9 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     @Override
     public void OnCreateView() {
         Picasso.with(viewManager.getContext()).load(product.getThumb_photo()).into(target);
-        view.setTitle();
         fill();
         view.setEditListener(edit());
+        view.setTitle("Товар");
     }
 
     private View.OnClickListener edit(){
