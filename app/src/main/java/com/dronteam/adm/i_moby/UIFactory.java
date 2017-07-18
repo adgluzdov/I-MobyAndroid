@@ -37,14 +37,14 @@ public class UIFactory {
         return  new ShowCasePresenter(viewManager, showCaseView);
     }
 
-    public static Presenter GoodsPresenter(ViewManager viewManager,String albumId,String albumName) {
+    public static Presenter GoodsPresenter(ViewManager viewManager, com.dronteam.adm.i_moby.model.album.Item album) {
         if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView, albumId,albumName,QUERY_ALL);
+        return  new GoodsPresenter(viewManager, goodsView, album,QUERY_ALL);
     }
 
-    public static Presenter SearchGoodsPresenter(ViewManager viewManager,String albumId,String query) {
+    public static Presenter SearchGoodsPresenter(ViewManager viewManager, com.dronteam.adm.i_moby.model.album.Item album, String query) {
         if (searchGoodsView == null) searchGoodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, searchGoodsView, albumId,"Поиск",query);
+        return  new GoodsPresenter(viewManager, searchGoodsView,album,query);
     }
 
     public static Presenter CatalogPresenter(ViewManager viewManager) {

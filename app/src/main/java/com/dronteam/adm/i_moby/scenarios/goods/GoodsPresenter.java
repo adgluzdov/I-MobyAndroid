@@ -1,7 +1,9 @@
 package com.dronteam.adm.i_moby.scenarios.goods;
 
+import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.CallBack2;
 import com.dronteam.adm.i_moby.common.OnScrollViewListener;
+import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.Presenter;
@@ -15,6 +17,7 @@ import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.scenarios.product.ProductAdapter;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -36,21 +39,27 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     private ServiceFactory serviceFactory;
     private ModelAdapter adapter;
     private String albumId;
-    private boolean goodsIsFull = false;
     private String searchQuery = QUERY_ALL;
     private int NUMBER_START_LOAD = 3;
-    private boolean loaded = false;
-    private boolean loadingMore = false;
-    private int progressbarPosition;
-    private int countModelLoaded = 0;
 
-    public GoodsPresenter(ViewManager viewManager, GoodsView view, String albumId, String title, String query) {
+    private int offset = 0;
+    private int count = COUNT_ITEM_LOAD;
+    private boolean goodsIsFull = false;
+
+    private boolean startLoad = false;
+    private boolean finishLoad = false;
+
+    private boolean startLoadMore = false;
+    private boolean finishLoadMore = false;
+    private int progressbarPosition;
+
+    public GoodsPresenter(ViewManager viewManager, GoodsView view, com.dronteam.adm.i_moby.model.album.Item album, String query) {
         this.viewManager = viewManager;
         serviceFactory = viewManager.getServiceFactory();
         itemService = serviceFactory.getApi(ItemService.class);
-        this.title = title;
+        this.title = album.getTitle();
         this.view = view;
-        this.albumId = albumId;
+        this.albumId = album.getId().toString();
         this.searchQuery = query;
         this.adapter = new ProductAdapter(viewManager);
         view.setOnCreateOptionsMenu(this);
@@ -59,50 +68,61 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
 
     @Override
     public void OnCreateView() {
-        if(!loaded){
-            startLoadGoods();
-        }
         view.setList(adapter.getViewAdapter(),viewManager);
+        getList();
         view.setOnScrollListener(new OnScrollViewListener() {
             @Override
             public void onScroll(int dx) {
-                if(!loadingMore)
-                    if(loaded)
-                        if(!goodsIsFull)
-                            if(adapter.getCount() - view.findFirstVisibleItemPosition() - view.getChildCount() <= NUMBER_START_LOAD)
-                                moreLoadGoods();
+                if(!startLoadMore && finishLoad && !goodsIsFull)
+                    if(adapter.getCount() - view.findFirstVisibleItemPosition() - view.getChildCount() <= NUMBER_START_LOAD){
+                        startLoadMore();
+                    }
             }
         });
     }
+    private void getList(){
+        if(!startLoad && !finishLoad && !goodsIsFull){
+            startLoadGoods();
+        }
+    }
 
-    private void refresh(){
-        loadingMore = false;
-        goodsIsFull = false;
-        loaded = false;
-        adapter.removeAll();
-        startLoadGoods();
+    private void startLoadMore() {
+        startLoadMore = true;
+        progressbarPosition = adapter.getCount();
+        adapter.addModel("ProgressBar",progressbarPosition);
+        loadGoods();
+    }
+
+    private void finishLoadMoreGoods(List<Item> itemList) {
+        adapter.removeModel(progressbarPosition);
+        adapter.addListModel(itemList);
+        if(itemList.size() == 0) view.notifyNoGoods();
+        startLoadMore = false;
+        finishLoadMore = true;
     }
 
     private void startLoadGoods() {
+        startLoad = true;
         view.startTopProgressbar();
         loadGoods();
     }
 
+    private void finishLoadGoods(List<Item> itemList){
+        view.stopTopProgressbar();
+        if(itemList.size() == 0) view.notifyNoGoods();
+        adapter.addListModel(itemList);
+        finishLoad = true;
+        startLoad = false;
+    }
+
     private void loadGoods() {
-        itemService.Search(searchQuery,albumId,countModelLoaded,COUNT_ITEM_LOAD)
+        itemService.Search(searchQuery,albumId,offset,count)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(onItemLoaded(), onError());
     }
 
-    private void moreLoadGoods() {
-        loadingMore = true;
-        progressbarPosition = adapter.getCount();
-        adapter.addModel("Progressbar",adapter.getCount());
-        loadGoods();
-    }
-
-        private Action1<Throwable> onError() {
+    private Action1<Throwable> onError() {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
@@ -116,22 +136,13 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
             @Override
             public void call(final GetResponse repo) {
                 List<Item> itemList = repo.getResponse().getItems();
-                countModelLoaded += itemList.size();
-                if(itemList.size() < COUNT_ITEM_LOAD)
-                    goodsIsFull = true;
-
-                if(loadingMore){
-                    loadingMore = false;
-                    adapter.removeModel(progressbarPosition);
-                }
-                if(itemList.size() == 0)
-                    view.notifyNoGoods();
-                else{
-                    adapter.addListModel(itemList);
-                }
-
-                view.stopTopProgressbar();
-                loaded = true;
+                offset += itemList.size();
+                goodsIsFull = (itemList.size() < COUNT_ITEM_LOAD);
+                if(startLoad)
+                    finishLoadGoods(itemList);
+                if(startLoadMore)
+                    finishLoadMoreGoods(itemList);
+                adapter = adapter;
             }
         };
     }
@@ -148,8 +159,31 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
             @Override
             public void call(String query) {
                 searchQuery = query;
-                refresh();
+                reset();
+                adapter.removeAll();
+                getList();
             }
         });
+        view.setOnClose(new CallBack() {
+            @Override
+            public void call() {
+                searchQuery = QUERY_ALL;
+                reset();
+                adapter.removeAll();
+                getList();
+            }
+        });
+    }
+
+    private void reset() {
+        offset = 0;
+        count = COUNT_ITEM_LOAD;
+        goodsIsFull = false;
+
+        startLoad = false;
+        finishLoad = false;
+
+        startLoadMore = false;
+        finishLoadMore = false;
     }
 }

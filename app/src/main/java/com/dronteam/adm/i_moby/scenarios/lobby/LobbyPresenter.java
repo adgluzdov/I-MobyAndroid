@@ -8,6 +8,7 @@ import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.OptionsMenuListener;
+import com.dronteam.adm.i_moby.model.album.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,8 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
     public void onCreateOptionsMenu() {
         view.setOnSubmit(new CallBack2<String>() {
             @Override
-            public void call(String params) {
-                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager,"0",params));
+            public void call(String query) {
+                viewManager.show(UIFactory.SearchGoodsPresenter(viewManager,Item.ALL_GOODS,query));
             }
         });
     }

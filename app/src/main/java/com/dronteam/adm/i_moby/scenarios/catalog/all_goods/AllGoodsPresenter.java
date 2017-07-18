@@ -6,6 +6,7 @@ import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
 import com.dronteam.adm.i_moby.common.adapters.ItemView;
+import com.dronteam.adm.i_moby.model.album.Item;
 
 /**
  * Created by adm on 12.07.2017.
@@ -21,7 +22,7 @@ public class AllGoodsPresenter implements ItemPresenter {
         view.setOnButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewManager.show(UIFactory.GoodsPresenter(viewManager,"0","Все товары"));
+                viewManager.show(UIFactory.GoodsPresenter(viewManager, Item.ALL_GOODS));
             }
         });
     }

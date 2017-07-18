@@ -10,6 +10,7 @@ public class Item {
     public Integer count;
     public Integer updated_time;
     public Photo photo;
+    public static Item ALL_GOODS = new Item(0,null,"Все товары",null,null,null);
 
     public Integer getId() {
         return id;
