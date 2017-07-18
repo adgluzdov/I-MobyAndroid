@@ -3,6 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
@@ -73,23 +74,37 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:orientation="vertical">
 
-            <ImageView
+            <android.support.design.widget.FloatingActionButton
                 android:id="@+id/sale"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginBottom="10dp"
-                android:alpha="0.7"
-                android:src="@drawable/sale" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="1"
+                android:clipChildren="false"
+                android:layout_marginBottom="-10dp"
+                android:clickable="false"
+                android:scaleType="centerCrop"
+                android:scaleX="0.64"
+                android:scaleY="0.64"
+                android:src="@drawable/sale2"
+                app:backgroundTint="@color/colorPrimary"
+                app:elevation="8dp" />
 
-            <ImageView
+            <android.support.design.widget.FloatingActionButton
                 android:id="@+id/hit"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:alpha="0.7"
-                android:src="@drawable/hit" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="1"
+                android:clipChildren="false"
+                android:clickable="false"
+                android:scaleType="centerCrop"
+                android:scaleX="0.64"
+                android:scaleY="0.64"
+                android:src="@drawable/hit3"
+                app:backgroundTint="@color/colorPrimary"
+                app:elevation="8dp" />
+
         </LinearLayout>
 
 
