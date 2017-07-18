@@ -76,34 +76,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.design.widget.FloatingActionButton
+            <RelativeLayout
                 android:id="@+id/sale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:clipChildren="false"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:layout_marginBottom="-10dp"
-                android:clickable="false"
-                android:scaleType="centerCrop"
-                android:scaleX="0.64"
-                android:scaleY="0.64"
-                android:src="@drawable/sale2"
-                app:backgroundTint="@color/colorPrimary"
-                app:elevation="8dp" />
+                android:gravity="center">
 
-            <android.support.design.widget.FloatingActionButton
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/tag_background"
+                    android:backgroundTint="@color/sale_color"
+                    android:elevation="5dp"
+                    android:padding="9dp"
+                    android:src="@drawable/sale2" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/hit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:clipChildren="false"
-                android:clickable="false"
-                android:scaleType="centerCrop"
-                android:scaleX="0.64"
-                android:scaleY="0.64"
-                android:src="@drawable/hit3"
-                app:backgroundTint="@color/colorPrimary"
-                app:elevation="8dp" />
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/tag_background"
+                    android:backgroundTint="@color/hit_color"
+                    android:elevation="5dp"
+                    android:padding="9dp"
+                    android:src="@drawable/hit3" />
+            </RelativeLayout>
 
         </LinearLayout>
 
