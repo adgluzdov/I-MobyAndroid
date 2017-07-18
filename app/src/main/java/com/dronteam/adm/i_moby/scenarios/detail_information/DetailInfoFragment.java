@@ -87,7 +87,7 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
 
     @Override
     public void setDate(Integer unixSeconds) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy");
         Date date = new Date(unixSeconds*1000L);
         String formattedDate = dateFormat.format(date);
         ((TextView)getView(R.id.date)).setText("Добавлено: "+formattedDate);
