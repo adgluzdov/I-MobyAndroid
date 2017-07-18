@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
     public void show(Presenter presenter) {
         if (presenter == null) return;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.replace(R.id.main_content, presenter.getView().getFragment(), "");
         transaction.addToBackStack(presenter.getView().getFragment().toString());
         transaction.commitAllowingStateLoss();
