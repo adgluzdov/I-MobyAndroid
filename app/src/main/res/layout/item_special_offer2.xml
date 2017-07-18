@@ -84,7 +84,8 @@
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginBottom="-10dp"
-                android:gravity="center">
+                android:gravity="center"
+                style="@style/tag">
 
                 <ImageView
                     android:layout_width="36dp"
@@ -100,7 +101,8 @@
                 android:id="@+id/hit"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:gravity="center">
+                android:gravity="center"
+                style="@style/tag">
 
                 <ImageView
                     android:layout_width="36dp"
