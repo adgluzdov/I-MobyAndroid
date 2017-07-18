@@ -20,6 +20,12 @@ public abstract class FragmentWithToolbar extends MainFragment implements ViewWi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
         ((AppCompatActivity)getActivity()).setSupportActionBar(getToolbar());
+        getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (getActivity()).onBackPressed();
+            }
+        });
         return view;
     }
 
