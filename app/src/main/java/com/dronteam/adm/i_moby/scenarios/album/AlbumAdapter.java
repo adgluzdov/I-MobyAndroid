@@ -21,13 +21,13 @@ public class AlbumAdapter extends CommonRecyclerViewAdapter {
     }
 
     @Override
-    public ItemPresenter createItemPresenter(int position, ViewGroup parent) {
+    public ItemPresenter createItemPresenter(int position) {
         ItemPresenter presenter = null;
         Object model = getModelList().get(position);
         if(model.getClass() == String.class)
             presenter = new AllGoodsPresenter(new AllGoodsLinerLayout(getViewManager().getContext()),getViewManager());
         if(model.getClass() == Item.class)
-            presenter = new AlbumPresenter(getViewManager(), (Item)model,new AlbumFragment(getViewManager().getContext(),parent));
+            presenter = new AlbumPresenter(getViewManager(), (Item)model,new AlbumFragment(getViewManager().getContext()));
         return presenter;
     }
 }

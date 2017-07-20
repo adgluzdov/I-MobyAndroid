@@ -22,7 +22,7 @@ public class SpecialOfferAdapter extends CommonRecyclerViewAdapter {
     }
 
     @Override
-    public ItemPresenter createItemPresenter(int position,ViewGroup parent) {
+    public ItemPresenter createItemPresenter(int position) {
         return new SpecialOfferPresenter(getViewManager(),(SpecialOffer) getModelList().get(position),new SpecialOfferLinerLayout(getViewManager().getContext()));
     }
 }
