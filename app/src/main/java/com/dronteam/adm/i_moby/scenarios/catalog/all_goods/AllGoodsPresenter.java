@@ -36,14 +36,4 @@ public class AllGoodsPresenter implements ItemPresenter {
     public ItemView getView() {
         return view;
     }
-
-    @Override
-    public Object getItem() {
-        return null;
-    }
-
-    @Override
-    public int getItemId_() {
-        return 0;
-    }
 }

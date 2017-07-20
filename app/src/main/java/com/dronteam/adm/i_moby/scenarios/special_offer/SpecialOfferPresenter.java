@@ -50,16 +50,6 @@ public class SpecialOfferPresenter implements ItemPresenter {
         return view;
     }
 
-    @Override
-    public SpecialOffer getItem() {
-        return offer;
-    }
-
-    @Override
-    public int getItemId_() {
-        return offer.getItem().getId();
-    }
-
     private View.OnClickListener edit() {
         return new View.OnClickListener() {
             @Override

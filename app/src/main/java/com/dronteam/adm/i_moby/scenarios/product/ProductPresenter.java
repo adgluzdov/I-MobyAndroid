@@ -68,14 +68,4 @@ public class ProductPresenter implements ItemPresenter {
         return view;
     }
 
-    @Override
-    public Item getItem() {
-        return item;
-    }
-
-    @Override
-    public int getItemId_() {
-        return item.getId();
-    }
-
 }

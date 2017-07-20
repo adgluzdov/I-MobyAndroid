@@ -22,14 +22,4 @@ public class ProgressbarPresenter implements ItemPresenter {
     public ItemView getView() {
         return itemView;
     }
-
-    @Override
-    public Object getItem() {
-        return null;
-    }
-
-    @Override
-    public int getItemId_() {
-        return 0;
-    }
 }
