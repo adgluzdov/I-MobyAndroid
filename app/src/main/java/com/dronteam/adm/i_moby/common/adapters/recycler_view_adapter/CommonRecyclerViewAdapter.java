@@ -67,7 +67,7 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
     @Override
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int position){
-        return new CommonViewHolder(createItemPresenter(position,parent));
+        return new CommonViewHolder(createItemPresenter(position));
     }
 
     @Override
@@ -80,7 +80,7 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
         return position;
     }
 
-    public abstract ItemPresenter createItemPresenter(int position, ViewGroup parent);
+    public abstract ItemPresenter createItemPresenter(int position);
 
     @Override
     public int getItemCount() {

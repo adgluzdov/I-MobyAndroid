@@ -37,7 +37,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     private String title;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private ModelAdapter adapter;
+    public ModelAdapter adapter;
     private String albumId;
     private String searchQuery = QUERY_ALL;
     private int NUMBER_START_LOAD = 3;
@@ -142,6 +142,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                     finishLoadGoods(itemList);
                 if(startLoadMore)
                     finishLoadMoreGoods(itemList);
+                view.setList(adapter.getViewAdapter(),viewManager);
             }
         };
     }
