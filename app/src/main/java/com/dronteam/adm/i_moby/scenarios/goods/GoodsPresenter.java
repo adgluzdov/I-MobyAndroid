@@ -142,7 +142,6 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                     finishLoadGoods(itemList);
                 if(startLoadMore)
                     finishLoadMoreGoods(itemList);
-                adapter = adapter;
             }
         };
     }

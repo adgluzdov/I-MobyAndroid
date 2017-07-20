@@ -76,6 +76,7 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
                 onLoad = true;
                 adapter = new AlbumAdapter(viewManager);
                 adapter.addListModel(itemList);
+                adapter.addModel("AllGoods",adapter.getCount());
                 view.setList(adapter.getViewAdapter(),viewManager.getContext());
                 view.stopTopProgressbar();
             }
