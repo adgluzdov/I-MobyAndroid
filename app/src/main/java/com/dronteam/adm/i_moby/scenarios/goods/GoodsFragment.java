@@ -25,7 +25,7 @@ import com.dronteam.adm.i_moby.common.fragment.MainFragment;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.with_search_view.FragmentWithToolbarWithSearchView;
 
-public class GoodsFragment extends FragmentWithToolbarWithSearchView implements GoodsView {
+public class GoodsFragment extends MainFragment implements GoodsView {
 
     private int COLUMNS_COUNT = 0;
     private SwipeRefreshLayout swipeRefreshLayout = null;
@@ -41,7 +41,7 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
         mRecyclerView = (RecyclerView)getView(R.id.recyclerView);
         no_goods = getView(R.id.no_goods);
         no_goods.setVisibility(View.GONE);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return view;
     }
     @Override
@@ -49,15 +49,6 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
         return R.layout.goods2;
     }
 
-    @Override
-    public void startTopProgressbar() {
-        swipeRefreshLayout.setRefreshing(true);
-    }
-
-    @Override
-    public void stopTopProgressbar() {
-        swipeRefreshLayout.setRefreshing(false);
-    }
     @Override
     public void setList(RecyclerView.Adapter adapter, ViewManager viewManager) {
         mRecyclerView.setHasFixedSize(true);
@@ -72,54 +63,6 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);
-    }
-
-    @Override
-    public void notifyNoGoods() {
-        mRecyclerView.setVisibility(View.GONE);
-        no_goods.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void setOnScrollListener(final OnScrollViewListener listener) {
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                 listener.onScroll(dy);
-            }
-        });
-    }
-
-    @Override
-    public int getChildCount() {
-        if(COLUMNS_COUNT == 1)
-            return layoutManagerPhone.getChildCount();
-        else
-            return layoutManagerTablet.getChildCount();
-    }
-
-    @Override
-    public int findFirstVisibleItemPosition() {
-        if(COLUMNS_COUNT == 1)
-            return layoutManagerPhone.findFirstVisibleItemPosition();
-        else
-            return layoutManagerTablet.findFirstVisibleItemPosition();
-    }
-
-    @Override
-    protected int getIdSearchView() {
-        return R.id.action_search;
-    }
-
-    @Override
-    protected int getIdToolbar() {
-        return R.id.toolbar;
-    }
-
-    @Override
-    protected int getMenuXml() {
-        return R.menu.search_menu;
     }
 
 }

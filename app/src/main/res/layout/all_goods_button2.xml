@@ -10,9 +10,10 @@
         android:layout_height="48dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="-3dp"
-        android:text="@string/all_goods"
+        android:text="@string/neww"
         android:textColor="#fff"
-        android:background="#FF0000"
+        android:background="#00FF7F"
+        android:theme="@style/MyButton"
         android:visibility="visible" />
 
 </LinearLayout>

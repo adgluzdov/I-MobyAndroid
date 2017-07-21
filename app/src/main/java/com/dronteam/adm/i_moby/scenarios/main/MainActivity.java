@@ -16,6 +16,7 @@ import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.data.RetrofitFactory;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.VK.VKAuth;
+import com.dronteam.adm.i_moby.model.album.Item;
 
 /**
  * Created by smb on 13/12/2016.
@@ -70,6 +71,6 @@ public class MainActivity extends AppCompatActivity implements ViewManager, Auth
 
     @Override
     public void onAuth() {
-        show(UIFactory.Lobby(this));
+        show(UIFactory.GoodsPresenter(this,Item.ALL_GOODS));
     }
 }

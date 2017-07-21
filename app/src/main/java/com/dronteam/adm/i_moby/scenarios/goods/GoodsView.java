@@ -16,10 +16,6 @@ import com.dronteam.adm.i_moby.common.progressbar.UnderProgressbarView;
  * Created by smb on 18/10/2016.
  */
 
-public interface GoodsView extends CommonView,TopProgressbarView,ViewWithToolbarWithSearchView {
+public interface GoodsView extends CommonView{
     void setList(RecyclerView.Adapter adapter, ViewManager viewManager);
-    void notifyNoGoods();
-    void setOnScrollListener(OnScrollViewListener listener);
-    int getChildCount();
-    int findFirstVisibleItemPosition();
 }
