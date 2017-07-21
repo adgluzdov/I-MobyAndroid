@@ -50,33 +50,35 @@ public class GoodsPresenter implements ViewListener, Presenter{
         view.setList(adapter.getViewAdapter(),viewManager);
 
         // Список состоящий из элементов типа Integer
-        // Если Integer - то должны создаваться КРАСНЫЕ кнопки
+        // Если Integer - то должны создаваться кнопки
         List<Object> modelList1 = new ArrayList<>();
         for(int i = 0; i < 30; i++)
             modelList1.add(0);
 
-        // Добавляем кнопки (КРАСНЫЕ)
+        // Добавляем кнопки
         adapter.addListModel(modelList1);
 
-        // Ставим на 30 позицию прогрессбар
+        // Ставим ProgressBar вместо всего
         Observable.just("").delay(1,TimeUnit.SECONDS).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                adapter.addModel("",30);
+                List<Object> modelList2 = new ArrayList<>();
+                for(int i = 0; i < 30; i++)
+                    modelList2.add("");
+                adapter.removeAll();
+                adapter.addListModel(modelList2);
             }
         });
 
-        // Удаляем из 30 позиции прогрессбар и ставим ЗЕЛЕНЫЕ кнопки
+        // Ставим ProgressBar СНОВА вместо всего - но почему-то будут снова кнопки
         Observable.just("").delay(2,TimeUnit.SECONDS).subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
-                // Список состоящий из элементов типа Item
-                // Если Item - то должны создаваться ЗЕЛЕНЫЕ кнопки
-                List<Object> modelList3 = new ArrayList<>();
+                List<Object> modelList2 = new ArrayList<>();
                 for(int i = 0; i < 30; i++)
-                    modelList3.add(Item.ALL_GOODS);
-                adapter.removeModel(30);
-                adapter.addListModel(modelList3);
+                    modelList2.add("");
+                adapter.removeAll();
+                adapter.addListModel(modelList2);
             }
         });
 
