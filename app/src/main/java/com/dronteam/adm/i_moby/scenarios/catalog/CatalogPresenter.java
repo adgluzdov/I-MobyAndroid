@@ -24,14 +24,11 @@ import rx.schedulers.Schedulers;
  */
 
 public class CatalogPresenter implements ViewListener, PagePresenter {
-    private static final String TAG = "My";
     private final CatalogView view;
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
     private CommonRecyclerViewAdapter adapter;
-    private static final String ID_MAIN_ALBUM = "0";
-    private boolean onLoad = false;
 
     public CatalogPresenter(ViewManager viewManager, CatalogView view) {
         this.viewManager = viewManager;
@@ -43,18 +40,16 @@ public class CatalogPresenter implements ViewListener, PagePresenter {
 
     @Override
     public void OnCreateView() {
-        if(!onLoad)
-            startLoadCatalog();
-        if(adapter != null)
+        if(adapter != null) {
             view.setList(adapter);
+        }
+        else {
+            startLoadCatalog();
+        }
     }
 
     private void startLoadCatalog() {
         view.startTopProgressbar();
-        loadCatalog();
-    }
-
-    private void loadCatalog() {
         itemService.GetAlbums()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -75,7 +70,6 @@ public class CatalogPresenter implements ViewListener, PagePresenter {
         return new Action1<List<Item>>() {
             @Override
             public void call(List<Item> itemList) {
-                onLoad = true;
                 adapter = new AlbumAdapter(viewManager);
                 adapter.addListModel(itemList);
                 adapter.addModel(AllGoodsPresenter.MODEL,adapter.getCount());
