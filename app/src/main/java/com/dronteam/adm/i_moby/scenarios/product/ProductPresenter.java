@@ -36,31 +36,26 @@ public class ProductPresenter implements ItemPresenter {
         }
     };
 
-    public ProductPresenter(ViewManager viewManager, Item item, ProductView view) {
+    public ProductPresenter(final ViewManager viewManager, final Item item, ProductView view) {
         this.view = view;
         this.item = item;
         this.viewManager = viewManager;
-        this.view.setEditListener(edit());
-    }
-
-    private View.OnClickListener edit() {
-        return new View.OnClickListener() {
+        this.view.setOnItemViewClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewManager.show(UIFactory.DetailInfoPresenter(viewManager,item));
             }
-        };
+        });
+        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
     }
-
     @Override
     public void fill(){
-        Picasso.with(viewManager.getContext()).load(item.getThumb_photo()).into(target);
         view.setPrice(item.getPrice());
         view.setTitle(item.getTitle());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setPlaceHolder(R.mipmap.ic_launcher);
+            view.setPlaceHolder();
     }
 
     @Override

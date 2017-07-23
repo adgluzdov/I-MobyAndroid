@@ -108,7 +108,6 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                 if(itemList.size() == 0){
                     view.notifyNoGoods();
                 }else{
-
                     offset+= itemList.size();
                     adapter = new ProductAdapter(viewManager);
                     adapter.addListModel(itemList);

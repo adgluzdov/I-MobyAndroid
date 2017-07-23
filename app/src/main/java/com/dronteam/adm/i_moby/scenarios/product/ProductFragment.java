@@ -39,7 +39,7 @@ public class ProductFragment extends LinearLayout implements ProductView {
     }
 
     @Override
-    public void setPlaceHolder(int resId) {
+    public void setPlaceHolder() {
         ((ImageView)findViewById(R.id.image)).setImageResource(R.drawable.img_pre);
     }
 
@@ -54,7 +54,7 @@ public class ProductFragment extends LinearLayout implements ProductView {
     }
 
     @Override
-    public void setEditListener(View.OnClickListener listener) {
+    public void setOnItemViewClickListener(View.OnClickListener listener) {
         cardView.setOnClickListener(listener);
     }
 

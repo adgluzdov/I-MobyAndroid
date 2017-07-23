@@ -2,7 +2,6 @@ package com.dronteam.adm.i_moby.scenarios.special_offer;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dronteam.adm.i_moby.R;
@@ -39,12 +38,30 @@ public class SpecialOfferPresenter implements ItemPresenter {
         }
     };
 
-    public SpecialOfferPresenter(ViewManager viewManager, SpecialOffer offer, SpecialOfferView view) {
+    public SpecialOfferPresenter(final ViewManager viewManager, final SpecialOffer offer, SpecialOfferView view) {
         this.offer = offer;
         this.view = view;
         this.viewManager = viewManager;
-        this.view.setEditListener(edit());
+        this.view.setOnItemViewClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewManager.show(UIFactory.DetailInfoPresenter(viewManager,offer.getItem()));
+            }
+        });
+        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
     }
+
+    @Override
+    public void fill(){
+        view.setTitle(offer.getItem().getTitle());
+        view.setPrice(offer.getItem().getPrice());
+        view.setTags(offer.getTags());
+        if(loadedImage != null)
+            view.setImage(loadedImage);
+        else
+            view.setPlaceHolder();
+    }
+
     @Override
     public SpecialOfferView getView() {
         return view;
@@ -55,23 +72,4 @@ public class SpecialOfferPresenter implements ItemPresenter {
         return offer;
     }
 
-    private View.OnClickListener edit() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewManager.show(UIFactory.DetailInfoPresenter(viewManager,offer.getItem()));
-            }
-        };
-    }
-    @Override
-    public void fill(){
-        Picasso.with(viewManager.getContext()).load(offer.getItem().getThumb_photo()).into(target);
-        view.setTitle(offer.getItem().getTitle());
-        view.setPrice(offer.getItem().getPrice());
-        view.setTags(offer.getTags());
-        if(loadedImage != null)
-            view.setImage(loadedImage);
-        else
-            view.setPlaceHolder(R.mipmap.ic_launcher);
-    }
 }

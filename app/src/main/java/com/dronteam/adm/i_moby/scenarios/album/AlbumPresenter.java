@@ -16,7 +16,7 @@ import com.squareup.picasso.Target;
  * Created by adm on 18.04.2017.
  */
 
-public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
+public class AlbumPresenter implements ItemPresenter{
     private AlbumView view;
     private Item item;
     private Bitmap loadedImage = null;
@@ -37,22 +37,27 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
         }
     };
 
-    public AlbumPresenter(ViewManager viewManager, Item item, AlbumView aLbumView) {
+    public AlbumPresenter(final ViewManager viewManager, final Item item, AlbumView aLbumView) {
         this.item = item;
         this.view = aLbumView;
         this.viewManager = viewManager;
-        this.view.setEditListener(this);
+        this.view.setOnItemViewClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewManager.show(UIFactory.GoodsPresenter(viewManager,item));
+            }
+        });
+        Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
     }
 
     @Override
     public void fill() {
-        Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
         view.setCount(String.valueOf(item.getCount()));
         view.setTitle(item.getTitle());
         if(loadedImage != null)
             view.setImage(loadedImage);
         else
-            view.setImage(R.mipmap.ic_launcher);
+            view.setPlaceHolder();
     }
 
     @Override
@@ -63,10 +68,5 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
     @Override
     public Object getItem() {
         return item;
-    }
-
-    @Override
-    public void onClick(View view) {
-        viewManager.show(UIFactory.GoodsPresenter(viewManager,item));
     }
 }
