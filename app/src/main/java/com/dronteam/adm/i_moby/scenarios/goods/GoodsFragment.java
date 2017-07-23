@@ -59,16 +59,18 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
         swipeRefreshLayout.setRefreshing(false);
     }
     @Override
-    public void setList(RecyclerView.Adapter adapter, ViewManager viewManager) {
+    public void setList(RecyclerView.Adapter adapter) {
+        mRecyclerView.setVisibility(View.VISIBLE);
+        no_goods.setVisibility(View.GONE);
         mRecyclerView.setHasFixedSize(true);
-        if(ScreenInfo.sizes(viewManager.getContext()).x<600) {
+        if(ScreenInfo.sizes(getActivity()).x<600) {
             COLUMNS_COUNT = 2;
-            layoutManagerTablet = new GridLayoutManager(viewManager.getContext(), 2);
+            layoutManagerTablet = new GridLayoutManager(getActivity(), 2);
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         else {
             COLUMNS_COUNT = 3;
-            layoutManagerTablet = new GridLayoutManager(viewManager.getContext(), 3);
+            layoutManagerTablet = new GridLayoutManager(getActivity(), 3);
             mRecyclerView.setLayoutManager(layoutManagerTablet);
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);

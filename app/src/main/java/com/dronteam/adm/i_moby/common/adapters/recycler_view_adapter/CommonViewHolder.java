@@ -10,6 +10,7 @@ import com.dronteam.adm.i_moby.common.adapters.ItemView;
  */
 
 public class CommonViewHolder extends RecyclerView.ViewHolder {
+
     private ItemPresenter itemPresenter;
 
     public CommonViewHolder(ItemPresenter itemPresenter) {
@@ -19,5 +20,9 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
     public void fill(){
         itemPresenter.fill();
+    }
+
+    public ItemPresenter getItemPresenter() {
+        return itemPresenter;
     }
 }

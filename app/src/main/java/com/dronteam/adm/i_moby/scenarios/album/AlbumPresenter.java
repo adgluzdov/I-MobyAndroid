@@ -61,13 +61,8 @@ public class AlbumPresenter implements ItemPresenter, View.OnClickListener {
     }
 
     @Override
-    public Item getItem() {
+    public Object getItem() {
         return item;
-    }
-
-    @Override
-    public int getItemId_() {
-        return item.getId();
     }
 
     @Override

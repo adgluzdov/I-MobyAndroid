@@ -19,7 +19,7 @@ import com.dronteam.adm.i_moby.R;
 public class AlbumFragment extends LinearLayout implements AlbumView {
 
     CardView cardView = null;
-    public AlbumFragment(Context context, ViewGroup parent) {
+    public AlbumFragment(Context context) {
         super(context);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_album, this);

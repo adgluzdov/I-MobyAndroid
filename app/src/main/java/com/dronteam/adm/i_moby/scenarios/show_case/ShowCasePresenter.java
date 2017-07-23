@@ -2,9 +2,9 @@ package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ItemPresenter;
-import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.model.product.Item;
@@ -27,7 +27,7 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private final ItemService itemService;
-    private ModelAdapter adapter;
+    private CommonRecyclerViewAdapter adapter;
     private boolean onLoad = false;
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
@@ -48,7 +48,7 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
         if(!onLoad){
             startLoad();
         }
-        view.setList(adapter.getViewAdapter(),viewManager.getContext());
+        view.setList(adapter);
     }
 
     private void startLoad(){
