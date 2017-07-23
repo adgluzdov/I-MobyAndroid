@@ -15,14 +15,14 @@ import com.dronteam.adm.i_moby.model.product.Price;
 
 public interface DetailInfoView extends CommonView,ViewWithToolbar {
     void setImage(Bitmap image);
-    void setPlaceHolder(int resId);
+    void setPlaceHolder();
     void setTitle(String title);
     void setCategoty(Category category);
     void setDescription(String description);
     void setDate(Integer date);
     void setPrice(Price price);
 
-    void setEditListener(View.OnClickListener listener);
+    void setOnSendMessegeListener(View.OnClickListener listener);
     void informingMessageIsSent();
     void informingMessageIsNotSent();
     void informingMessageAlreadySent();
