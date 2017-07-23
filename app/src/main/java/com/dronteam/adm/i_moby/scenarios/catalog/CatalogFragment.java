@@ -57,11 +57,6 @@ public class CatalogFragment extends MainFragment implements CatalogView {
     }
 
     @Override
-    public String getTitleFragment() {
-        return "Каталог";
-    }
-
-    @Override
     public void setList(RecyclerView.Adapter adapter) {
         mRecyclerView.setHasFixedSize(true);
         if(ScreenInfo.sizes(getActivity()).x<600) {

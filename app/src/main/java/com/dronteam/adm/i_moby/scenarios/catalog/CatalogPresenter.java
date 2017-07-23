@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.PagePresenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
@@ -22,7 +23,7 @@ import rx.schedulers.Schedulers;
  * Created by adm on 04.07.2017.
  */
 
-public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.common.ItemPresenter {
+public class CatalogPresenter implements ViewListener, PagePresenter {
     private static final String TAG = "My";
     private final CatalogView view;
     private final ItemService itemService;
@@ -100,6 +101,6 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
 
     @Override
     public String getViewTitle() {
-        return view.getTitleFragment();
+        return "Каталог";
     }
 }

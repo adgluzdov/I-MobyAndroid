@@ -1,7 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.show_case;
 
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.PagePresenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
@@ -23,40 +23,30 @@ import rx.schedulers.Schedulers;
  * Created by smb on 13/12/2016.
  */
 
-public class ShowCasePresenter implements ItemPresenter, ViewListener {
+public class ShowCasePresenter implements PagePresenter, ViewListener {
     private ViewManager viewManager;
     private ShowCaseView view;
-    private final ItemService itemService;
-    private CommonRecyclerViewAdapter adapter;
-    private boolean onLoad = false;
+    private ItemService itemService;
+    private CommonRecyclerViewAdapter adapter = null;
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
         this.viewManager = viewManager;
         this.view = view;
         this.itemService = viewManager.getServiceFactory().getApi(ItemService.class);
-        this.adapter = new SpecialOfferAdapter(viewManager);
         view.setOnCreateViewListener(this);
     }
 
     @Override
-    public CommonView getView() {
-        return view;
-    }
-
-    @Override
     public void OnCreateView() {
-        if(!onLoad){
-            startLoad();
+        if(adapter != null){
+            view.setList(adapter);
+        } else {
+            startLoadSpecialOffers();
         }
-        view.setList(adapter);
     }
 
-    private void startLoad(){
+    private void startLoadSpecialOffers(){
         view.startTopProgressbar();
-        load();
-    }
-
-    private void load(){
         itemService.SearchSpecialOffers(SpecialOffer.TAG)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -95,11 +85,14 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
         return new Action1<List<SpecialOffer>>() {
             @Override
             public void call(List<SpecialOffer> itemList) {
-                if(itemList.size() == 0)
+                if(itemList.size() == 0) {
                     view.notifyNoGoods();
-                else
+                }
+                else {
+                    adapter = new SpecialOfferAdapter(viewManager);
                     adapter.addListModel(itemList);
-                onLoad = true;
+                    view.setList(adapter);
+                }
                 view.stopTopProgressbar();
             }
         };
@@ -115,7 +108,12 @@ public class ShowCasePresenter implements ItemPresenter, ViewListener {
     }
 
     @Override
+    public CommonView getView() {
+        return view;
+    }
+
+    @Override
     public String getViewTitle() {
-        return view.getTitleFragment();
+        return "Лучшее";
     }
 }

@@ -26,6 +26,7 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     private LinearLayoutManager layoutManagerPhone = null;
     private GridLayoutManager layoutManagerTablet = null;
     private View no_goods = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
@@ -43,12 +44,9 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
-    public String getTitleFragment() {
-        return "Лучшее";
-    }
-
-    @Override
     public void setList(RecyclerView.Adapter adapter) {
+        mRecyclerView.setVisibility(View.VISIBLE);
+        no_goods.setVisibility(View.GONE);
         mRecyclerView.setHasFixedSize(true);
         if(ScreenInfo.sizes(getActivity()).x<600) {
             COLUMNS_COUNT = 2;
