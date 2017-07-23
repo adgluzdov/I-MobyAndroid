@@ -24,7 +24,7 @@ public class ProductAdapter extends CommonRecyclerViewAdapter{
     public ItemPresenter createItemPresenter(int position) {
         ItemPresenter presenter = null;
         Object model = getModelList().get(position);
-        if(model.getClass() == String.class)
+        if(model.getClass() == ProgressbarPresenter.MODEL.getClass())
             presenter = new ProgressbarPresenter(new ProgressbarLinerLayout(getViewManager().getContext()));
         if(model.getClass() == Item.class)
             presenter = new ProductPresenter(getViewManager(),(Item) getModelList().get(position),new ProductFragment(getViewManager().getContext()));

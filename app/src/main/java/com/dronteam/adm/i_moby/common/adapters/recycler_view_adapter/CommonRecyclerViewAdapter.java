@@ -1,12 +1,11 @@
 package com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.ItemPresenter;
-import com.dronteam.adm.i_moby.common.adapters.ItemView;
-import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +14,18 @@ import java.util.List;
  * Created by adm on 10.07.2017.
  */
 
-public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<CommonViewHolder> implements ModelAdapter {
+public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<CommonViewHolder> {
 
 
     private final ViewManager viewManager;
     private List<Object> modelList = new ArrayList<Object>();
-
     public CommonRecyclerViewAdapter(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
 
+    OnLoadMoreListener loadMoreListener = null;
+    boolean isLoading = false, isMoreDataAvailable = true;
 
-    @Override
     public void addListModel(List modelList) {
         int startPosition = getCount();
         for (Object model : modelList) {
@@ -35,44 +34,50 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
         notifyItemRangeInserted(startPosition,modelList.size());
     }
 
-    @Override
     public void addModel(Object model, int position) {
         modelList.add(position,model);
         notifyItemInserted(position);
     }
 
-    @Override
     public void removeModel(int position) {
         modelList.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position,getCount());
     }
 
-    @Override
-    public void removeAll() {
-        int range = getCount();
-        modelList.clear();
-        this.notifyItemRangeRemoved(0, range);
-    }
-
-    @Override
-    public RecyclerView.Adapter getViewAdapter() {
-        return this;
-    }
-
-    @Override
     public int getCount() {
         return getItemCount();
     }
 
     @Override
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int position){
-        return new CommonViewHolder(createItemPresenter(position));
+        ItemPresenter itemPresenter = createItemPresenter(position);
+        return new CommonViewHolder(itemPresenter);
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position){
+        if(position>=getItemCount()-1 && isMoreDataAvailable && !isLoading && loadMoreListener!=null){
+            isLoading = true;
+            loadMoreListener.onLoadMore();
+        }
         holder.fill();
+    }
+
+    public void setMoreDataAvailable(boolean moreDataAvailable) {
+        isMoreDataAvailable = moreDataAvailable;
+    }
+
+    public interface OnLoadMoreListener{
+        void onLoadMore();
+    }
+
+    public void setLoadMoreListener(OnLoadMoreListener loadMoreListener) {
+        this.loadMoreListener = loadMoreListener;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading = loading;
     }
 
     @Override
@@ -87,6 +92,20 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
         return modelList.size();
     }
 
+    @Override
+    public void onViewAttachedToWindow(CommonViewHolder holder) {
+        int position = holder.getAdapterPosition();
+        View view = holder.getItemPresenter().getView().getView();
+        Object model = holder.getItemPresenter().getItem();
+        if(position > modelList.size()-1)
+            ((ViewGroup) view.getParent()).removeView(view);
+        else
+            if(model != modelList.get(position))
+                ((ViewGroup) view.getParent()).removeView(view);
+
+        super.onViewAttachedToWindow(holder);
+    }
+
     public ViewManager getViewManager() {
         return viewManager;
     }
@@ -94,4 +113,6 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
     public List getModelList() {
         return modelList;
     }
+
+
 }

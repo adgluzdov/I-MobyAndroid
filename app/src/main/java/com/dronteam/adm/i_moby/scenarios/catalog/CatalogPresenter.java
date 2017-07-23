@@ -1,14 +1,15 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
-import com.dronteam.adm.i_moby.common.adapters.ModelAdapter;
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
+import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.model.album.Item;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumAdapter;
+import com.dronteam.adm.i_moby.scenarios.catalog.all_goods.AllGoodsPresenter;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
-    private ModelAdapter adapter;
+    private CommonRecyclerViewAdapter adapter;
     private static final String ID_MAIN_ALBUM = "0";
     private boolean onLoad = false;
 
@@ -44,7 +45,7 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
         if(!onLoad)
             startLoadCatalog();
         if(adapter != null)
-            view.setList(adapter.getViewAdapter(),viewManager.getContext());
+            view.setList(adapter);
     }
 
     private void startLoadCatalog() {
@@ -76,8 +77,8 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
                 onLoad = true;
                 adapter = new AlbumAdapter(viewManager);
                 adapter.addListModel(itemList);
-                adapter.addModel("AllGoods",adapter.getCount());
-                view.setList(adapter.getViewAdapter(),viewManager.getContext());
+                adapter.addModel(AllGoodsPresenter.MODEL,adapter.getCount());
+                view.setList(adapter);
                 view.stopTopProgressbar();
             }
         };

@@ -82,7 +82,7 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
                             .subscribe(onMessegesSend(), onError());
                 }
                 else
-                    view.informingMessageAlreadySent(viewManager.getContext());
+                    view.informingMessageAlreadySent();
             }
         };
     }
@@ -91,7 +91,7 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                view.informingMessageIsNotSent(viewManager.getContext());
+                view.informingMessageIsNotSent();
                 random_id = new Random().nextInt(10000);
             }
         };
@@ -102,7 +102,7 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
             @Override
             public void call(MessegesSendResponse messegesSendResponse) {
                 isSend = true;
-                view.informingMessageIsSent(viewManager.getContext());
+                view.informingMessageIsSent();
             }
         };
     }

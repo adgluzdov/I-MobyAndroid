@@ -68,4 +68,9 @@ public class ProductPresenter implements ItemPresenter {
         return view;
     }
 
+    @Override
+    public Object getItem() {
+        return item;
+    }
+
 }

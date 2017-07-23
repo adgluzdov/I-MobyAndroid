@@ -8,6 +8,8 @@ import com.dronteam.adm.i_moby.common.adapters.ItemView;
  */
 
 public class ProgressbarPresenter implements ItemPresenter {
+
+    public static String MODEL = "Progressbar";
     ItemView itemView;
     public ProgressbarPresenter(ItemView itemView) {
         this.itemView = itemView;
@@ -21,5 +23,10 @@ public class ProgressbarPresenter implements ItemPresenter {
     @Override
     public ItemView getView() {
         return itemView;
+    }
+
+    @Override
+    public Object getItem() {
+        return MODEL;
     }
 }

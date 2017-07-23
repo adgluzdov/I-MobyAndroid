@@ -50,6 +50,11 @@ public class SpecialOfferPresenter implements ItemPresenter {
         return view;
     }
 
+    @Override
+    public Object getItem() {
+        return offer;
+    }
+
     private View.OnClickListener edit() {
         return new View.OnClickListener() {
             @Override

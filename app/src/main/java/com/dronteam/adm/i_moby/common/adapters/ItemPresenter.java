@@ -7,4 +7,5 @@ package com.dronteam.adm.i_moby.common.adapters;
 public interface ItemPresenter{
     public void fill();
     public ItemView getView();
+    public Object getItem();
 }

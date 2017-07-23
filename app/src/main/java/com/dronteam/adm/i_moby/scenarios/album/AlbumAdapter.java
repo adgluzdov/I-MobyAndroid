@@ -24,7 +24,7 @@ public class AlbumAdapter extends CommonRecyclerViewAdapter {
     public ItemPresenter createItemPresenter(int position) {
         ItemPresenter presenter = null;
         Object model = getModelList().get(position);
-        if(model.getClass() == String.class)
+        if(model.getClass() == AllGoodsPresenter.MODEL.getClass())
             presenter = new AllGoodsPresenter(new AllGoodsLinerLayout(getViewManager().getContext()),getViewManager());
         if(model.getClass() == Item.class)
             presenter = new AlbumPresenter(getViewManager(), (Item)model,new AlbumFragment(getViewManager().getContext()));
