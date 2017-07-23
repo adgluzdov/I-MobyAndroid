@@ -18,16 +18,16 @@ public class AlbumAdapter extends CommonRecyclerViewAdapter {
 
     public AlbumAdapter(ViewManager viewManager) {
         super(viewManager);
-        setStaticItem(1);
     }
 
     @Override
-    public ItemPresenter createItemPresenter(int position, ViewGroup parent) {
-        ItemPresenter presenter;
-        if(position == getCount()-1)
+    public ItemPresenter createItemPresenter(int position) {
+        ItemPresenter presenter = null;
+        Object model = getModelList().get(position);
+        if(model.getClass() == AllGoodsPresenter.MODEL.getClass())
             presenter = new AllGoodsPresenter(new AllGoodsLinerLayout(getViewManager().getContext()),getViewManager());
-        else
-            presenter = new AlbumPresenter(getViewManager(),(Item) getModelList().get(position),new AlbumFragment(getViewManager().getContext(),parent));
+        if(model.getClass() == Item.class)
+            presenter = new AlbumPresenter(getViewManager(), (Item)model,new AlbumFragment(getViewManager().getContext()));
         return presenter;
     }
 }

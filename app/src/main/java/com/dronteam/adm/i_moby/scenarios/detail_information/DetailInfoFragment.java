@@ -114,26 +114,26 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
     }
 
     @Override
-    public void informingMessageIsSent(Context context) {
+    public void informingMessageIsSent() {
         if(toast != null)
             toast.cancel();
-        toast = Toast.makeText(context, "Сообщение отправлено",Toast.LENGTH_SHORT);
+        toast = Toast.makeText(getActivity(), "Сообщение отправлено",Toast.LENGTH_SHORT);
         toast.show();
     }
 
     @Override
-    public void informingMessageIsNotSent(Context context) {
+    public void informingMessageIsNotSent() {
         if(toast != null)
             toast.cancel();
-        toast = Toast.makeText(context, "Сообщение не отправлено",Toast.LENGTH_SHORT);
+        toast = Toast.makeText(getActivity(), "Сообщение не отправлено",Toast.LENGTH_SHORT);
         toast.show();
     }
 
     @Override
-    public void informingMessageAlreadySent(Context context) {
+    public void informingMessageAlreadySent() {
         if(toast != null)
             toast.cancel();
-        toast = Toast.makeText(context, "Сообщение уже отправлено",Toast.LENGTH_SHORT);
+        toast = Toast.makeText(getActivity(), "Сообщение уже отправлено",Toast.LENGTH_SHORT);
         toast.show();
     }
 

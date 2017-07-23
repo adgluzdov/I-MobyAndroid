@@ -23,7 +23,7 @@ public interface DetailInfoView extends CommonView,ViewWithToolbar {
     void setPrice(Price price);
 
     void setEditListener(View.OnClickListener listener);
-    void informingMessageIsSent(Context context);
-    void informingMessageIsNotSent(Context context);
-    void informingMessageAlreadySent(Context context);
+    void informingMessageIsSent();
+    void informingMessageIsNotSent();
+    void informingMessageAlreadySent();
 }

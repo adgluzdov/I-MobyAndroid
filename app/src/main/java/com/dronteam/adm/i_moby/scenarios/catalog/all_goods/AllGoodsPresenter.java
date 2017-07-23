@@ -14,6 +14,7 @@ import com.dronteam.adm.i_moby.model.album.Item;
 
 public class AllGoodsPresenter implements ItemPresenter {
 
+    public static String MODEL = "AllGoods";
     AllGoodsView view;
     ViewManager viewManager;
     public AllGoodsPresenter(AllGoodsView view, final ViewManager viewManager) {
@@ -39,11 +40,6 @@ public class AllGoodsPresenter implements ItemPresenter {
 
     @Override
     public Object getItem() {
-        return null;
-    }
-
-    @Override
-    public int getItemId_() {
-        return 0;
+        return MODEL;
     }
 }
