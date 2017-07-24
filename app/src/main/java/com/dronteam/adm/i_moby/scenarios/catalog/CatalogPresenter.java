@@ -10,6 +10,7 @@ import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
 import com.dronteam.adm.i_moby.model.album.Item;
+import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumAdapter;
 import com.dronteam.adm.i_moby.scenarios.catalog.all_goods.AllGoodsPresenter;
 
@@ -113,11 +114,16 @@ public class CatalogPresenter implements ViewListener, PagePresenter, SwapProgre
     private Action1<? super List<Item>> onItemUpdate() {
         return new Action1<List<Item>>() {
             @Override
-            public void call(List<Item> items) {
-                if(!items.equals(adapter.getModelList())){
+            public void call(List<Item> newModelList) {
+                // Убираем кнопку
+                List oldModelList = adapter.getModelList();
+                oldModelList.remove(oldModelList.size()-1);
+                // Сравниваем
+                if(!oldModelList.equals(newModelList)){
                     adapter = null;
-                    onItemLoaded().call(items);
+                    onItemLoaded().call(newModelList);
                 }
+                view.stopTopProgressbar();
             }
         };
     }
