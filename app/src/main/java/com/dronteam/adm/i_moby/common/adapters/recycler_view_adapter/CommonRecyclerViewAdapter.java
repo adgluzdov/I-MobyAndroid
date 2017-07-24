@@ -19,6 +19,7 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
     private final ViewManager viewManager;
     private List<Object> modelList = new ArrayList<Object>();
+    public static final int LAST_COUNT_LOAD_MORE = 5;
     public CommonRecyclerViewAdapter(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
@@ -36,13 +37,18 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
     public void addModel(Object model, int position) {
         modelList.add(position,model);
-        notifyItemInserted(position);
+        try {
+            notifyItemInserted(position);
+        } catch (Exception ex) {}
+
     }
 
     public void removeModel(int position) {
         modelList.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position,getCount());
+        try {
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position,getCount());
+        } catch (Exception ex) {}
     }
 
     public int getCount() {
@@ -56,7 +62,7 @@ public abstract class CommonRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position){
-        if(position>=getItemCount()-1 && isMoreDataAvailable && !isLoading && loadMoreListener!=null){
+        if(position>=getItemCount() - LAST_COUNT_LOAD_MORE && isMoreDataAvailable && !isLoading && loadMoreListener!=null){
             isLoading = true;
             loadMoreListener.onLoadMore();
         }
