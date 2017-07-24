@@ -11,6 +11,7 @@ import com.dronteam.adm.i_moby.common.adapters.ItemView;
 
 public interface AlbumView extends ItemView {
     void setImage(Bitmap image);
+    void setDefaultImage();
     void setPlaceHolder();
     void setTitle(String title);
     void setCount(String count);
