@@ -128,4 +128,49 @@ public class Photo {
         this.text = text;
         this.date = date;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Photo photo = (Photo) o;
+
+        if (id != null ? !id.equals(photo.id) : photo.id != null) return false;
+        if (album_id != null ? !album_id.equals(photo.album_id) : photo.album_id != null)
+            return false;
+        if (owner_id != null ? !owner_id.equals(photo.owner_id) : photo.owner_id != null)
+            return false;
+        if (user_id != null ? !user_id.equals(photo.user_id) : photo.user_id != null) return false;
+        if (photo_75 != null ? !photo_75.equals(photo.photo_75) : photo.photo_75 != null)
+            return false;
+        if (photo_130 != null ? !photo_130.equals(photo.photo_130) : photo.photo_130 != null)
+            return false;
+        if (photo_604 != null ? !photo_604.equals(photo.photo_604) : photo.photo_604 != null)
+            return false;
+        if (photo_807 != null ? !photo_807.equals(photo.photo_807) : photo.photo_807 != null)
+            return false;
+        if (width != null ? !width.equals(photo.width) : photo.width != null) return false;
+        if (height != null ? !height.equals(photo.height) : photo.height != null) return false;
+        if (text != null ? !text.equals(photo.text) : photo.text != null) return false;
+        return date != null ? date.equals(photo.date) : photo.date == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (album_id != null ? album_id.hashCode() : 0);
+        result = 31 * result + (owner_id != null ? owner_id.hashCode() : 0);
+        result = 31 * result + (user_id != null ? user_id.hashCode() : 0);
+        result = 31 * result + (photo_75 != null ? photo_75.hashCode() : 0);
+        result = 31 * result + (photo_130 != null ? photo_130.hashCode() : 0);
+        result = 31 * result + (photo_604 != null ? photo_604.hashCode() : 0);
+        result = 31 * result + (photo_807 != null ? photo_807.hashCode() : 0);
+        result = 31 * result + (width != null ? width.hashCode() : 0);
+        result = 31 * result + (height != null ? height.hashCode() : 0);
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
+    }
 }

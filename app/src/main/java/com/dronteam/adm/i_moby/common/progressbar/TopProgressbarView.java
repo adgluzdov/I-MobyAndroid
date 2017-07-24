@@ -7,4 +7,5 @@ package com.dronteam.adm.i_moby.common.progressbar;
 public interface TopProgressbarView {
     void startTopProgressbar();
     void stopTopProgressbar();
+    void setSwapProgressbarListener(SwapProgressbarListener listener);
 }

@@ -22,4 +22,23 @@ public class Tags {
     public boolean isHit() {
         return hit;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tags tags = (Tags) o;
+
+        if (sale != tags.sale) return false;
+        return hit == tags.hit;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (sale ? 1 : 0);
+        result = 31 * result + (hit ? 1 : 0);
+        return result;
+    }
 }

@@ -35,4 +35,23 @@ public class SpecialOffer {
     public Tags getTags() {
         return tags;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SpecialOffer that = (SpecialOffer) o;
+
+        if (tags != null ? !tags.equals(that.tags) : that.tags != null) return false;
+        return item != null ? item.equals(that.item) : that.item == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = tags != null ? tags.hashCode() : 0;
+        result = 31 * result + (item != null ? item.hashCode() : 0);
+        return result;
+    }
 }

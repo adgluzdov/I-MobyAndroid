@@ -70,4 +70,33 @@ public class Item {
         this.photo = photo;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (id != null ? !id.equals(item.id) : item.id != null) return false;
+        if (owner_id != null ? !owner_id.equals(item.owner_id) : item.owner_id != null)
+            return false;
+        if (title != null ? !title.equals(item.title) : item.title != null) return false;
+        if (count != null ? !count.equals(item.count) : item.count != null) return false;
+        if (updated_time != null ? !updated_time.equals(item.updated_time) : item.updated_time != null)
+            return false;
+        return photo != null ? photo.equals(item.photo) : item.photo == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (owner_id != null ? owner_id.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (count != null ? count.hashCode() : 0);
+        result = 31 * result + (updated_time != null ? updated_time.hashCode() : 0);
+        result = 31 * result + (photo != null ? photo.hashCode() : 0);
+        return result;
+    }
 }

@@ -76,4 +76,14 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     public void stopTopProgressbar() {
         swipeRefreshLayout.setRefreshing(false);
     }
+
+    @Override
+    public void setSwapProgressbarListener(final SwapProgressbarListener listener) {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                listener.onSwap();
+            }
+        });
+    }
 }

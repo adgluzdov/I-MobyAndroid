@@ -5,6 +5,7 @@ import com.dronteam.adm.i_moby.common.PagePresenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
+import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.model.product.Item;
@@ -23,11 +24,12 @@ import rx.schedulers.Schedulers;
  * Created by smb on 13/12/2016.
  */
 
-public class ShowCasePresenter implements PagePresenter, ViewListener {
+public class ShowCasePresenter implements PagePresenter, ViewListener, SwapProgressbarListener {
     private ViewManager viewManager;
     private ShowCaseView view;
     private ItemService itemService;
     private CommonRecyclerViewAdapter adapter = null;
+    private List currentLoadList = new ArrayList();
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
         this.viewManager = viewManager;
@@ -43,6 +45,7 @@ public class ShowCasePresenter implements PagePresenter, ViewListener {
         } else {
             startLoadSpecialOffers();
         }
+        view.setSwapProgressbarListener(this);
     }
 
     private void startLoadSpecialOffers(){
@@ -85,6 +88,7 @@ public class ShowCasePresenter implements PagePresenter, ViewListener {
         return new Action1<List<SpecialOffer>>() {
             @Override
             public void call(List<SpecialOffer> itemList) {
+                currentLoadList.addAll(itemList);
                 if(itemList.size() == 0) {
                     view.notifyNoGoods();
                 }
@@ -115,5 +119,30 @@ public class ShowCasePresenter implements PagePresenter, ViewListener {
     @Override
     public String getViewTitle() {
         return "Лучшее";
+    }
+
+    @Override
+    public void onSwap() {
+        view.startTopProgressbar();
+        itemService.SearchSpecialOffers(SpecialOffer.TAG)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .map(deleteUnnecessaryItem())
+                .map(responseToListModel())
+                .subscribe(onUpdate(), onError());
+    }
+
+    private Action1<? super List<SpecialOffer>> onUpdate() {
+        return new Action1<List<SpecialOffer>>() {
+            @Override
+            public void call(List<SpecialOffer> newModelList) {
+                if(!currentLoadList.equals(newModelList)){
+                    adapter = null;
+                    currentLoadList.clear();
+                    OnLoad().call(newModelList);
+                }
+                view.stopTopProgressbar();
+            }
+        };
     }
 }

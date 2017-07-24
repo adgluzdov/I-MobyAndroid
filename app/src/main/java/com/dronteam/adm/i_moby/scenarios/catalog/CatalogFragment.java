@@ -18,6 +18,7 @@ import com.dronteam.adm.i_moby.R;
 import com.dronteam.adm.i_moby.common.CallBack;
 import com.dronteam.adm.i_moby.common.ScreenInfo;
 import com.dronteam.adm.i_moby.common.fragment.MainFragment;
+import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 
 /**
  * Created by adm on 04.07.2017.
@@ -42,7 +43,7 @@ public class CatalogFragment extends MainFragment implements CatalogView {
     }
 
     @Override
-    protected int getLayout() {
+    public int getLayout() {
         return R.layout.catalog2;
     }
 
@@ -54,6 +55,16 @@ public class CatalogFragment extends MainFragment implements CatalogView {
     @Override
     public void stopTopProgressbar() {
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void setSwapProgressbarListener(final SwapProgressbarListener listener) {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                listener.onSwap();
+            }
+        });
     }
 
     @Override
