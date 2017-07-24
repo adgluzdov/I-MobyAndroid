@@ -29,6 +29,7 @@ public class ShowCasePresenter implements PagePresenter, ViewListener, SwapProgr
     private ShowCaseView view;
     private ItemService itemService;
     private CommonRecyclerViewAdapter adapter = null;
+    private List currentLoadList = new ArrayList();
 
     public ShowCasePresenter(ViewManager viewManager, final ShowCaseView view) {
         this.viewManager = viewManager;
@@ -87,6 +88,7 @@ public class ShowCasePresenter implements PagePresenter, ViewListener, SwapProgr
         return new Action1<List<SpecialOffer>>() {
             @Override
             public void call(List<SpecialOffer> itemList) {
+                currentLoadList.addAll(itemList);
                 if(itemList.size() == 0) {
                     view.notifyNoGoods();
                 }
@@ -134,8 +136,9 @@ public class ShowCasePresenter implements PagePresenter, ViewListener, SwapProgr
         return new Action1<List<SpecialOffer>>() {
             @Override
             public void call(List<SpecialOffer> newModelList) {
-                if(!adapter.getModelList().equals(newModelList)){
+                if(!currentLoadList.equals(newModelList)){
                     adapter = null;
+                    currentLoadList.clear();
                     OnLoad().call(newModelList);
                 }
                 view.stopTopProgressbar();

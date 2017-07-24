@@ -7,6 +7,7 @@ import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.progressbar.ProgressbarPresenter;
+import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 import com.dronteam.adm.i_moby.data.VK.json_response.get.GetResponse;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
@@ -15,7 +16,9 @@ import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.model.product.Item;
 import com.dronteam.adm.i_moby.scenarios.product.ProductAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -25,9 +28,10 @@ import rx.schedulers.Schedulers;
  * Created by smb on 18/10/2016.
  */
 
-public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListener {
+public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListener, SwapProgressbarListener {
 
     private static final int COUNT_ITEM_LOAD = 10;
+    private static final int COUNT_ITEM_MAX = 200;
     private static final String QUERY_ALL = "";
 
     private GoodsView view;
@@ -42,6 +46,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
     private int offset = 0;
     private int count = COUNT_ITEM_LOAD;
     private int progressbarPosition;
+    private List currentLoadList = new ArrayList();
 
     public GoodsPresenter(ViewManager viewManager, GoodsView view, com.dronteam.adm.i_moby.model.album.Item album, String query) {
         this.viewManager = viewManager;
@@ -90,6 +95,7 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                 }
             }
         });
+        view.setSwapProgressbarListener(this);
     }
 
     private void startLoadGoods() {
@@ -105,13 +111,14 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
             @Override
             public void call(final GetResponse repo) {
                 List<Item> itemList = repo.getResponse().getItems();
+                currentLoadList.addAll(itemList);
                 if(itemList.size() == 0){
                     view.notifyNoGoods();
                 }else{
                     offset+= itemList.size();
                     adapter = new ProductAdapter(viewManager);
                     adapter.addListModel(itemList);
-                    if(!(itemList.size() == count))
+                    if(itemList.size() < count)
                         adapter.setMoreDataAvailable(false);
                     adapter.setLoadMoreListener(new CommonRecyclerViewAdapter.OnLoadMoreListener() {
                         @Override
@@ -129,7 +136,8 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                                 @Override
                                 public void call(GetResponse getResponse) {
                                     List<Item> itemList = getResponse.getResponse().getItems();
-                                    if(!(itemList.size() == count))
+                                    currentLoadList.addAll(itemList);
+                                    if(itemList.size() < count)
                                         adapter.setMoreDataAvailable(false);
                                     offset+= itemList.size();
                                     adapter.setLoading(false);
@@ -164,9 +172,40 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
         offset = 0;
         count = COUNT_ITEM_LOAD;
         searchQuery = QUERY_ALL;
+        currentLoadList.clear();
     }
 
     private boolean isGlobalSearch(){
         return !searchQuery.equals(QUERY_ALL) && album.getId().equals(com.dronteam.adm.i_moby.model.album.Item.ALL_GOODS.getId());
+    }
+
+    @Override
+    public void onSwap() {
+        if(currentLoadList.size() >= COUNT_ITEM_MAX){
+            adapter = null;
+            resetLoadParametr();
+            startLoadGoods();
+        }else{
+            view.startTopProgressbar();
+            itemService.Search(searchQuery,album.getId().toString(),0,offset)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.newThread())
+                    .subscribe(onItemUpdate(), onError());
+        }
+    }
+
+    private Action1<? super GetResponse> onItemUpdate() {
+        return new Action1<GetResponse>() {
+            @Override
+            public void call(GetResponse getResponse) {
+                List newModelList = getResponse.getResponse().getItems();
+                if (!currentLoadList.equals(newModelList)) {
+                    adapter = null;
+                    resetLoadParametr();
+                    onItemLoaded().call(getResponse);
+                }
+                view.stopTopProgressbar();
+            }
+        };
     }
 }

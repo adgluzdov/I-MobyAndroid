@@ -14,6 +14,7 @@ import com.dronteam.adm.i_moby.model.special_offer.SpecialOffer;
 import com.dronteam.adm.i_moby.scenarios.album.AlbumAdapter;
 import com.dronteam.adm.i_moby.scenarios.catalog.all_goods.AllGoodsPresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -31,6 +32,7 @@ public class CatalogPresenter implements ViewListener, PagePresenter, SwapProgre
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
     private CommonRecyclerViewAdapter adapter;
+    private List currentLoadList = new ArrayList();
 
     public CatalogPresenter(ViewManager viewManager, CatalogView view) {
         this.viewManager = viewManager;
@@ -73,6 +75,7 @@ public class CatalogPresenter implements ViewListener, PagePresenter, SwapProgre
         return new Action1<List<Item>>() {
             @Override
             public void call(List<Item> itemList) {
+                currentLoadList.addAll(itemList);
                 adapter = new AlbumAdapter(viewManager);
                 adapter.addListModel(itemList);
                 adapter.addModel(AllGoodsPresenter.MODEL,adapter.getCount());
@@ -115,12 +118,9 @@ public class CatalogPresenter implements ViewListener, PagePresenter, SwapProgre
         return new Action1<List<Item>>() {
             @Override
             public void call(List<Item> newModelList) {
-                // Убираем кнопку
-                List oldModelList = adapter.getModelList();
-                oldModelList.remove(oldModelList.size()-1);
-                // Сравниваем
-                if(!oldModelList.equals(newModelList)){
+                if(!currentLoadList.equals(newModelList)){
                     adapter = null;
+                    currentLoadList.clear();
                     onItemLoaded().call(newModelList);
                 }
                 view.stopTopProgressbar();
