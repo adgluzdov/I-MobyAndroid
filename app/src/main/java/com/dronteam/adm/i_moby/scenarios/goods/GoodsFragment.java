@@ -122,6 +122,11 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
     }
 
     @Override
+    public void informingFailedToConnect() {
+
+    }
+
+    @Override
     protected int getIdSearchView() {
         return R.id.action_search;
     }

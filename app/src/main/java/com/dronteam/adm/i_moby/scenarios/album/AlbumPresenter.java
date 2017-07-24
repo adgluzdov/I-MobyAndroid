@@ -20,21 +20,30 @@ import static com.dronteam.adm.i_moby.model.special_offer.SpecialOffer.TAG;
  */
 
 public class AlbumPresenter implements ItemPresenter{
+
+    private static final int IMAGE_TYPE_FAILED = -2;
+    private static final int IMAGE_TYPE_DEFAULT = -1;
+    private static final int IMAGE_TYPE_PLACE_HOLDER = 0;
+    private static final int IMAGE_TYPE_LOAD = 1;
+
+    private int typeImage = IMAGE_TYPE_PLACE_HOLDER;
+
     private AlbumView view;
     private Item item;
     private Bitmap loadedImage = null;
     private ViewManager viewManager;
-    private boolean noPhoto = false;
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            typeImage = IMAGE_TYPE_LOAD;
             loadedImage = bitmap;
             view.setImage(loadedImage);
         }
 
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
-            Log.d(TAG, "onBitmapFailed: ");
+            typeImage = IMAGE_TYPE_FAILED;
+            view.setErrorImage();
         }
 
         @Override
@@ -54,24 +63,28 @@ public class AlbumPresenter implements ItemPresenter{
         });
         if(item.getPhoto() != null)
             Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
-        else {
-            noPhoto = true;
-        }
+        else
+            typeImage = IMAGE_TYPE_DEFAULT;
     }
 
     @Override
     public void fill() {
         view.setCount(String.valueOf(item.getCount()));
         view.setTitle(item.getTitle());
-        if(noPhoto){
-            view.setDefaultImage();
-        } else {
-            if(loadedImage != null)
-                view.setImage(loadedImage);
-            else
+        switch (typeImage) {
+            case IMAGE_TYPE_FAILED:
+                view.setErrorImage();
+                break;
+            case IMAGE_TYPE_DEFAULT:
+                view.setDefaultImage();
+                break;
+            case IMAGE_TYPE_PLACE_HOLDER:
                 view.setPlaceHolder();
+                break;
+            case IMAGE_TYPE_LOAD:
+                view.setImage(loadedImage);
+                break;
         }
-
     }
 
     @Override

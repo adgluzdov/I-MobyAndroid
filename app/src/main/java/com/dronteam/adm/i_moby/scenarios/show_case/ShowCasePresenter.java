@@ -106,7 +106,8 @@ public class ShowCasePresenter implements PagePresenter, ViewListener, SwapProgr
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-
+                view.stopTopProgressbar();
+                view.informingFailedToConnect();
             }
         };
     }

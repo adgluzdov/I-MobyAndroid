@@ -89,7 +89,8 @@ public class CatalogPresenter implements ViewListener, PagePresenter, SwapProgre
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-
+                view.stopTopProgressbar();
+                view.informingFailedToConnect();
             }
         };
     }

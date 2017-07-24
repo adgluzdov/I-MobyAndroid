@@ -109,6 +109,11 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
     }
 
     @Override
+    public void setErrorImage() {
+
+    }
+
+    @Override
     public void setOnSendMessegeListener(View.OnClickListener listener) {
         getView(R.id.pay).setOnClickListener(listener);
     }

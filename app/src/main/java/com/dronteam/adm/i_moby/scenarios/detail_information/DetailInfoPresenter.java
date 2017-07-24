@@ -35,20 +35,20 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     Bitmap loadedImage;
     int random_id;
     private boolean isSend = false;
-
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            loadedImage = bitmap;
-            view.setImage(loadedImage);
+            view.setImage(bitmap);
         }
 
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
+            view.setErrorImage();
         }
 
         @Override
         public void onPrepareLoad(Drawable placeHolderDrawable) {
+            view.setPlaceHolder();
         }
     };
 
@@ -76,10 +76,6 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
         view.setTitle(product.getTitle());
         view.setDescription(product.getDescription());
         view.setDate(product.getDate());
-        if(loadedImage != null)
-            view.setImage(loadedImage);
-        else
-            view.setPlaceHolder();
     }
 
     private View.OnClickListener onMessegesSend(){

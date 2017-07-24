@@ -22,4 +22,5 @@ public interface GoodsView extends CommonView,TopProgressbarView,ViewWithToolbar
     void setOnScrollListener(OnScrollViewListener listener);
     int getChildCount();
     int findFirstVisibleItemPosition();
+    void informingFailedToConnect();
 }

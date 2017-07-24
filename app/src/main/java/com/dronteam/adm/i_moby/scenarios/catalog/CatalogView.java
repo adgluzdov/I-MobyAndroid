@@ -11,4 +11,5 @@ import com.dronteam.adm.i_moby.common.progressbar.TopProgressbarView;
 
 public interface CatalogView extends CommonView,TopProgressbarView {
     void setList(RecyclerView.Adapter adapter);
+    void informingFailedToConnect();
 }

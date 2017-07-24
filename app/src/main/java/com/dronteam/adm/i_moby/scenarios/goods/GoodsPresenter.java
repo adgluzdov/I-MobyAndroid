@@ -159,7 +159,8 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
         return new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-
+                view.stopTopProgressbar();
+                view.informingFailedToConnect();
             }
         };
     }

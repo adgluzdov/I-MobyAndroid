@@ -82,4 +82,9 @@ public class CatalogFragment extends MainFragment implements CatalogView {
         }
         ((RecyclerView)getView(R.id.recyclerView)).setAdapter(adapter);
     }
+
+    @Override
+    public void informingFailedToConnect() {
+
+    }
 }

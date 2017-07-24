@@ -11,6 +11,7 @@ import com.dronteam.adm.i_moby.model.product.Price;
  */
 public interface ProductView extends ItemView{
     void setImage(Bitmap image);
+    void setErrorImage();
     void setPlaceHolder();
     void setTitle(String title);
     void setPrice(Price price);

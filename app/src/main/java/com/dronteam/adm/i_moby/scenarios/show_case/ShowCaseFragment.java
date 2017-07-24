@@ -68,6 +68,11 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
     }
 
     @Override
+    public void informingFailedToConnect() {
+
+    }
+
+    @Override
     public void startTopProgressbar() {
         swipeRefreshLayout.setRefreshing(true);
     }

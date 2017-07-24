@@ -16,6 +16,7 @@ import com.dronteam.adm.i_moby.model.product.Price;
 public interface DetailInfoView extends CommonView,ViewWithToolbar {
     void setImage(Bitmap image);
     void setPlaceHolder();
+    void setErrorImage();
     void setTitle(String title);
     void setCategoty(Category category);
     void setDescription(String description);

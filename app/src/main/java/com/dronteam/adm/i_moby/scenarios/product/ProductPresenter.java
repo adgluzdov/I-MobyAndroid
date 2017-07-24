@@ -16,6 +16,13 @@ import com.squareup.picasso.Target;
  * Created by adm on 14.11.2016.
  */
 public class ProductPresenter implements ItemPresenter {
+
+    private static final int IMAGE_TYPE_FAILED = -2;
+    private static final int IMAGE_TYPE_PLACE_HOLDER = 0;
+    private static final int IMAGE_TYPE_LOAD = 1;
+
+    private int typeImage = IMAGE_TYPE_PLACE_HOLDER;
+
     ProductView view;
     Item item;
     ViewManager viewManager;
@@ -23,12 +30,15 @@ public class ProductPresenter implements ItemPresenter {
     final Target target = new Target(){
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            typeImage = IMAGE_TYPE_LOAD;
             loadedImage = bitmap;
             view.setImage(loadedImage);
         }
 
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
+            typeImage = IMAGE_TYPE_FAILED;
+            view.setErrorImage();
         }
 
         @Override
@@ -52,10 +62,17 @@ public class ProductPresenter implements ItemPresenter {
     public void fill(){
         view.setPrice(item.getPrice());
         view.setTitle(item.getTitle());
-        if(loadedImage != null)
-            view.setImage(loadedImage);
-        else
-            view.setPlaceHolder();
+        switch (typeImage) {
+            case IMAGE_TYPE_FAILED:
+                view.setErrorImage();
+                break;
+            case IMAGE_TYPE_PLACE_HOLDER:
+                view.setPlaceHolder();
+                break;
+            case IMAGE_TYPE_LOAD:
+                view.setImage(loadedImage);
+                break;
+        }
     }
 
     @Override
