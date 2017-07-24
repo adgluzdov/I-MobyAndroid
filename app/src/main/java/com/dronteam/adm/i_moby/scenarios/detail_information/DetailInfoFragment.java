@@ -104,12 +104,12 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
     }
 
     @Override
-    public void setPlaceHolder(int resId) {
+    public void setPlaceHolder() {
         ((ImageView)getView(R.id.image)).setImageResource(R.drawable.img_pre);
     }
 
     @Override
-    public void setEditListener(View.OnClickListener listener) {
+    public void setOnSendMessegeListener(View.OnClickListener listener) {
         getView(R.id.pay).setOnClickListener(listener);
     }
 

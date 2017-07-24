@@ -1,6 +1,7 @@
 package com.dronteam.adm.i_moby.scenarios.catalog;
 
 import com.dronteam.adm.i_moby.common.CommonView;
+import com.dronteam.adm.i_moby.common.PagePresenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
@@ -22,15 +23,12 @@ import rx.schedulers.Schedulers;
  * Created by adm on 04.07.2017.
  */
 
-public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.common.ItemPresenter {
-    private static final String TAG = "My";
+public class CatalogPresenter implements ViewListener, PagePresenter {
     private final CatalogView view;
     private final ItemService itemService;
     private ViewManager viewManager;
     private ServiceFactory serviceFactory;
     private CommonRecyclerViewAdapter adapter;
-    private static final String ID_MAIN_ALBUM = "0";
-    private boolean onLoad = false;
 
     public CatalogPresenter(ViewManager viewManager, CatalogView view) {
         this.viewManager = viewManager;
@@ -42,18 +40,16 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
 
     @Override
     public void OnCreateView() {
-        if(!onLoad)
-            startLoadCatalog();
-        if(adapter != null)
+        if(adapter != null) {
             view.setList(adapter);
+        }
+        else {
+            startLoadCatalog();
+        }
     }
 
     private void startLoadCatalog() {
         view.startTopProgressbar();
-        loadCatalog();
-    }
-
-    private void loadCatalog() {
         itemService.GetAlbums()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -74,7 +70,6 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
         return new Action1<List<Item>>() {
             @Override
             public void call(List<Item> itemList) {
-                onLoad = true;
                 adapter = new AlbumAdapter(viewManager);
                 adapter.addListModel(itemList);
                 adapter.addModel(AllGoodsPresenter.MODEL,adapter.getCount());
@@ -100,6 +95,6 @@ public class CatalogPresenter implements ViewListener, com.dronteam.adm.i_moby.c
 
     @Override
     public String getViewTitle() {
-        return view.getTitleFragment();
+        return "Каталог";
     }
 }

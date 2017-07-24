@@ -4,13 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.dronteam.adm.i_moby.common.ItemPresenter;
-import com.dronteam.adm.i_moby.common.Presenter;
-import com.dronteam.adm.i_moby.model.album.Item;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumFragment;
-import com.dronteam.adm.i_moby.scenarios.album.AlbumPresenter;
+import com.dronteam.adm.i_moby.common.PagePresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,10 +14,10 @@ import java.util.List;
 
 public class LobbyPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<ItemPresenter> presenterList = null;
+    private List<PagePresenter> presenterList = null;
 
 
-    public LobbyPagerAdapter(FragmentManager fm, List<ItemPresenter> presenterList) {
+    public LobbyPagerAdapter(FragmentManager fm, List<PagePresenter> presenterList) {
         super(fm);
         this.presenterList = presenterList;
     }

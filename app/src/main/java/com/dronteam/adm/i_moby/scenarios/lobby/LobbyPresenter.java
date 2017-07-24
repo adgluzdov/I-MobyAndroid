@@ -3,7 +3,7 @@ package com.dronteam.adm.i_moby.scenarios.lobby;
 import com.dronteam.adm.i_moby.UIFactory;
 import com.dronteam.adm.i_moby.common.CallBack2;
 import com.dronteam.adm.i_moby.common.CommonView;
-import com.dronteam.adm.i_moby.common.ItemPresenter;
+import com.dronteam.adm.i_moby.common.PagePresenter;
 import com.dronteam.adm.i_moby.common.Presenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
@@ -37,9 +37,9 @@ public class LobbyPresenter implements Presenter, ViewListener,OptionsMenuListen
     @Override
     public void OnCreateView() {
         if(adapter == null){
-            List<ItemPresenter> presenterList = new ArrayList<ItemPresenter>();
-            presenterList.add((ItemPresenter)UIFactory.ShowCase(viewManager));
-            presenterList.add((ItemPresenter)UIFactory.CatalogPresenter(viewManager));
+            List<PagePresenter> presenterList = new ArrayList<PagePresenter>();
+            presenterList.add((PagePresenter)UIFactory.ShowCase(viewManager));
+            presenterList.add((PagePresenter)UIFactory.CatalogPresenter(viewManager));
             adapter = new LobbyPagerAdapter(view.getChildFragmentManager(),presenterList);
         }
         view.setFragmentStatePagerAdapter(adapter);

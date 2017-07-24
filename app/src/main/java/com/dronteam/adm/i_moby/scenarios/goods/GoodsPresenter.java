@@ -111,6 +111,8 @@ public class GoodsPresenter implements ViewListener, Presenter, OptionsMenuListe
                     offset+= itemList.size();
                     adapter = new ProductAdapter(viewManager);
                     adapter.addListModel(itemList);
+                    if(!(itemList.size() == count))
+                        adapter.setMoreDataAvailable(false);
                     adapter.setLoadMoreListener(new CommonRecyclerViewAdapter.OnLoadMoreListener() {
                         @Override
                         public void onLoadMore() {

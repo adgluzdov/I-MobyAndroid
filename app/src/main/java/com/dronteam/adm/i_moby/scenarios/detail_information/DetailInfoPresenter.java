@@ -65,12 +65,24 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
     @Override
     public void OnCreateView() {
         Picasso.with(viewManager.getContext()).load(product.getThumb_photo()).into(target);
-        fill();
-        view.setEditListener(edit());
+        view.setOnSendMessegeListener(onMessegesSend());
         view.setToolbarTitle("Товар");
+        fill();
     }
 
-    private View.OnClickListener edit(){
+    private void fill() {
+        view.setPrice(product.getPrice());
+        view.setCategoty(product.getCategory());
+        view.setTitle(product.getTitle());
+        view.setDescription(product.getDescription());
+        view.setDate(product.getDate());
+        if(loadedImage != null)
+            view.setImage(loadedImage);
+        else
+            view.setPlaceHolder();
+    }
+
+    private View.OnClickListener onMessegesSend(){
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,10 +91,20 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
                     itemService.MessegesSend(Item.MESSEGE_ORDER,attachment,String.valueOf(random_id))
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.newThread())
-                            .subscribe(onMessegesSend(), onError());
+                            .subscribe(onMessegesSent(), onError());
                 }
                 else
                     view.informingMessageAlreadySent();
+            }
+        };
+    }
+
+    private Action1<? super MessegesSendResponse> onMessegesSent() {
+        return new Action1<MessegesSendResponse>() {
+            @Override
+            public void call(MessegesSendResponse messegesSendResponse) {
+                isSend = true;
+                view.informingMessageIsSent();
             }
         };
     }
@@ -95,28 +117,6 @@ public class DetailInfoPresenter implements Presenter, ViewListener {
                 random_id = new Random().nextInt(10000);
             }
         };
-    }
-
-    private Action1<? super MessegesSendResponse> onMessegesSend() {
-        return new Action1<MessegesSendResponse>() {
-            @Override
-            public void call(MessegesSendResponse messegesSendResponse) {
-                isSend = true;
-                view.informingMessageIsSent();
-            }
-        };
-    }
-
-    private void fill() {
-        view.setPrice(product.getPrice());
-        view.setCategoty(product.getCategory());
-        view.setTitle(product.getTitle());
-        view.setDescription(product.getDescription());
-        view.setDate(product.getDate());
-        if(loadedImage != null)
-            view.setImage(loadedImage);
-        else
-            view.setPlaceHolder(R.mipmap.ic_launcher);
     }
 
     @Override

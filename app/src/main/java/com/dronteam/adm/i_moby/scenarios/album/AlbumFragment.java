@@ -37,7 +37,7 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
     }
 
     @Override
-    public void setImage(int resId) {
+    public void setPlaceHolder() {
         ((ImageView)findViewById(R.id.background_image)).setImageResource(R.drawable.img_pre);
     }
 
@@ -51,7 +51,7 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
     }
 
     @Override
-    public void setEditListener(OnClickListener listener) {
+    public void setOnItemViewClickListener(OnClickListener listener) {
         cardView.setOnClickListener(listener);
     }
 
