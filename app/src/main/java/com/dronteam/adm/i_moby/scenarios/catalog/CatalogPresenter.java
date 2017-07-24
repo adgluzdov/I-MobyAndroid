@@ -5,6 +5,7 @@ import com.dronteam.adm.i_moby.common.PagePresenter;
 import com.dronteam.adm.i_moby.common.ViewListener;
 import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.adapters.recycler_view_adapter.CommonRecyclerViewAdapter;
+import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 import com.dronteam.adm.i_moby.data.ItemService;
 import com.dronteam.adm.i_moby.data.ServiceFactory;
 import com.dronteam.adm.i_moby.data.VK.json_response.getAlbums.GetAlbumsResponse;
@@ -23,7 +24,7 @@ import rx.schedulers.Schedulers;
  * Created by adm on 04.07.2017.
  */
 
-public class CatalogPresenter implements ViewListener, PagePresenter {
+public class CatalogPresenter implements ViewListener, PagePresenter, SwapProgressbarListener {
     private final CatalogView view;
     private final ItemService itemService;
     private ViewManager viewManager;
@@ -46,6 +47,7 @@ public class CatalogPresenter implements ViewListener, PagePresenter {
         else {
             startLoadCatalog();
         }
+        view.setSwapProgressbarListener(this);
     }
 
     private void startLoadCatalog() {
@@ -96,5 +98,27 @@ public class CatalogPresenter implements ViewListener, PagePresenter {
     @Override
     public String getViewTitle() {
         return "Каталог";
+    }
+
+    @Override
+    public void onSwap() {
+        view.startTopProgressbar();
+        itemService.GetAlbums()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .map(responseToListModel())
+                .subscribe(onItemUpdate(), onError());
+    }
+
+    private Action1<? super List<Item>> onItemUpdate() {
+        return new Action1<List<Item>>() {
+            @Override
+            public void call(List<Item> items) {
+                if(!items.equals(adapter.getModelList())){
+                    adapter = null;
+                    onItemLoaded().call(items);
+                }
+            }
+        };
     }
 }

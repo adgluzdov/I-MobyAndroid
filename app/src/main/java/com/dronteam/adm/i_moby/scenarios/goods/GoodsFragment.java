@@ -24,6 +24,7 @@ import com.dronteam.adm.i_moby.common.ViewManager;
 import com.dronteam.adm.i_moby.common.fragment.MainFragment;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.OptionsMenuListener;
 import com.dronteam.adm.i_moby.common.fragment.with_toolbar.with_menu.with_search_view.FragmentWithToolbarWithSearchView;
+import com.dronteam.adm.i_moby.common.progressbar.SwapProgressbarListener;
 
 public class GoodsFragment extends FragmentWithToolbarWithSearchView implements GoodsView {
 
@@ -58,6 +59,17 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
     public void stopTopProgressbar() {
         swipeRefreshLayout.setRefreshing(false);
     }
+
+    @Override
+    public void setSwapProgressbarListener(final SwapProgressbarListener listener) {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                listener.onSwap();
+            }
+        });
+    }
+
     @Override
     public void setList(RecyclerView.Adapter adapter) {
         mRecyclerView.setVisibility(View.VISIBLE);
