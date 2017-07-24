@@ -58,4 +58,11 @@ public abstract class FragmentWithToolbarWithSearchView extends FragmentWithTool
             }
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getSearchView().setFocusable(true);
+        getSearchView().clearFocus();
+    }
 }
