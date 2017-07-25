@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.dronteam.adm.i_moby.common.CommonView;
 import com.dronteam.adm.i_moby.common.ViewListener;
@@ -15,7 +16,7 @@ import com.dronteam.adm.i_moby.common.ViewListener;
  * Created by smb on 13/12/2016.
  */
 public abstract class MainFragment extends Fragment implements CommonView {
-
+    Toast toast = null;
     private View view;
     private ViewListener onCreateViewListener;
 
@@ -58,4 +59,16 @@ public abstract class MainFragment extends Fragment implements CommonView {
         return view.findViewById(id);
     }
 
+    public void informing(String msg) {
+        if(toast != null)
+            toast.cancel();
+        toast = Toast.makeText(getActivity(), msg,Toast.LENGTH_SHORT);
+        toast.show();
+    }
+    @Override
+    public void onPause() {
+        if(toast != null)
+            toast.cancel();
+        super.onPause();
+    }
 }

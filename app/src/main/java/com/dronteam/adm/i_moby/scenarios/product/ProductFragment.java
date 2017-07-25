@@ -40,7 +40,7 @@ public class ProductFragment extends LinearLayout implements ProductView {
 
     @Override
     public void setErrorImage() {
-
+        ((ImageView)findViewById(R.id.image)).setImageResource(R.drawable.img_pre);
     }
 
     @Override

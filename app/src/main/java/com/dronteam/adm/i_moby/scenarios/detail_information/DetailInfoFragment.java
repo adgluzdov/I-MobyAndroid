@@ -29,7 +29,6 @@ import java.util.Date;
  */
 
 public class DetailInfoFragment extends FragmentWithToolbar implements DetailInfoView {
-    Toast toast = null;
     boolean IS_CONTENT_DRAWN = false;
     LinearLayout payment_outer;
     ViewTreeObserver obs;
@@ -110,7 +109,7 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
 
     @Override
     public void setErrorImage() {
-
+        ((ImageView)getView(R.id.image)).setImageResource(R.drawable.img_pre);
     }
 
     @Override
@@ -120,33 +119,18 @@ public class DetailInfoFragment extends FragmentWithToolbar implements DetailInf
 
     @Override
     public void informingMessageIsSent() {
-        if(toast != null)
-            toast.cancel();
-        toast = Toast.makeText(getActivity(), "Сообщение отправлено",Toast.LENGTH_SHORT);
-        toast.show();
+        informing("Сообщение отправлено");
     }
 
     @Override
     public void informingMessageIsNotSent() {
-        if(toast != null)
-            toast.cancel();
-        toast = Toast.makeText(getActivity(), "Сообщение не отправлено",Toast.LENGTH_SHORT);
-        toast.show();
+        informing("Сообщение не отправлено");
+
     }
 
     @Override
     public void informingMessageAlreadySent() {
-        if(toast != null)
-            toast.cancel();
-        toast = Toast.makeText(getActivity(), "Сообщение уже отправлено",Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-    @Override
-    public void onPause() {
-        if(toast != null)
-            toast.cancel();
-        super.onPause();
+        informing("Сообщение уже отправлено");
     }
 
     @Override

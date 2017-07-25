@@ -85,6 +85,6 @@ public class CatalogFragment extends MainFragment implements CatalogView {
 
     @Override
     public void informingFailedToConnect() {
-
+        informing(getResources().getString(R.string.error_connection));
     }
 }

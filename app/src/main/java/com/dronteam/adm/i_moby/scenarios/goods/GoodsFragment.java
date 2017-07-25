@@ -123,7 +123,7 @@ public class GoodsFragment extends FragmentWithToolbarWithSearchView implements 
 
     @Override
     public void informingFailedToConnect() {
-
+        informing(getResources().getString(R.string.error_connection));
     }
 
     @Override
