@@ -19,6 +19,8 @@ import com.dronteam.adm.i_moby.R;
 public class AlbumFragment extends LinearLayout implements AlbumView {
 
     CardView cardView = null;
+    ImageView no_image = null;
+    ImageView background_image = null;
     public AlbumFragment(Context context) {
         super(context);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -28,7 +30,10 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         );
         cardView = (CardView)view.findViewById(R.id.card_view);
-
+        no_image = (ImageView)view.findViewById(R.id.no_image);
+        background_image = (ImageView)view.findViewById(R.id.background_image);
+        no_image.setVisibility(GONE);
+        background_image.setVisibility(VISIBLE);
     }
 
     @Override
@@ -38,7 +43,8 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
 
     @Override
     public void setErrorImage() {
-
+        no_image.setVisibility(VISIBLE);
+        background_image.setVisibility(GONE);
     }
 
     @Override
@@ -58,6 +64,7 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
 
     @Override
     public void setCount(String count) {
+
     }
 
     @Override
