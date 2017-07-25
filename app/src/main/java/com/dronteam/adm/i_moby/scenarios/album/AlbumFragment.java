@@ -43,13 +43,13 @@ public class AlbumFragment extends LinearLayout implements AlbumView {
 
     @Override
     public void setErrorImage() {
-        no_image.setVisibility(VISIBLE);
-        background_image.setVisibility(GONE);
+        ((ImageView)findViewById(R.id.background_image)).setImageResource(R.drawable.img_pre);
     }
 
     @Override
     public void setDefaultImage() {
-        ((ImageView)findViewById(R.id.background_image)).setImageResource(R.drawable.img_pre);
+        no_image.setVisibility(VISIBLE);
+        background_image.setVisibility(GONE);
     }
 
     @Override
