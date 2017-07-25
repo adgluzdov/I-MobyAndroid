@@ -42,8 +42,8 @@ public class UIFactory {
     }
 
     public static Presenter GoodsPresenter(ViewManager viewManager, com.dronteam.adm.i_moby.model.album.Item album) {
-        if (!goodsFragmentHashMap.containsKey(album.getId())) goodsFragmentHashMap.put(album.getId(),new GoodsFragment());
-        return  new GoodsPresenter(viewManager, goodsFragmentHashMap.get(album.getId()), album,QUERY_ALL);
+        if(goodsView == null) goodsView = new GoodsFragment();
+        return  new GoodsPresenter(viewManager, goodsView, album,QUERY_ALL);
     }
 
     public static Presenter SearchGoodsPresenter(ViewManager viewManager, com.dronteam.adm.i_moby.model.album.Item album, String query) {
@@ -57,8 +57,8 @@ public class UIFactory {
     }
 
     public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {
-        if (!detailInfoFragmentHashMap.containsKey(product.getId())) detailInfoFragmentHashMap.put(product.getId(),new DetailInfoFragment());
-        return  new DetailInfoPresenter(viewManager, product, detailInfoFragmentHashMap.get(product.getId()));
+        //if (!detailInfoFragmentHashMap.containsKey(product.getId())) detailInfoFragmentHashMap.put(product.getId(),new DetailInfoFragment());
+        return  new DetailInfoPresenter(viewManager, product, new DetailInfoFragment());
     }
 
     public static Presenter Lobby(ViewManager viewManager) {
