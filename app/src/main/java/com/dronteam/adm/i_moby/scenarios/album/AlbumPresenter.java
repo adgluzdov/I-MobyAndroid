@@ -62,7 +62,7 @@ public class AlbumPresenter implements ItemPresenter{
             }
         });
         if(item.getPhoto() != null)
-            Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_807()).into(target);
+            Picasso.with(viewManager.getContext()).load(item.getPhoto().getPhoto_604()).into(target);
         else
             typeImage = IMAGE_TYPE_DEFAULT;
     }
