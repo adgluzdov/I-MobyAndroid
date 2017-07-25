@@ -69,7 +69,7 @@ public class ShowCaseFragment extends MainFragment implements ShowCaseView {
 
     @Override
     public void informingFailedToConnect() {
-
+        informing(getResources().getString(R.string.error_connection));
     }
 
     @Override
