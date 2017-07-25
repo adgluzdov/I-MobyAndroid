@@ -19,6 +19,9 @@ import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseFragment;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCasePresenter;
 import com.dronteam.adm.i_moby.scenarios.show_case.ShowCaseView;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+
 /**
  * Created by smb on 13/12/2016.
  */
@@ -27,10 +30,11 @@ public class UIFactory {
     private static ShowCaseView showCaseView;
     private static GoodsView goodsView;
     private static GoodsView searchGoodsView;
-    private static DetailInfoView detailInfoView;
     private static CatalogFragment catalogView;
     private static final String QUERY_ALL = "";
     private static LobbyView lobbyView;
+    private static HashMap<Integer, DetailInfoView> detailInfoFragmentHashMap = new HashMap<Integer, DetailInfoView>();
+    private static HashMap<Integer, GoodsFragment> goodsFragmentHashMap = new HashMap<Integer, GoodsFragment>();
 
     public static Presenter ShowCase(ViewManager viewManager) {
         if (showCaseView == null) showCaseView = new ShowCaseFragment();
@@ -38,8 +42,8 @@ public class UIFactory {
     }
 
     public static Presenter GoodsPresenter(ViewManager viewManager, com.dronteam.adm.i_moby.model.album.Item album) {
-        if (goodsView == null) goodsView = new GoodsFragment();
-        return  new GoodsPresenter(viewManager, goodsView, album,QUERY_ALL);
+        if (!goodsFragmentHashMap.containsKey(album.getId())) goodsFragmentHashMap.put(album.getId(),new GoodsFragment());
+        return  new GoodsPresenter(viewManager, goodsFragmentHashMap.get(album.getId()), album,QUERY_ALL);
     }
 
     public static Presenter SearchGoodsPresenter(ViewManager viewManager, com.dronteam.adm.i_moby.model.album.Item album, String query) {
@@ -53,19 +57,12 @@ public class UIFactory {
     }
 
     public static Presenter DetailInfoPresenter(ViewManager viewManager, Item product) {
-        if (detailInfoView == null) detailInfoView = new DetailInfoFragment();
-        //detailInfoView = new DetailInfoFragment();
-        return  new DetailInfoPresenter(viewManager, product, detailInfoView);
+        if (!detailInfoFragmentHashMap.containsKey(product.getId())) detailInfoFragmentHashMap.put(product.getId(),new DetailInfoFragment());
+        return  new DetailInfoPresenter(viewManager, product, detailInfoFragmentHashMap.get(product.getId()));
     }
 
     public static Presenter Lobby(ViewManager viewManager) {
         if (lobbyView == null) lobbyView = new LobbyFragment();
         return  new LobbyPresenter(lobbyView,viewManager);
     }
-/*
-    public static Presenter DetailInfo(ViewManager viewManager) {
-        if (viewManager == null) detailInfoView = new detailInfoFragment();
-        return new DetailInfoPresenter(viewManager, detailInfoView);
-    }
-    */
 }
