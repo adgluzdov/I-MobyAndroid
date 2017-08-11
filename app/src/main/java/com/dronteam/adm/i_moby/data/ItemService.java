@@ -15,25 +15,25 @@ import rx.Observable;
 
 public interface ItemService {
 
-    @GET("market.get?owner_id=-11570609&v=5.59")
+    @GET("market.get?owner_id=-150843941&v=5.59")
     Observable<GetResponse> Get(@Query("album_id") String albumId,@Query("offset") int offset,@Query("count") int count);
 
-    @GET("market.get?owner_id=-11570609&v=5.59")
+    @GET("market.get?owner_id=-150843941&v=5.59")
     Observable<GetResponse> Get(@Query("album_id") String album_id);
 
-    @GET("market.search?owner_id=-11570609&v=5.59")
+    @GET("market.search?owner_id=-150843941&v=5.59")
     Observable<GetResponse> Search(@Query("q") String q,@Query("album_id") String album_id,@Query("offset") int offset,@Query("count") int count);
 
-    @GET("market.search?owner_id=-11570609&v=5.67")
+    @GET("market.search?owner_id=-150843941&v=5.67")
     Observable<GetResponse> SearchSpecialOffers(@Query("q") String q);
 
-    @GET("market.getAlbums?owner_id=-11570609&v=5.59")
+    @GET("market.getAlbums?owner_id=-150843941&v=5.59")
     Observable<GetAlbumsResponse> GetAlbums();
 
-    @GET("messages.send?user_id=-11570609&v=5.59")
+    @GET("messages.send?user_id=-150843941&v=5.59")
     Observable<MessegesSendResponse> MessegesSend(@Query("message") String message, @Query("attachment") String attachment);
 
-    @GET("messages.send?user_id=-11570609&v=5.59")
+    @GET("messages.send?user_id=-150843941&v=5.59")
     Observable<MessegesSendResponse> MessegesSend(@Query("message") String message,@Query("attachment") String attachment,@Query("random_id") String random_id);
 
 }

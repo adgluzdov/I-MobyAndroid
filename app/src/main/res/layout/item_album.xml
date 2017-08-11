@@ -48,9 +48,12 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="left"
                     android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white"
                     android:text="Название подборки"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textSize="20sp" />
             </LinearLayout>
         </FrameLayout>
