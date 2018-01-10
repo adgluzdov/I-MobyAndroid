@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">I-Moby</string>
+    <string name="app_name">Демо-магазин I-Moby</string>
+    <string name="catalog">КАТАЛОГ</string>
+    <integer name="com_vk_sdk_AppId">5703451</integer>
+    <string name="no_goods">Нет товаров</string>
+    <string name="no_albums">Нет подборок</string>
+    <string name="all_goods">Все товары</string>
+    <string name="error_connection">Ошибка соединения</string>
 </resources>

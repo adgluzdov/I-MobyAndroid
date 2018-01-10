@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_album_corner_radius">2dp</dimen>
+    <dimen name="item_album_margin">4dp</dimen>
+    <dimen name="item_product_margin">4dp</dimen>
+    <dimen name="item_product_corner_radius">2dp</dimen>
+</resources>
